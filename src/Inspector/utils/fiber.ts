@@ -59,7 +59,7 @@ export const getDirectParentFiber = (child: Fiber): Fiber | null => {
      * react fiber symbol types see:
      * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
      */
-    if (isReactSymbolFiber(current)) {
+    if (!isReactSymbolFiber(current)) {
       return current
     }
     current = current.return

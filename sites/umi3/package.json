@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist src/.umi src/.umi-production",
-    "dev": "COMPRESS=none HOST=0.0.0.0 umi dev",
+    "dev": "npm run clean && COMPRESS=none HOST=0.0.0.0 umi dev",
     "build": "NODE_ENV=production npm-run-all clean build:*",
     "build:umi": "COMPRESS=none SPEED_MEASURE=CONSOLE umi build"
   },
