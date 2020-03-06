@@ -69,64 +69,44 @@ export const Layout = () => {
 
 <br />
 
-### 2. Set up Webpack Config
+### 2. Set up Inspector Config
 
 There are 4 ways to set up webpack config, please pick the one fit your project best.
 
 In common cases (like create-react-app), you can use [#raw-webpack-config](https://github.com/zthxxx/react-dev-inspector#raw-webpack-config),
 
-If your project happen to use webpack-chain / umi2 / umi3, you can try out our **integrated plugins / helper** in [#usage-with-webpack-chain](https://github.com/zthxxx/react-dev-inspector#usage-with-webpack-chain), [#usage-with-umi2](https://github.com/zthxxx/react-dev-inspector#usage-with-umi2) and [#usage-with-umi3](https://github.com/zthxxx/react-dev-inspector#usage-with-umi3).
+If your project happen to use cra / umi3, you can try out our **integrated plugins / helper** in [#usage-with-umi2](https://github.com/zthxxx/react-dev-inspector#usage-with-umi2) and [#usage-with-umi3](https://github.com/zthxxx/react-dev-inspector#usage-with-umi3).
 
 #### raw webpack config
 
 You should add:
 
-- an "inspector-loader"
-- an api server middleware, "devServer", to open local IDE
+- an inspector **babel plugin** (in babelrc or webpack babel-loader)
+  - `react-dev-inspector/plugins/babel`
+- an api server **middleware**, "devServer", to open local IDE
+  - `import { launchEditorMiddleware } from 'react-dev-inspector/plugins/webpack'`
 
 to your current webpack config.
 
 Example:
 
+```js
+// babelrc.js
+export default {
+  plugins: [
+    // plugin options docs see:
+    // https://github.com/zthxxx/react-dev-inspector#inspector-babel-plugin-options
+    'react-dev-inspector/plugins/babel',
+  ],
+}
+```
+
 ```ts
-import { Configuration } from 'webpack'
+// webpack.config.ts
+import type { Configuration } from 'webpack'
 import { launchEditorMiddleware } from 'react-dev-inspector/plugins/webpack'
 
-
 const config: Configuration = {
-  // ...
-
-  /**
-   * [compile time] for inject source code file info
-   */
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.[jt]sx$/,
-        exclude: [
-          /node_modules/,
-          /file-you-want-exclude/,
-        ],
-        use: [
-          {
-            loader: 'react-dev-inspector/plugins/webpack/inspector-loader',
-            options: [{
-              // loader options docs see:
-              // https://github.com/zthxxx/react-dev-inspector#inspector-loader-props
-              exclude: [
-                'xxx-file-will-be-exclude',
-                /regexp-to-match-file /,
-              ],
-              babelPlugins: [],
-              babelOptions: {},
-            }],
-          },
-        ],
-      },
-    ],
-  },
-
   /**
    * [server side] webpack dev server side middleware for launch IDE app
    */
@@ -138,28 +118,9 @@ const config: Configuration = {
 }
 ```
 
-#### usage with webpack-chain
-
-This is almost equivalent to `raw webpack config`, except, it will NOT override `devServer.before`, it only adds middleware before origin `devServer.before`.
-
-```ts
-import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack'
-
-
-webpackChainConfig = inspectorChainWebpack(webpackChainConfig, {
-  // loader options docs see:
-  // https://github.com/zthxxx/react-dev-inspector#inspector-loader-props
-  exclude: [],
-  babelPlugins: [],
-  babelOptions: {},
-})
-```
-
 <br />
 
 #### usage with [Umi3](https://umijs.org/)
-
-This is also equivalent to `usage with webpack-chain`
 
 Example `.umirc.dev.ts`:
 
@@ -173,10 +134,8 @@ export default defineConfig({
   ],
   inspectorConfig: {
     // loader options docs see:
-    // https://github.com/zthxxx/react-dev-inspector#inspector-loader-props
-    exclude: [],
-    babelPlugins: [],
-    babelOptions: {},
+    // https://github.com/zthxxx/react-dev-inspector#inspector-babel-plugin-options
+    excludes: [],
   },
 })
 ```
@@ -256,6 +215,19 @@ interface InspectParams {
 
 <br />
 
+###Inspector Babel Plugin Options
+
+```ts
+interface InspectorPluginOptions {
+  /** override process.cwd() */
+  cwd?: string,
+  /** patterns to exclude matched files */
+  excludes?: (string | RegExp)[],
+}
+```
+
+<br />
+
 ### Inspector Loader Props
 
 ```ts
@@ -264,7 +236,7 @@ interface InspectParams {
 
 interface InspectorConfig {
   /** patterns to exclude matched files */
-  exclude?: (string | RegExp)[],
+  excludes?: (string | RegExp)[],
   /**
    * add extra plugins for babel parser
    * default is ['typescript', 'jsx', 'decorators-legacy', 'classProperties']

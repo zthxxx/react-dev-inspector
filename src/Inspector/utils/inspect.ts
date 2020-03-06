@@ -29,7 +29,7 @@ export interface CodeDataAttribute {
   'data-inspector-relative-path': string,
 }
 
-export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
+export const getCodeInfoFromFiber = (fiber?: Fiber): CodeInfo | undefined => {
   if (!fiber?.pendingProps) return undefined
 
   // inspector data attributes inject by `plugins/webpack/inspector-loader`
@@ -101,7 +101,7 @@ export const getReferenceFiber = (baseFiber?: Fiber): Fiber | undefined => {
     : baseFiber
 
   while (referenceFiber) {
-    if (getCodeInfoFromProps(referenceFiber)) return referenceFiber
+    if (getCodeInfoFromFiber(referenceFiber)) return referenceFiber
 
     referenceFiber = referenceFiber.return!
   }
@@ -113,7 +113,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
   const fiber: Fiber | undefined = getElementFiberUpward(element)
 
   const referenceFiber = getReferenceFiber(fiber)
-  return getCodeInfoFromProps(referenceFiber)
+  return getCodeInfoFromFiber(referenceFiber)
 }
 
 export const gotoEditor = (source?: CodeInfo) => {
@@ -153,7 +153,7 @@ export const getNamedFiber = (baseFiber?: Fiber): Fiber | undefined => {
 
     if (
       getFiberName(fiber)
-      && getCodeInfoFromProps(fiber)
+      && getCodeInfoFromFiber(fiber)
     ) {
       return fiber
     }

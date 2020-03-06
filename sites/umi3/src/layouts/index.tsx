@@ -1,9 +1,10 @@
 import React from 'react'
 import { Global } from '@emotion/core'
 import { Inspector } from 'react-dev-inspector'
-import { Title } from '../components/Title'
-import { Slogan } from '../components/Slogan'
-import { KeyPad, Keypress } from '../components/Keypress'
+import type { InspectParams } from 'react-dev-inspector'
+import { Title } from './components/Title'
+import { Slogan } from './components/Slogan'
+import { KeyPad, Keypress } from './components/Keypress'
 import * as S from './styles'
 
 
@@ -14,7 +15,7 @@ export const HomePage = () => {
   return (
     <Inspector
       disableLaunchEditor={!isDev}
-      onClickElement={(inspect) => {
+      onClickElement={(inspect: InspectParams) => {
         console.debug(inspect)
         if (isDev || !inspect.codeInfo) return
 

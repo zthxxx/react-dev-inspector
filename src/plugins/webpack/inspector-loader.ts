@@ -1,126 +1,24 @@
+/**
+ * @deprecated deprecated in v1.4.0
+ *   migrate to `react-dev-inspector/plugins/babel`
+ *   retain for backward compatibility <= v1.3.*
+ */
 import path from 'path'
 import { getOptions } from 'loader-utils'
 import { parse } from '@babel/parser'
 import generate from '@babel/generator'
-import traverse, { NodePath } from '@babel/traverse'
-import {
-  jsxAttribute,
-  jsxIdentifier,
-  stringLiteral,
+import traverse  from '@babel/traverse'
+import type {
   Node,
   JSXOpeningElement,
-  JSXIdentifier,
-  JSXMemberExpression,
-  JSXNamespacedName,
-  JSXAttribute,
 } from '@babel/types'
 import type webpack from 'webpack'
+import {
+  pathMatch,
+  doJSXOpeningElement,
+} from '../babel/visitor'
 import type { InspectorConfig } from './config-inspector'
 
-
-const isNil = (value: any): value is null | undefined => value === null || value === undefined
-
-type NodeHandler<T = Node, O = void> = (node: T, option: O) => {
-  /**
-   * stop processing flag
-   */
-  stop?: boolean,
-
-  /**
-   * throw error
-   */
-  error?: any,
-
-  /**
-   * node after processing
-   */
-  result?: Node,
-}
-
-const doJSXIdentifierName: NodeHandler<JSXIdentifier> = (name) => {
-  if (name.name.endsWith('Fragment')) {
-    return { stop: true }
-  }
-  return { stop: false }
-}
-
-const doJSXMemberExpressionName: NodeHandler<JSXMemberExpression> = (name) => {
-  return doJSXIdentifierName(name.property)
-}
-
-const doJSXNamespacedNameName: NodeHandler<JSXNamespacedName> = (name) => {
-  return doJSXIdentifierName(name.name)
-}
-
-type ElementTypes = JSXOpeningElement['name']['type']
-
-const doJSXPathName: NodeHandler<JSXOpeningElement['name']> = (name) => {
-  const dealMap: { [key in ElementTypes]: NodeHandler } = {
-    JSXIdentifier: doJSXIdentifierName,
-    JSXMemberExpression: doJSXMemberExpressionName,
-    JSXNamespacedName: doJSXNamespacedNameName,
-  }
-
-  return dealMap[name.type](name)
-}
-
-
-const doJSXOpeningElement: NodeHandler<
-  JSXOpeningElement,
-  { relativePath: string }
-> = (node, option) => {
-  const { stop } = doJSXPathName(node.name)
-  if (stop) return { stop }
-
-  const { relativePath } = option
-  const line = node.loc?.start.line
-  const column = node.loc?.start.column
-
-  const lineAttr: JSXAttribute | null = isNil(line)
-    ? null
-    : jsxAttribute(
-      jsxIdentifier('data-inspector-line'),
-      stringLiteral(line.toString()),
-    )
-
-  const columnAttr: JSXAttribute | null = isNil(column)
-    ? null
-    : jsxAttribute(
-      jsxIdentifier('data-inspector-column'),
-      stringLiteral(column.toString()),
-    )
-
-  const relativePathAttr: JSXAttribute = jsxAttribute(
-    jsxIdentifier('data-inspector-relative-path'),
-    stringLiteral(relativePath),
-  )
-
-  const attributes = [lineAttr, columnAttr, relativePathAttr] as JSXAttribute[]
-
-  // Make sure that there are exist together
-  if (attributes.every(Boolean)) {
-    node.attributes.unshift(...attributes)
-  }
-
-  return { result: node }
-}
-
-/**
- * simple path match method, only use string and regex
- */
-export const pathMatch = (filePath: string, matches?: (string | RegExp)[]): boolean => {
-  if (!matches?.length) return false
-
-  return matches.some((match) => {
-    if (typeof match === 'string') {
-      return filePath.includes(match)
-    } else if (match instanceof RegExp) {
-      return match.test(filePath)
-    }
-    // default is do not filter when match is illegal, so return true
-    return true
-  })
-}
 
 /**
  * [webpack compile time]
@@ -146,7 +44,7 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
 
   const options: InspectorConfig = getOptions(this)
 
-  const isSkip = pathMatch(filePath, options.exclude)
+  const isSkip = pathMatch(filePath, options.excludes)
   if (isSkip) {
     return source
   }
@@ -171,13 +69,13 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
    * https://astexplorer.net
    */
   traverse(ast, {
-    enter(path: NodePath<Node>) {
-      if (path.type === 'JSXOpeningElement') {
+    JSXOpeningElement: {
+      enter(path) {
         doJSXOpeningElement(
           path.node as JSXOpeningElement,
           { relativePath },
         )
-      }
+      },
     },
   })
 

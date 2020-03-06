@@ -6,6 +6,7 @@
   ],
   "compilerOptions": {
     "outDir": "es",
+    "module": "esnext",
     "target": "es2015",
     "noEmit": false,
     "declaration": true,

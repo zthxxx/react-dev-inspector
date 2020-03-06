@@ -4,14 +4,12 @@
 
 import type { IApi } from '@umijs/types'
 import {
-  inspectorChainWebpack,
-  InspectorConfig,
   createLaunchEditorMiddleware,
 } from '../webpack'
-
+import type { InspectorPluginOptions } from '../babel'
 
 export default function inspectorPlugin(api: IApi) {
-  const inspectorConfig = api.userConfig.inspectorConfig as InspectorConfig
+  const inspectorConfig = api.userConfig.inspectorConfig as InspectorPluginOptions | undefined
 
   api.describe({
     key: 'inspectorConfig',
@@ -23,6 +21,20 @@ export default function inspectorPlugin(api: IApi) {
     enableBy: api.EnableBy.register,
   })
 
+  api.modifyBabelOpts((babelOptions) => {
+    babelOptions.plugins.unshift([
+      'react-dev-inspector/plugins/babel',
+      {
+        cwd: inspectorConfig?.cwd,
+        excludes: [
+          /\.umi(-production)?\//,
+          ...inspectorConfig?.excludes ?? [],
+        ],
+      },
+    ])
+    return babelOptions
+  })
+
   /**
    * Inspector component open file into IDE via `/__open-stack-frame-in-editor/relative` api,
    * which is created by `errorOverlayMiddleware` and
@@ -32,6 +44,4 @@ export default function inspectorPlugin(api: IApi) {
    * so need add launch editor middleware manually
    */
   api.addBeforeMiddewares(createLaunchEditorMiddleware)
-
-  api.chainWebpack((chain) => inspectorChainWebpack(chain, inspectorConfig))
 }

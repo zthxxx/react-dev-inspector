@@ -4,11 +4,16 @@ const {
   disableEsLint,
   addWebpackResolve,
   addWebpackAlias,
+  addBabelPlugin,
   addBabelPresets,
   addWebpackPlugin,
 } = require('customize-cra')
 
-
+/**
+ * origin config: https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/config/webpack.config.js
+ *
+ * customize-cra api code: https://github.com/arackaf/customize-cra/blob/master/src
+ */
 module.exports = override(
   disableEsLint(),
   addWebpackResolve({
@@ -31,30 +36,14 @@ module.exports = override(
    * react-dev-inspector example configuration is as follows
    */
 
-  (config) => {
-    config.module.rules.unshift({
-      enforce: 'pre',
-      test: /\.[jt]sx$/,
-      exclude: [
-        /node_modules/,
-        /\/devTools\//,
-        /\.storybook\//,
+  addBabelPlugin([
+    'react-dev-inspector/plugins/babel',
+    {
+      excludes: [
+        /xxxx-want-to-ignore/,
       ],
-      use: [
-        {
-          loader: 'react-dev-inspector/plugins/webpack/inspector-loader',
-          options: {
-            // loader options docs see:
-            // https://github.com/zthxxx/react-dev-inspector#inspector-loader-props
-            exclude: [],
-            babelPlugins: [],
-            babelOptions: {},
-          },
-        },
-      ],
-    })
-    return config
-  },
+    },
+  ]),
   addWebpackPlugin(
     new ReactInspectorPlugin(),
   ),

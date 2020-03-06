@@ -17,3 +17,5 @@ node_modules
 react-app-env.d.ts
 
 !.umirc.*
+
+/tests/fixtures

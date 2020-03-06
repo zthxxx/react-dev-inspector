@@ -5,6 +5,8 @@ extends:
   - alloy/react
   # https://github.com/AlloyTeam/eslint-config-alloy/blob/master/config/rules/typescript.json
   - alloy/typescript
+env:
+  jest: true
 rules:
   # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
   react/jsx-curly-brace-presence: off
@@ -75,6 +77,8 @@ rules:
     - error
     - 6
 
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-assertions.md
+  '@typescript-eslint/consistent-type-assertions': off
   # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-void-type.md
   '@typescript-eslint/no-invalid-void-type': off
   # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md

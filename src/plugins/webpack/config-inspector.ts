@@ -1,3 +1,8 @@
+/**
+ * @deprecated deprecated in v1.4.0
+ *   migrate to `react-dev-inspector/plugins/babel`
+ *   retain for backward compatibility <= v1.3.*
+ */
 import type { ParserPlugin, ParserOptions } from '@babel/parser'
 import type WebpackChain from 'webpack-chain'
 import { ReactInspectorPlugin } from './inspector-plugin'
@@ -5,7 +10,11 @@ import { ReactInspectorPlugin } from './inspector-plugin'
 
 export interface InspectorConfig {
   /** patterns to exclude matched files */
-  exclude?: (string | RegExp)[],
+  excludes?: (string | RegExp)[],
+  /**
+   * @deprecated move to `excludes`
+   */
+  exclude: InspectorConfig['excludes'],
   babelPlugins?: ParserPlugin[],
   babelOptions?: ParserOptions,
 }
@@ -14,6 +23,11 @@ export const inspectorChainWebpack = (
   config: WebpackChain,
   inspectorConfig?: InspectorConfig,
 ) => {
+  if (inspectorConfig?.exclude && !inspectorConfig?.excludes) {
+    inspectorConfig.excludes = inspectorConfig.exclude
+    delete inspectorConfig.exclude
+  }
+
   /**
    * [compile time] for inject source code file info
    */
