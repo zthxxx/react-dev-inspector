@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "build",
+    "noEmit": false,
+    "declaration": true,
+    "skipLibCheck": true
+  }
+}

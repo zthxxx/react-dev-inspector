@@ -1,0 +1,15 @@
+.git
+.DS_Store
+.idea
+.vscode
+
+/dist
+/build
+/storybook
+/scripts
+/node_modules
+/playground.ts
+
+/es
+/lib
+/plugins

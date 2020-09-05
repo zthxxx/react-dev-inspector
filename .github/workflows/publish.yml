@@ -1,0 +1,43 @@
+# https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
+
+name: publish version to npm
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        # https://github.com/actions/checkout
+        uses: actions/checkout@v2
+        with:
+          # Number of commits to fetch. 0 indicates all history.
+          # all history for changelog
+          fetch-depth: 0
+
+      - name: Setup node
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: |
+          npm ci
+
+      - name: Build
+        run: |
+          npm run build
+
+      - name: Publish to npm
+        id: publish-to-npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm publish

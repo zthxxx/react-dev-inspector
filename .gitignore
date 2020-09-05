@@ -1,0 +1,17 @@
+.DS_Store
+.idea
+.vscode
+
+node_modules
+
+/dist
+/build
+/es
+/lib
+/plugins
+
+
+*.zip
+*.log
+
+coverage/

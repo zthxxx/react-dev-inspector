@@ -1,0 +1,19 @@
+extends:
+  - "@commitlint/config-conventional"
+rules:
+  type-enum:
+    - 2
+    - always
+    - - feat
+      - fix
+      - polish
+      - docs
+      - style
+      - refactor
+      - revert
+      - perf
+      - test
+      - workflow
+      - ci
+      - build
+      - chore
