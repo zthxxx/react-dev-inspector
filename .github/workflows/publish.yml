@@ -8,7 +8,7 @@ on:
       - v*
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +36,7 @@ jobs:
           npm run build
 
       - name: Publish to npm
+        # https://docs.github.com/en/actions/guides/publishing-nodejs-packages#publishing-packages-to-the-npm-registry
         id: publish-to-npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

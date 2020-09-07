@@ -3,7 +3,7 @@
 
 ## Usage & Config
 
-umi3
+### Plugin for umi3
 
 ```ts
 // .umirc.dev.ts
@@ -23,14 +23,16 @@ export default defineConfig({
 })
 ```
 
-or manual used in webpack
+### Plugin for manual used in webpack
 
 ```ts
-import { inspectorChainWebpack } from 'react-dev-inspector/plugins/umi/react-inspector'
+import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack/react-inspector'
 
 
 inspectorChainWebpack(webpackConfigChain, { exclude: ['xxx-file'] })
 ```
+
+### Use in React
 
 ```tsx
 import React from 'react'
@@ -54,3 +56,7 @@ export const Layout = () => {
 }
 
 ```
+
+## License
+
+[MIT LICENSE](./LICENSE)

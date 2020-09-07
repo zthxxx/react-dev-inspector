@@ -1,6 +1,6 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react components source inspector dev-tool",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -11,9 +11,9 @@
     "build:tsc": "tsc -p tsconfig.build.json",
     "build:rollup": "rollup -c"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zthxxx/react-dev-inspector.git"
+  "repository": "zthxxx/react-dev-inspector",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
   "keywords": [
     "react",
