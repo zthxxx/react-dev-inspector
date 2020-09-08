@@ -1,6 +1,6 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "react components source inspector dev-tool",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -8,7 +8,8 @@
     "test": "jest",
     "clean": "rimraf build dist es lib plugins",
     "build": "npm-run-all clean build:*",
-    "build:tsc": "tsc -p tsconfig.build.json",
+    "build:src": "tsc -p es-build.json",
+    "build:plugins": "tsc -p cjs-build.json",
     "build:rollup": "rollup -c"
   },
   "repository": "zthxxx/react-dev-inspector",

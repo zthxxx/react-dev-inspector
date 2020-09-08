@@ -53,14 +53,13 @@ export default [
         ],
         functions: [],
       }),
+      copy({
+        targets: [
+        ],
+      }),
       fileSize({
         showMinifiedSize: false,
         showGzippedSize: false,
-      }),
-      copy({
-        targets: [
-          { src: 'build/plugins/*', dest: 'plugins/' },
-        ],
       }),
     ],
   },
