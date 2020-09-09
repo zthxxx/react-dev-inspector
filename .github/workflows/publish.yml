@@ -39,6 +39,7 @@ jobs:
         # https://docs.github.com/en/actions/guides/publishing-nodejs-packages#publishing-packages-to-the-npm-registry
         id: publish-to-npm
         env:
+          # need set in GitHub repo - settings - secrets
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm publish

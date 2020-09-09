@@ -1,7 +1,6 @@
-import path from 'path'
-import { IApi } from '@umijs/types'
+import type { IApi } from '@umijs/types'
+import type WebpackChain from 'webpack-chain'
 import { DefinePlugin } from 'webpack'
-import WebpackChain from 'webpack-chain'
 import createLaunchEditorMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 
 
@@ -19,12 +18,12 @@ export const inspectorChainWebpack = (
     .test(/\.[jt]sx$/)
     .exclude
     .add(/node_modules/)
-    .add(/\.umi/)
-    .add(/devTools/)
+    .add(/\.umi(-production)?\//)
+    .add(/\/devTools\//)
     .add(/\.storybook\//)
     .end()
     .use('inspector')
-    .loader(path.join(__dirname, '../webpack/inspector-loader.ts'))
+    .loader(require.resolve('../webpack/inspector-loader'))
     .options(inspectorConfig ?? {})
     .end()
 

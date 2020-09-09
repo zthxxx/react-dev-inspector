@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "include": ["src"],
+  "exclude": ["src/plugins"],
   "compilerOptions": {
-    "outDir": "build",
+    "outDir": "es",
+    "target": "es2015",
     "noEmit": false,
     "declaration": true,
     "skipLibCheck": true

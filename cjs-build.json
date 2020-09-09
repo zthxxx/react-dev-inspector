@@ -1,12 +1,9 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./es-build.json",
   "include": ["src/plugins"],
+  "exclude": [],
   "compilerOptions": {
     "outDir": "plugins",
-    "module": "commonjs",
-    "target": "es5",
-    "noEmit": false,
-    "declaration": true,
-    "skipLibCheck": true
+    "module": "commonjs"
   }
 }
