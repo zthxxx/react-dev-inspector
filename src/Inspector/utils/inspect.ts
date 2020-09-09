@@ -1,5 +1,5 @@
 import path from 'path'
-import { Fiber } from 'react-reconciler'
+import type { Fiber } from 'react-reconciler'
 import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint'
 import queryString from 'query-string'
 
@@ -36,7 +36,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo => {
 }
 
 export const gotoEditor = (source?: CodeInfo) => {
-  // PWD auto defined in umi plugin `react-inspector`
+  // PWD auto defined in webpack plugin `inspector-chain`
   const pwd = process.env.PWD
   if (!source || !pwd) return
 
@@ -60,7 +60,7 @@ export const gotoEditor = (source?: CodeInfo) => {
 /**
  * https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
  */
-export const getElementFiber = (element: HTMLElement): Fiber => {
+export const getElementFiber = (element: HTMLElement): Fiber | null => {
   const fiberKey = Object.keys(element).find(
     key => key.startsWith('__reactInternalInstance$'),
   )
@@ -75,33 +75,45 @@ export const getElementFiber = (element: HTMLElement): Fiber => {
 
 export const debugToolNameRegex = /^(.*?\.Provider|.*?\.Consumer|Anonymous|Trigger|Tooltip|_.*|[a-z].*)$/
 
-export const getFiberName = (fiber: Fiber): string => {
-  let prevFiber = fiber
-  while (prevFiber) {
-    const name = prevFiber.type?.displayName
+export const getSuitableFiber = (baseFiber?: Fiber): Fiber | null => {
+  let fiber = baseFiber
+
+  while (fiber) {
+    const name = fiber.type?.displayName
     if (name && !debugToolNameRegex.test(name)) {
-      return name
+      return fiber
     }
 
-    prevFiber = prevFiber.return
+    fiber = fiber.return
   }
+
+  return null
 }
 
-export const getReactElementName = (element: HTMLElement): string => {
-  const fiber = getElementFiber(element)
-  if (!fiber) return null
-  return getFiberName(fiber)
+export const getFiberName = (fiber?: Fiber): string | null => {
+  return getSuitableFiber(fiber)?.type?.displayName
 }
 
-export const getElementInspectTitle = (element: HTMLElement, sourcePath?: string): string => {
-  const ownerName = getReactElementName(element)
+export const getElementInspect = (element: HTMLElement, sourcePath?: string): {
+  fiber?: Fiber,
+  name?: string,
+  title: string,
+} => {
+  const fiber = getSuitableFiber(getElementFiber(element))
+  const fiberName = getFiberName(fiber)
   const nodeName = element.nodeName.toLowerCase()
 
-  const componentName = ownerName
-    ? ownerName
+  const elementName = fiberName
+    ? fiberName
     : nodeName
 
-  return sourcePath
-    ? `<${componentName}>`
-    : `${nodeName} in <${ownerName}>`
+  const title = sourcePath
+    ? `<${elementName}>`
+    : `${nodeName} in <${fiberName}>`
+
+  return {
+    fiber,
+    name: fiberName,
+    title,
+  }
 }

@@ -26,7 +26,7 @@ export default defineConfig({
 ### Plugin for manual used in webpack
 
 ```ts
-import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack/react-inspector'
+import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack/inspector-chain'
 
 
 inspectorChainWebpack(webpackConfigChain, { exclude: ['xxx-file'] })
