@@ -36,7 +36,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo => {
 }
 
 export const gotoEditor = (source?: CodeInfo) => {
-  // PWD auto defined in webpack plugin `inspector-chain`
+  // PWD auto defined in webpack plugin `config-inspector`
   const pwd = process.env.PWD
   if (!source || !pwd) return
 

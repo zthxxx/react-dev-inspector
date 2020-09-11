@@ -1,6 +1,6 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "react components source inspector dev-tool",
   "main": "es/index.js",
   "scripts": {

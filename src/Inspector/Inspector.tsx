@@ -21,9 +21,17 @@ export type ElementHandler = (params: {
 }) => void
 
 export interface InspectorProps {
+  /**
+   * inspector toggle hotkeys
+   *
+   * supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys
+   */
   keys?: string[],
   onHoverElement?: ElementHandler,
   onClickElement?: ElementHandler,
+  /**
+   * whether disable click react component to open IDE for view component code
+   */
   disableLaunchEditor?: boolean,
 }
 

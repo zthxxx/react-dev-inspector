@@ -1,8 +1,12 @@
+import type { ParserPlugin, ParserOptions } from '@babel/parser'
 import { DefinePlugin } from 'webpack'
 import type WebpackChain from 'webpack-chain'
 
+
 export interface InspectorConfig {
   exclude?: string[],
+  babelPlugins?: ParserPlugin[],
+  babelOptions?: ParserOptions,
 }
 
 export const inspectorChainWebpack = (

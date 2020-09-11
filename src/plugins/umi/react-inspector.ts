@@ -3,7 +3,7 @@ import createLaunchEditorMiddleware from 'react-dev-utils/errorOverlayMiddleware
 import {
   inspectorChainWebpack,
   InspectorConfig,
-} from '../webpack/inspector-chain'
+} from '../webpack/config-inspector'
 
 
 export default function inspectorPlugin(api: IApi) {

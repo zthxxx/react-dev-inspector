@@ -13,6 +13,7 @@ import {
   JSXNamespacedName,
 } from '@babel/types'
 import type webpack from 'webpack'
+import type { InspectorConfig } from './config-inspector'
 
 
 type NodeHandler<T = Node, O = {}> = (node: T, option?: O) => {
@@ -109,7 +110,7 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
    */
   const relativePath = filePath.slice(rootPath.length + 1)
 
-  const options = getOptions(this)
+  const options: InspectorConfig = getOptions(this)
 
   if (options?.exclude?.length > 0) {
     const isSkip = options.exclude.some(path => filePath.includes(path))
@@ -122,7 +123,14 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
     sourceType: 'module',
     allowUndeclaredExports: true,
     allowImportExportEverywhere: true,
-    plugins: ['typescript', 'jsx', 'decorators-legacy', 'classProperties'],
+    plugins: [
+      'typescript',
+      'jsx',
+      'decorators-legacy',
+      'classProperties',
+      ...options?.babelPlugins ?? [],
+    ],
+    ...options?.babelOptions,
   })
 
 
