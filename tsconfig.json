@@ -6,13 +6,6 @@
     "target": "esnext",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "baseUrl": ".",
-    "paths": {
-      "src/*": [
-        "./src/*",
-        "./src/*/index"
-      ]
-    },
     "jsx": "react",
     "allowJs": true,
     "esModuleInterop": true,
