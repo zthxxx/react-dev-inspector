@@ -1,6 +1,6 @@
 # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
-name: build for commit
+name: Build for commit
 
 on:
   push:

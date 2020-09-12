@@ -1,6 +1,6 @@
 # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
-name: publish version to npm
+name: Release for tag
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - v*
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,4 +42,5 @@ jobs:
           # need set in GitHub repo - settings - secrets
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          cat ./.npmrc
           npm publish
