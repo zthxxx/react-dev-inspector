@@ -4,7 +4,12 @@
 
 node_modules
 
-/dist
+# umi
+.umi
+.umi-production
+.umirc.local.ts
+
+dist
 /build
 /es
 /lib

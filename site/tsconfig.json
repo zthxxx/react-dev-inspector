@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"],
+      "react-dev-inspector": ["../src"],
+      "@@/*": ["./src/.umi/*"]
+    },
+    "jsx": "preserve"
+  },
+  "exclude": [
+    "node_modules",
+    "/scripts",
+    "/dist",
+    "/build"
+  ]
+}
