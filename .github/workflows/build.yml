@@ -36,6 +36,20 @@ jobs:
         run: |
           npm ci
 
-      - name: Build
+      - name: Build package
         run: |
           npm run build
+
+      - name: Build site
+        run: |
+          cd site
+          npm ci
+          npm run build
+          cd ..
+
+      - name: Deploy site
+        if: ${{ github.ref == 'master' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/dist
