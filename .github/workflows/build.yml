@@ -48,7 +48,7 @@ jobs:
           cd ..
 
       - name: Deploy site
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
