@@ -19,7 +19,7 @@ Online demo: https://react-dev-inspector.zthxxx.me
 
 Screen record (gif 8M): 
 
-![inspector-gif](https://i.imgur.com/JlTaIFP.gif)
+<img src="https://raw.githubusercontent.com/zthxxx/react-dev-inspector/master/docs/images/inspect.gif?raw=true" alt="inspector-gif" style="max-width:100%;" >
 
 
 ## Usage & Config
