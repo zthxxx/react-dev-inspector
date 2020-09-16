@@ -8,11 +8,25 @@ import * as S from './styles'
 
 
 const projectRepo = 'https://github.com/zthxxx/react-dev-inspector'
+const isDev = process.env.NODE_ENV === 'development'
 
 export const HomePage = () => {
   return (
     <Inspector
-      onClickElement={console.info}
+      disableLaunchEditor={!isDev}
+      onClickElement={(inspect) => {
+        console.info(inspect)
+        if (isDev) return
+
+        const {
+          relativePath,
+          lineNumber,
+        } = inspect.codeInfo
+
+        window.open(
+          `https://github.com/zthxxx/react-dev-inspector/blob/master/site/${relativePath}#L${lineNumber}`,
+        )
+      }}
     >
       <Global styles={S.globalCss} />
 
