@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist build src/.umi src/.umi-production",
     "dev": "COMPRESS=none HOST=0.0.0.0 umi dev",
-    "build": "npm-run-all clean build:*",
+    "build": "NODE_ENV=production npm-run-all clean build:*",
     "build:umi": "COMPRESS=none SPEED_MEASURE=CONSOLE umi build",
     "build:domain": "echo react-dev-inspector.zthxxx.me > dist/CNAME"
   },
