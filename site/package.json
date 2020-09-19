@@ -8,7 +8,8 @@
     "dev": "COMPRESS=none HOST=0.0.0.0 umi dev",
     "build": "NODE_ENV=production npm-run-all clean build:*",
     "build:umi": "COMPRESS=none SPEED_MEASURE=CONSOLE umi build",
-    "build:domain": "echo react-dev-inspector.zthxxx.me > dist/CNAME"
+    "build:domain": "echo react-dev-inspector.zthxxx.me > dist/CNAME",
+    "build:assets": "cp -R ../docs/images dist/"
   },
   "repository": "zthxxx/react-dev-inspector",
   "private": true,
