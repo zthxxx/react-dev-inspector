@@ -3428,84 +3428,93 @@ var styles_GithubCorner = /*#__PURE__*/styled_base_browser_esm(GithubCorner_defa
 
 
 var projectRepo = 'https://github.com/zthxxx/react-dev-inspector';
+var isDev = "production" === 'development';
 var HomePage = () => {
   return core_browser_esm_jsx(Inspector, {
-    onClickElement: console.info,
-    "data-inspector-line": "14",
+    disableLaunchEditor: !isDev,
+    onClickElement: inspect => {
+      console.info(inspect);
+      if (isDev) return;
+      var _inspect$codeInfo = inspect.codeInfo,
+          relativePath = _inspect$codeInfo.relativePath,
+          lineNumber = _inspect$codeInfo.lineNumber;
+      window.open("https://github.com/zthxxx/react-dev-inspector/blob/master/site/".concat(relativePath, "#L").concat(lineNumber));
+    },
+    "data-inspector-line": "15",
     "data-inspector-column": "4",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx(Global, {
     styles: globalCss,
-    "data-inspector-line": "17",
+    "data-inspector-line": "31",
     "data-inspector-column": "6",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }), core_browser_esm_jsx(Base, {
-    "data-inspector-line": "20",
+    "data-inspector-line": "34",
     "data-inspector-column": "6",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx(styles_GithubCorner, {
     href: projectRepo,
-    "data-inspector-line": "21",
+    "data-inspector-line": "35",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }), core_browser_esm_jsx(Title, {
-    "data-inspector-line": "25",
+    "data-inspector-line": "39",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("span", {
-    "data-inspector-line": "26",
+    "data-inspector-line": "40",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "React Dev Inspector")), core_browser_esm_jsx(Slogan, {
-    "data-inspector-line": "29",
+    "data-inspector-line": "43",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("p", {
-    "data-inspector-line": "30",
+    "data-inspector-line": "44",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "Inspect react components and click will jump to local IDE to view component code."), core_browser_esm_jsx("p", {
-    "data-inspector-line": "31",
+    "data-inspector-line": "45",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("small", {
-    "data-inspector-line": "31",
+    "data-inspector-line": "45",
     "data-inspector-column": "13",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "( for this prod online demo page, jump to GitHub file )"))), core_browser_esm_jsx(KeyPad, {
-    "data-inspector-line": "34",
+    "data-inspector-line": "48",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "35",
+    "data-inspector-line": "49",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("div", {
-    "data-inspector-line": "35",
+    "data-inspector-line": "49",
     "data-inspector-column": "20",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, " Ctrl \u2303 ")), "+", core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "37",
+    "data-inspector-line": "51",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("div", {
-    "data-inspector-line": "37",
+    "data-inspector-line": "51",
     "data-inspector-column": "20",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, " Shift \u21E7 ")), "+", core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "39",
+    "data-inspector-line": "53",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("div", {
-    "data-inspector-line": "39",
+    "data-inspector-line": "53",
     "data-inspector-column": "20",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, " Command \u2318 ")), "+", core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "41",
+    "data-inspector-line": "55",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("div", {
-    "data-inspector-line": "41",
+    "data-inspector-line": "55",
     "data-inspector-column": "20",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, " C ")))));
