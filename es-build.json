@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src"],
-  "exclude": ["src/plugins"],
+  "include": [
+    "src/global.d.ts",
+    "src/Inspector"
+  ],
   "compilerOptions": {
     "outDir": "es",
     "target": "es2015",

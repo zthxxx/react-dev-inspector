@@ -120,9 +120,11 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
     }
 
     hotkeys(hotkey, handleHotKeys)
+    window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey
 
     return () => {
       hotkeys.unbind(hotkey, handleHotKeys)
+      delete window.__REACT_DEV_INSPECTOR_TOGGLE__
     }
   }, [hotkey, handleInspectKey])
 

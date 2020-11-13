@@ -8,6 +8,9 @@ declare module 'global' {
       __REACT_DEVTOOLS_GLOBAL_HOOK__: any;
 
       __REACT_DEVTOOLS_TARGET_WINDOW__: Window;
+
+      /** toggle whether react-dev-inspector start or stop */
+      __REACT_DEV_INSPECTOR_TOGGLE__?: () => void;
     }
   }
 }

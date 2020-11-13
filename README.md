@@ -22,6 +22,15 @@ Screen record (gif 8M):
 [![inspector-gif](https://github.com/zthxxx/react-dev-inspector/raw/master/docs/images/inspect.gif)](https://react-dev-inspector.zthxxx.me/images/inspect.gif)
 
 
+
+## Install
+
+```bash
+npm i -D react-dev-inspector
+```
+
+
+
 ## Usage & Config
 
 ### Use in React
@@ -39,7 +48,8 @@ export const Layout = () => {
   
   return (
     <InspectorWrapper
-      // keys={['control', 'shift', 'command', 'c']} // default keys
+      keys={['control', 'shift', 'command', 'c']} // default keys
+      ...  // Props see below
     >
      <XXXContent>
      </XXXContent>
@@ -48,6 +58,23 @@ export const Layout = () => {
 }
 
 ```
+
+after `<Inspector>` component  was mounted，you can use `window.__REACT_DEV_INSPECTOR_TOGGLE__()` to toggle inspector.
+
+
+
+#### `<Inspector>` Component Props
+
+typescript define you can see in `react-dev-inspector/es/Inspector.d.ts`
+
+| Property            | Description                                                  | Type                                                         | Default                                |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------- |
+| keys                | inspector toggle hotkeys<br /><br />supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys | `string[]`                                                   | `['control', 'shift', 'command', 'c']` |
+| disableLaunchEditor | whether disable click react component to open IDE for view component code<br /><br />(launchEditor by default only support be used with react-dev-inpector plugins in dev) | `boolean`                                                    | `false`                                |
+| onHoverElement      | trigged while  inpector start and mouse hover in a HTMLElement | [`type ElementHandler`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L16) | -                                      |
+| onClickElement      | trigged while  inpector start and mouse click on a HTMLElement | [`type ElementHandler`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L16) | -                                      |
+
+
 
 ### Plugin for umi3
 
@@ -79,9 +106,11 @@ inspectorChainWebpack(webpackConfigChain, { exclude: ['xxx-file'] })
 ```
 
 
-## Example code
+## Example Project Code
 
-see: https://github.com/zthxxx/react-dev-inspector/tree/master/site
+code see: https://github.com/zthxxx/react-dev-inspector/tree/master/site
+
+project preview: https://react-dev-inspector.zthxxx.me
 
 
 ## License
