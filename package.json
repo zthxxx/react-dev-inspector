@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "clean": "rimraf build dist es lib plugins",
+    "dev": "nodemon -w src -e ts,tsx -x 'npm run build && (cd site; npm run dev)'",
     "build": "npm-run-all clean build:*",
     "build:src": "tsc -p es-build.json",
     "build:plugins": "tsc -p cjs-build.json"
@@ -61,6 +62,7 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-typescript": "^0.14.0",
     "husky": "^4.3.0",
+    "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
     "react": "^16.13.1",
     "rimraf": "^3.0.2",
