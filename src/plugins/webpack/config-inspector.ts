@@ -34,7 +34,7 @@ export const inspectorChainWebpack = (
       DefinePlugin,
       [
         {
-          'process.env.PWD': JSON.stringify(process.env.PWD),
+          'process.env.PWD': JSON.stringify(process.cwd()),
         },
       ],
     )
