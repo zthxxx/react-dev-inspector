@@ -197,7 +197,7 @@ module.exports = function (it) {
 
 /***/ "+ego":
 /*!********************************************!*\
-  !*** ./src/layouts/index.tsx + 34 modules ***!
+  !*** ./src/layouts/index.tsx + 33 modules ***!
   \********************************************/
 /*! exports provided: HomePage, default */
 /*! all exports used */
@@ -2449,7 +2449,7 @@ if (typeof window !== 'undefined') {
 }
 
 /* harmony default export */ var hotkeys_esm = (hotkeys);
-// CONCATENATED MODULE: ../es/Inspector/utils/hightlight.js
+// CONCATENATED MODULE: ../es/utils/hightlight.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/Highlighter/index.js
  */
@@ -2554,7 +2554,7 @@ var launchEditorEndpoint_default = /*#__PURE__*/__webpack_require__.n(launchEdit
 var query_string = __webpack_require__("NWgQ");
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
-// CONCATENATED MODULE: ../es/Inspector/utils/inspect.js
+// CONCATENATED MODULE: ../es/utils/inspect.js
 
 
 
@@ -2640,7 +2640,7 @@ const getElementInspect = (element, sourcePath) => {
     };
 };
 
-// CONCATENATED MODULE: ../es/Inspector/utils/overlay.js
+// CONCATENATED MODULE: ../es/utils/overlay.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/Highlighter/Overlay.js
  *
@@ -2670,7 +2670,7 @@ function getElementDimensions(domElement) {
     };
 }
 
-// CONCATENATED MODULE: ../es/Inspector/Overlay.js
+// CONCATENATED MODULE: ../es/Overlay.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/utils.js
  */
@@ -2940,7 +2940,7 @@ const overlayStyles = {
     border: 'rgba(255, 200, 50, 0.3)',
 };
 
-// CONCATENATED MODULE: ../es/Inspector/Inspector.js
+// CONCATENATED MODULE: ../es/Inspector.js
 
 
 
@@ -3008,15 +3008,14 @@ const Inspector = (props) => {
             }
         };
         hotkeys_esm(hotkey, handleHotKeys);
+        window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey;
         return () => {
             hotkeys_esm.unbind(hotkey, handleHotKeys);
+            delete window.__REACT_DEV_INSPECTOR_TOGGLE__;
         };
     }, [hotkey, handleInspectKey]);
     return (react_default.a.createElement(react_default.a.Fragment, null, children));
 };
-
-// CONCATENATED MODULE: ../es/Inspector/index.js
-
 
 // CONCATENATED MODULE: ../es/index.js
 
