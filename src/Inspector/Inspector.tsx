@@ -16,7 +16,7 @@ export const defaultHotKeys = ['control', 'shift', 'command', 'c']
 export type ElementHandler = (params: {
   element: HTMLElement,
   fiber?: Fiber,
-  codeInfo: CodeInfo,
+  codeInfo?: CodeInfo,
   name?: string,
 }) => void
 
@@ -53,7 +53,7 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
     const overlay = overlayRef.current
 
     const codeInfo = getElementCodeInfo(element)
-    const relativePath = codeInfo?.relativePath ?? null
+    const relativePath = codeInfo?.relativePath
 
     const { fiber, name, title } = getElementInspect(element, relativePath)
 
@@ -70,11 +70,11 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
   const handleClickElement = (element: HTMLElement) => {
     const overlay = overlayRef.current
     overlay?.remove?.()
-    overlayRef.current = null
+    overlayRef.current = undefined
     setIsInspect(false)
 
     const codeInfo = getElementCodeInfo(element)
-    const relativePath = codeInfo?.relativePath ?? null
+    const relativePath = codeInfo?.relativePath
 
     const { fiber, name } = getElementInspect(element, relativePath)
 
@@ -102,7 +102,7 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
   }
 
   const stopInspect = () => {
-    overlayRef.current.remove()
+    overlayRef.current?.remove()
     setIsInspect(false)
   }
 

@@ -152,7 +152,7 @@ class OverlayTip {
     }
   }
 
-  updateText(name: string, info: string, width: number, height: number) {
+  updateText(name: string, info: string | undefined, width: number, height: number) {
     this.titleDiv.textContent = name
     this.infoDiv.textContent = info ?? ''
     this.dimSpan.textContent
@@ -222,7 +222,7 @@ export default class Overlay {
 
     while (this.rects.length > elements.length) {
       const rect = this.rects.pop()
-      rect.remove()
+      rect?.remove()
     }
     if (elements.length === 0) {
       return
@@ -262,7 +262,7 @@ export default class Overlay {
       name = elements[0].nodeName.toLowerCase()
 
       const node = elements[0]
-      const hook = node.ownerDocument.defaultView.__REACT_DEVTOOLS_GLOBAL_HOOK__
+      const hook = node.ownerDocument.defaultView?.__REACT_DEVTOOLS_GLOBAL_HOOK__
       if (hook?.rendererInterfaces) {
         let ownerName = null
         for (const rendererInterface of hook.rendererInterfaces.values()) {

@@ -24,7 +24,7 @@ export function setupHighlighter(
     registerListenersOnWindow(window)
   }
 
-  function registerListenersOnWindow(window: Window) {
+  function registerListenersOnWindow(window?: Window | null) {
     // This plug-in may run in non-DOM environments (e.g. React Native).
     if (window && typeof window.addEventListener === 'function') {
       window.addEventListener('click', onClick, true)
@@ -49,7 +49,7 @@ export function setupHighlighter(
     iframesListeningTo = new Set()
   }
 
-  function removeListenersOnWindow(window: Window) {
+  function removeListenersOnWindow(window?: Window | null) {
     // This plug-in may run in non-DOM environments (e.g. React Native).
     if (window && typeof window.removeEventListener === 'function') {
       window.removeEventListener('click', onClick, true)

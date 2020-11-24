@@ -52,7 +52,9 @@
     "@babel/types": "^7.11.5",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@types/webpack": "^4.41.22",
+    "@types/react": "^16.14.2",
+    "@types/webpack": "^4.41.25",
+    "@types/webpack-dev-server": "^3.11.1",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "@umijs/types": "^3.2.20",
@@ -72,7 +74,7 @@
   },
   "peerDependencies": {
     "@umijs/types": "^3.2.20",
-    "react": "^16.13.1",
+    "react": "^16.8.0",
     "webpack": "^4.44.1",
     "webpack-chain": "^6.5.1"
   }

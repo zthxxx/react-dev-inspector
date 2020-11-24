@@ -10,8 +10,8 @@ export interface CodeInfo {
   relativePath: string,
 }
 
-export const getElementCodeInfo = (element: HTMLElement): CodeInfo => {
-  if (!element?.dataset) return null
+export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined => {
+  if (!element?.dataset) return undefined
 
   const { dataset } = element
 
@@ -20,7 +20,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo => {
   const columnNumber = dataset.inspectorColumn
   const relativePath = dataset.inspectorRelativePath
 
-  if (relativePath) {
+  if (lineNumber && columnNumber && relativePath) {
     return {
       lineNumber,
       columnNumber,
@@ -32,7 +32,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo => {
     return getElementCodeInfo(element.parentElement)
   }
 
-  return null
+  return undefined
 }
 
 export const gotoEditor = (source?: CodeInfo) => {
@@ -90,9 +90,9 @@ export const getSuitableFiber = (baseFiber?: Fiber): Fiber | null => {
   return null
 }
 
-export const getFiberName = (fiber?: Fiber): string | null => {
+export const getFiberName = (fiber?: Fiber): string | undefined => {
   const fiberType = getSuitableFiber(fiber)?.type
-  let displayName = null
+  let displayName: string | undefined
 
   // The displayName property is not guaranteed to be a string.
   // It's only safe to use for our purposes if it's a string.
