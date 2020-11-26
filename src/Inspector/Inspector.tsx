@@ -11,14 +11,20 @@ import {
 import Overlay from './Overlay'
 
 
-export const defaultHotKeys = ['control', 'shift', 'command', 'c']
-
-export type ElementHandler = (params: {
+export interface InspectParams {
+  /** hover / click event target dom element */
   element: HTMLElement,
+  /** nearest named react component fiber for dom element */
   fiber?: Fiber,
+  /** source file line / column / path info for react component */
   codeInfo?: CodeInfo,
+  /** react component name for dom element */
   name?: string,
-}) => void
+}
+
+export type ElementHandler = (params: InspectParams) => void
+
+export const defaultHotKeys = ['control', 'shift', 'command', 'c']
 
 export interface InspectorProps {
   /**

@@ -1,10 +1,11 @@
 import type { ParserPlugin, ParserOptions } from '@babel/parser'
 import { DefinePlugin } from 'webpack'
 import type WebpackChain from 'webpack-chain'
+import { ReactInspectorPlugin } from './inspector-plugin'
 
 
 export interface InspectorConfig {
-  exclude?: string[],
+  exclude?: (string | RegExp)[],
   babelPlugins?: ParserPlugin[],
   babelOptions?: ParserOptions,
 }
@@ -13,6 +14,9 @@ export const inspectorChainWebpack = (
   config: WebpackChain,
   inspectorConfig?: InspectorConfig,
 ) => {
+  /**
+   * compile time for inject source code file info
+   */
   config
     .module
     .rule('inspector')
@@ -28,6 +32,9 @@ export const inspectorChainWebpack = (
     .options(inspectorConfig ?? {})
     .end()
 
+  /**
+   * web page runtime
+   */
   config
     .plugin('define-pwd')
     .use(
@@ -39,6 +46,16 @@ export const inspectorChainWebpack = (
       ],
     )
     .end()
+
+  /**
+   * webpack dev service side for launch IDE app
+   */
+  config
+    .plugin('react-inspector')
+    .use(
+      ReactInspectorPlugin,
+      [],
+    )
 
   return config
 }

@@ -71,8 +71,8 @@ typescript define you can see in `react-dev-inspector/es/Inspector.d.ts`
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------- |
 | keys                | inspector toggle hotkeys<br /><br />supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys | `string[]`                                                   | `['control', 'shift', 'command', 'c']` |
 | disableLaunchEditor | whether disable click react component to open IDE for view component code<br /><br />(launchEditor by default only support be used with react-dev-inpector plugins in dev) | `boolean`                                                    | `false`                                |
-| onHoverElement      | trigged while  inpector start and mouse hover in a HTMLElement | [`type ElementHandler`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L16) | -                                      |
-| onClickElement      | trigged while  inpector start and mouse click on a HTMLElement | [`type ElementHandler`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L16) | -                                      |
+| onHoverElement      | triggered while inspector start and mouse hover in a HTMLElement | [`type ElementHandler`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L16) | -                                      |
+| onClickElement      | triggered while inspector start and mouse click on a HTMLElement | [`type ElementHandler`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L16) | -                                      |
 
 
 
@@ -99,7 +99,7 @@ export default defineConfig({
 ### Plugin for manual used in webpack
 
 ```ts
-import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack/config-inspector'
+import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack'
 
 
 inspectorChainWebpack(webpackConfigChain, { exclude: ['xxx-file'] })

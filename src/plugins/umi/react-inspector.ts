@@ -1,9 +1,13 @@
+/**
+ * preset plugins for umi3
+ */
+
 import type { IApi } from '@umijs/types'
-import createLaunchEditorMiddleware from 'react-dev-utils/errorOverlayMiddleware'
 import {
   inspectorChainWebpack,
   InspectorConfig,
-} from '../webpack/config-inspector'
+  createLaunchEditorMiddleware,
+} from '../webpack'
 
 
 export default function inspectorPlugin(api: IApi) {
@@ -23,6 +27,9 @@ export default function inspectorPlugin(api: IApi) {
    * Inspector component open file into IDE via `__open-stack-frame-in-editor` api,
    * which is created by `errorOverlayMiddleware` and
    * defined in 'react-dev-utils/launchEditorEndpoint'
+   *
+   * due to umi3 not use webpack devServer,
+   * so need add launch editor middleware manually
    */
   api.addBeforeMiddewares(createLaunchEditorMiddleware)
 

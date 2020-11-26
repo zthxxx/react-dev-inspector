@@ -2,6 +2,7 @@ import { getOptions } from 'loader-utils'
 import { parse } from '@babel/parser'
 import generate from '@babel/generator'
 import traverse, { NodePath } from '@babel/traverse'
+import { isNil } from 'lodash'
 import {
   jsxAttribute,
   jsxIdentifier,
@@ -11,12 +12,13 @@ import {
   JSXIdentifier,
   JSXMemberExpression,
   JSXNamespacedName,
+  JSXAttribute,
 } from '@babel/types'
 import type webpack from 'webpack'
 import type { InspectorConfig } from './config-inspector'
 
 
-type NodeHandler<T = Node, O = {}> = (node: T, option?: O) => {
+type NodeHandler<T = Node, O = void> = (node: T, option: O) => {
   /**
    * stop processing flag
    */
@@ -69,32 +71,60 @@ const doJSXOpeningElement: NodeHandler<
   if (stop) return { stop }
 
   const { relativePath } = option
+  const line = node.loc?.start.line
+  const column = node.loc?.start.column
 
-  const lineAttr = jsxAttribute(
-    jsxIdentifier('data-inspector-line'),
-    stringLiteral(node.loc.start.line.toString()),
-  )
+  const lineAttr: JSXAttribute | null = isNil(line)
+    ? null
+    : jsxAttribute(
+      jsxIdentifier('data-inspector-line'),
+      stringLiteral(line.toString()),
+    )
 
-  const columnAttr = jsxAttribute(
-    jsxIdentifier('data-inspector-column'),
-    stringLiteral(node.loc.start.column.toString()),
-  )
+  const columnAttr: JSXAttribute | null = isNil(column)
+    ? null
+    : jsxAttribute(
+      jsxIdentifier('data-inspector-column'),
+      stringLiteral(column.toString()),
+    )
 
-  const relativePathAttr = jsxAttribute(
+  const relativePathAttr: JSXAttribute = jsxAttribute(
     jsxIdentifier('data-inspector-relative-path'),
     stringLiteral(relativePath),
   )
 
-  node.attributes.push(lineAttr, columnAttr, relativePathAttr)
+  const attributes = [lineAttr, columnAttr, relativePathAttr] as JSXAttribute[]
+
+  // Make sure that there are exist together
+  if (attributes.every(Boolean)) {
+    node.attributes.push(...attributes)
+  }
 
   return { result: node }
 }
 
 /**
+ * simple path match method, only use string and regex
+ */
+export const pathMatch = (filePath: string, matches?: (string | RegExp)[]): boolean => {
+  if (!matches?.length) return false
+
+  return matches.some((match) => {
+    if (typeof match === 'string') {
+      return filePath.includes(match)
+    } else if (match instanceof RegExp) {
+      return match.test(filePath)
+    }
+  })
+}
+
+/**
+ * [webpack compile time]
+ *
+ * inject line, column, relative-path to JSX html data attribute in source code
+ *
  * @type webpack.loader.Loader
  * ref: https://astexplorer.net  +  @babel/parser
- *
- * add line, column, relative-path to JSX html data attribute
  */
 export default function inspectorLoader(this: webpack.loader.LoaderContext, source: string) {
   const {
@@ -112,11 +142,9 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
 
   const options: InspectorConfig = getOptions(this)
 
-  if (options?.exclude?.length > 0) {
-    const isSkip = options.exclude.some(path => filePath.includes(path))
-    if (isSkip) {
-      return source
-    }
+  const isSkip = pathMatch(filePath, options.exclude)
+  if (isSkip) {
+    return source
   }
 
   const ast: Node = parse(source, {
