@@ -2608,10 +2608,10 @@ const getElementFiber = (element) => {
 };
 const debugToolNameRegex = /^(.*?\.Provider|.*?\.Consumer|Anonymous|Trigger|Tooltip|_.*|[a-z].*)$/;
 const getSuitableFiber = (baseFiber) => {
-    var _a;
+    var _a, _b, _c;
     let fiber = baseFiber;
     while (fiber) {
-        const name = (_a = fiber.type) === null || _a === void 0 ? void 0 : _a.displayName;
+        const name = (_b = (_a = fiber.type) === null || _a === void 0 ? void 0 : _a.displayName) !== null && _b !== void 0 ? _b : (_c = fiber.type) === null || _c === void 0 ? void 0 : _c.name;
         if (name && !debugToolNameRegex.test(name)) {
             return fiber;
         }
@@ -2620,8 +2620,21 @@ const getSuitableFiber = (baseFiber) => {
     return null;
 };
 const getFiberName = (fiber) => {
-    var _a, _b;
-    return (_b = (_a = getSuitableFiber(fiber)) === null || _a === void 0 ? void 0 : _a.type) === null || _b === void 0 ? void 0 : _b.displayName;
+    var _a;
+    const fiberType = (_a = getSuitableFiber(fiber)) === null || _a === void 0 ? void 0 : _a.type;
+    let displayName = null;
+    // The displayName property is not guaranteed to be a string.
+    // It's only safe to use for our purposes if it's a string.
+    // github.com/facebook/react-devtools/issues/803
+    //
+    // https://github.com/facebook/react/blob/v17.0.0/packages/react-devtools-shared/src/utils.js#L90-L112
+    if (typeof (fiberType === null || fiberType === void 0 ? void 0 : fiberType.displayName) === 'string') {
+        displayName = fiberType.displayName;
+    }
+    else if (typeof (fiberType === null || fiberType === void 0 ? void 0 : fiberType.name) === 'string') {
+        displayName = fiberType.name;
+    }
+    return displayName;
 };
 const getElementInspect = (element, sourcePath) => {
     const fiber = getSuitableFiber(getElementFiber(element));
