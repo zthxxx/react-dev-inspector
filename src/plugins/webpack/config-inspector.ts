@@ -5,6 +5,7 @@ import { ReactInspectorPlugin } from './inspector-plugin'
 
 
 export interface InspectorConfig {
+  /** patterns to exclude matched files */
   exclude?: (string | RegExp)[],
   babelPlugins?: ParserPlugin[],
   babelOptions?: ParserOptions,
@@ -15,7 +16,7 @@ export const inspectorChainWebpack = (
   inspectorConfig?: InspectorConfig,
 ) => {
   /**
-   * compile time for inject source code file info
+   * [compile time] for inject source code file info
    */
   config
     .module
@@ -33,7 +34,7 @@ export const inspectorChainWebpack = (
     .end()
 
   /**
-   * web page runtime
+   * [compile time] used in web page runtime
    */
   config
     .plugin('define-pwd')
@@ -48,7 +49,7 @@ export const inspectorChainWebpack = (
     .end()
 
   /**
-   * webpack dev service side for launch IDE app
+   * [server side] add webpack dev server middleware for launch IDE app with api request
    */
   config
     .plugin('react-inspector')
