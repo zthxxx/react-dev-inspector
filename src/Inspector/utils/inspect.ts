@@ -79,7 +79,7 @@ export const getSuitableFiber = (baseFiber?: Fiber): Fiber | null => {
   let fiber = baseFiber
 
   while (fiber) {
-    const name = fiber.type?.displayName
+    const name = fiber.type?.displayName ?? fiber.type?.name
     if (name && !debugToolNameRegex.test(name)) {
       return fiber
     }
@@ -91,7 +91,19 @@ export const getSuitableFiber = (baseFiber?: Fiber): Fiber | null => {
 }
 
 export const getFiberName = (fiber?: Fiber): string | null => {
-  return getSuitableFiber(fiber)?.type?.displayName
+  const fiberType = getSuitableFiber(fiber)?.type
+  let displayName = ''
+
+  // The displayName property is not guaranteed to be a string.
+  // It's only safe to use for our purposes if it's a string.
+  // github.com/facebook/react-devtools/issues/803
+  if (typeof fiberType?.displayName === 'string') {
+    displayName = fiberType.displayName
+  } else if (typeof fiberType?.name === 'string') {
+    displayName = fiberType.name
+  }
+
+  return displayName
 }
 
 export const getElementInspect = (element: HTMLElement, sourcePath?: string): {
