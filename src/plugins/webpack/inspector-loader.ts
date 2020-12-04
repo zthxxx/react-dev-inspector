@@ -2,7 +2,6 @@ import { getOptions } from 'loader-utils'
 import { parse } from '@babel/parser'
 import generate from '@babel/generator'
 import traverse, { NodePath } from '@babel/traverse'
-import { isNil } from 'lodash'
 import {
   jsxAttribute,
   jsxIdentifier,
@@ -17,6 +16,8 @@ import {
 import type webpack from 'webpack'
 import type { InspectorConfig } from './config-inspector'
 
+
+const isNil = (value: any): value is null | undefined => value === null || value === void 0
 
 type NodeHandler<T = Node, O = void> = (node: T, option: O) => {
   /**
