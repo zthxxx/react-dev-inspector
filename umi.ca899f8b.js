@@ -2560,13 +2560,13 @@ var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
 const getElementCodeInfo = (element) => {
     if (!(element === null || element === void 0 ? void 0 : element.dataset))
-        return null;
+        return undefined;
     const { dataset } = element;
     // data attributes auto create by loader in webpack plugin `inspector-loader`
     const lineNumber = dataset.inspectorLine;
     const columnNumber = dataset.inspectorColumn;
     const relativePath = dataset.inspectorRelativePath;
-    if (relativePath) {
+    if (lineNumber && columnNumber && relativePath) {
         return {
             lineNumber,
             columnNumber,
@@ -2576,7 +2576,7 @@ const getElementCodeInfo = (element) => {
     if (element.parentElement) {
         return getElementCodeInfo(element.parentElement);
     }
-    return null;
+    return undefined;
 };
 const gotoEditor = (source) => {
     // PWD auto defined in webpack plugin `config-inspector`
@@ -2622,7 +2622,7 @@ const getSuitableFiber = (baseFiber) => {
 const getFiberName = (fiber) => {
     var _a;
     const fiberType = (_a = getSuitableFiber(fiber)) === null || _a === void 0 ? void 0 : _a.type;
-    let displayName = null;
+    let displayName;
     // The displayName property is not guaranteed to be a string.
     // It's only safe to use for our purposes if it's a string.
     // github.com/facebook/react-devtools/issues/803
@@ -2836,12 +2836,13 @@ class Overlay_Overlay {
         this.removeCallback = callback.bind(this);
     }
     inspect(nodes, name, info) {
+        var _a;
         // We can't get the size of text nodes or comment nodes. React as of v15
         // heavily uses comment nodes to delimit text.
         const elements = nodes.filter(node => node.nodeType === Node.ELEMENT_NODE);
         while (this.rects.length > elements.length) {
             const rect = this.rects.pop();
-            rect.remove();
+            rect === null || rect === void 0 ? void 0 : rect.remove();
         }
         if (elements.length === 0) {
             return;
@@ -2869,7 +2870,7 @@ class Overlay_Overlay {
             // eslint-disable-next-line no-param-reassign
             name = elements[0].nodeName.toLowerCase();
             const node = elements[0];
-            const hook = node.ownerDocument.defaultView.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+            const hook = (_a = node.ownerDocument.defaultView) === null || _a === void 0 ? void 0 : _a.__REACT_DEVTOOLS_GLOBAL_HOOK__;
             if (hook === null || hook === void 0 ? void 0 : hook.rendererInterfaces) {
                 let ownerName = null;
                 for (const rendererInterface of hook.rendererInterfaces.values()) {
@@ -2966,12 +2967,12 @@ const Inspector = (props) => {
     const [isInspect, setIsInspect] = Object(react["useState"])(false);
     const overlayRef = Object(react["useRef"])();
     const handleHoverElement = (element) => {
-        var _a, _b;
+        var _a;
         const overlay = overlayRef.current;
         const codeInfo = getElementCodeInfo(element);
-        const relativePath = (_a = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath) !== null && _a !== void 0 ? _a : null;
+        const relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
         const { fiber, name, title } = getElementInspect(element, relativePath);
-        (_b = overlay === null || overlay === void 0 ? void 0 : overlay.inspect) === null || _b === void 0 ? void 0 : _b.call(overlay, [element], title, relativePath);
+        (_a = overlay === null || overlay === void 0 ? void 0 : overlay.inspect) === null || _a === void 0 ? void 0 : _a.call(overlay, [element], title, relativePath);
         onHoverElement === null || onHoverElement === void 0 ? void 0 : onHoverElement({
             element,
             fiber,
@@ -2980,13 +2981,13 @@ const Inspector = (props) => {
         });
     };
     const handleClickElement = (element) => {
-        var _a, _b;
+        var _a;
         const overlay = overlayRef.current;
         (_a = overlay === null || overlay === void 0 ? void 0 : overlay.remove) === null || _a === void 0 ? void 0 : _a.call(overlay);
-        overlayRef.current = null;
+        overlayRef.current = undefined;
         setIsInspect(false);
         const codeInfo = getElementCodeInfo(element);
-        const relativePath = (_b = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath) !== null && _b !== void 0 ? _b : null;
+        const relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
         const { fiber, name } = getElementInspect(element, relativePath);
         if (!disableLaunchEditor)
             gotoEditor(codeInfo);
@@ -3008,7 +3009,8 @@ const Inspector = (props) => {
         setIsInspect(true);
     };
     const stopInspect = () => {
-        overlayRef.current.remove();
+        var _a;
+        (_a = overlayRef.current) === null || _a === void 0 ? void 0 : _a.remove();
         setIsInspect(false);
     };
     const handleInspectKey = () => (isInspect
@@ -3446,7 +3448,7 @@ var HomePage = () => {
     disableLaunchEditor: !isDev,
     onClickElement: inspect => {
       console.info(inspect);
-      if (isDev) return;
+      if (isDev || !inspect.codeInfo) return;
       var _inspect$codeInfo = inspect.codeInfo,
           relativePath = _inspect$codeInfo.relativePath,
           lineNumber = _inspect$codeInfo.lineNumber;
