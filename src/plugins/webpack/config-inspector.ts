@@ -1,4 +1,5 @@
 import type { ParserPlugin, ParserOptions } from '@babel/parser'
+import webpack from 'webpack'
 import { DefinePlugin } from 'webpack'
 import type WebpackChain from 'webpack-chain'
 import { ReactInspectorPlugin } from './inspector-plugin'
@@ -9,6 +10,7 @@ export interface InspectorConfig {
   exclude?: (string | RegExp)[],
   babelPlugins?: ParserPlugin[],
   babelOptions?: ParserOptions,
+  getRelativePath?: (context: webpack.loader.LoaderContext) => string,
 }
 
 export const inspectorChainWebpack = (

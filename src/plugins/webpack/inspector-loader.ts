@@ -161,7 +161,7 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
     ],
     ...options?.babelOptions,
   })
-
+  const getRelativePath = options?.getRelativePath ?? () => relativePath;
 
   /**
    * astexplorer + @babel/parser
@@ -172,7 +172,7 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
       if (path.type === 'JSXOpeningElement') {
         doJSXOpeningElement(
           path.node as JSXOpeningElement,
-          { relativePath },
+          { relativePath: getRelativePath(this) },
         )
       }
     },
