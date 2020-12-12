@@ -1,7 +1,7 @@
 import path from 'path'
 import type { Fiber } from 'react-reconciler'
 import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint'
-import queryString from 'query-string'
+import * as queryString from 'query-string'
 
 
 export interface CodeInfo {
