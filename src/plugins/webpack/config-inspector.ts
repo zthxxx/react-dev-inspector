@@ -21,6 +21,7 @@ export const inspectorChainWebpack = (
   config
     .module
     .rule('inspector')
+    .enforce('pre')
     .test(/\.[jt]sx$/)
     .exclude
     .add(/node_modules/)
