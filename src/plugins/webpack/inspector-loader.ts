@@ -1,3 +1,4 @@
+import path from 'path'
 import { getOptions } from 'loader-utils'
 import { parse } from '@babel/parser'
 import generate from '@babel/generator'
@@ -139,7 +140,7 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
    * filePath: /home/xxx/project/src/ooo/xxx.js
    * relativePath: src/ooo/xxx.js
    */
-  const relativePath = filePath.slice(rootPath.length + 1)
+  const relativePath = path.relative(rootPath, filePath)
 
   const options: InspectorConfig = getOptions(this)
 
