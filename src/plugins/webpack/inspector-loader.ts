@@ -18,7 +18,7 @@ import type webpack from 'webpack'
 import type { InspectorConfig } from './config-inspector'
 
 
-const isNil = (value: any): value is null | undefined => value === null || value === void 0
+const isNil = (value: any): value is null | undefined => value === null || value === undefined
 
 type NodeHandler<T = Node, O = void> = (node: T, option: O) => {
   /**
@@ -117,6 +117,8 @@ export const pathMatch = (filePath: string, matches?: (string | RegExp)[]): bool
     } else if (match instanceof RegExp) {
       return match.test(filePath)
     }
+    // default is do not filter when match is illegal, so return true
+    return true
   })
 }
 

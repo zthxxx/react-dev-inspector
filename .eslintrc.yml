@@ -1,0 +1,99 @@
+extends:
+  # https://github.com/AlloyTeam/eslint-config-alloy/blob/master/config/rules/base.json
+  - alloy
+  # https://github.com/AlloyTeam/eslint-config-alloy/blob/master/config/rules/react.json
+  - alloy/react
+  # https://github.com/AlloyTeam/eslint-config-alloy/blob/master/config/rules/typescript.json
+  - alloy/typescript
+rules:
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
+  react/jsx-curly-brace-presence: off
+  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
+  react/jsx-boolean-value: off
+  # https://reactjs.org/docs/hooks-rules.html
+  react-hooks/exhaustive-deps: off
+  react/react-in-jsx-scope:
+    - error
+  react/jsx-first-prop-new-line:
+    - error
+    - multiline
+  react/jsx-indent:
+    - error
+    - 2
+  react/jsx-max-props-per-line:
+    - error
+    - maximum: 1
+      when: multiline
+  react/jsx-wrap-multilines:
+    - error
+    - declaration: parens-new-line
+      assignment: parens-new-line
+      return: parens-new-line
+      arrow: parens-new-line
+      condition: parens-new-line
+      logical: parens-new-line
+      prop: parens-new-line
+
+
+  eol-last: error
+  # https://eslint.org/docs/rules/indent
+  indent:
+    - error
+    - 2
+  # https://eslint.org/docs/rules/comma-dangle
+  comma-dangle:
+    - error
+    - always-multiline
+  # https://eslint.org/docs/rules/semi
+  semi:
+    - error
+    - never
+  # https://eslint.org/docs/rules/quotes
+  quotes:
+    - error
+    - single
+  # https://eslint.org/docs/rules/no-trailing-spaces
+  no-trailing-spaces: error
+  # https://eslint.org/docs/rules/multiline-ternary
+  # align between '?' and ':'
+  multiline-ternary:
+    - error
+    - always-multiline
+
+  no-console:
+    - error
+    - allow: [debug, warn, error]
+  max-params:
+    - error
+    - 6
+
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-void-type.md
+  '@typescript-eslint/no-invalid-void-type': off
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md
+  '@typescript-eslint/member-delimiter-style':
+    - error
+    - multiline:
+        delimiter: comma
+        requireLast: true
+      singleline:
+        delimiter: semi
+        requireLast: false
+overrides:
+  - files: ['**/*.js', '**/*.jsx']
+    rules:
+      "@typescript-eslint/no-unused-vars": off
+      '@typescript-eslint/no-require-imports': off
+  - files: ['**/*.ts', '**/*.tsx']
+    rules:
+      no-unused-vars: off
+      "@typescript-eslint/no-unused-vars": error
+      no-unused-expressions: off
+      '@typescript-eslint/no-unused-expressions':
+        - error
+        - allowShortCircuit: true
+          allowTernary: true
+          allowTaggedTemplates: true
+
+  - files: ['src/Inspector/Overlay.tsx']
+    rules:
+      '@typescript-eslint/explicit-member-accessibility': off

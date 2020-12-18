@@ -11,7 +11,7 @@ import createLaunchEditorMiddleware from 'react-dev-utils/errorOverlayMiddleware
  * https://webpack.js.org/contribute/writing-a-plugin
  */
 export class ReactInspectorPlugin {
-  apply(compiler: Compiler) {
+  public apply(compiler: Compiler) {
     if (!compiler.options.devServer) {
       compiler.options.devServer = {
         before: (app) => {

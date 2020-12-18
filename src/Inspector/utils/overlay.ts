@@ -18,10 +18,8 @@ export interface Rect {
 
 // Calculate a boundingClientRect for a node relative to boundaryWindow,
 // taking into account any offsets caused by intermediate iframes.
-export function getNestedBoundingClientRect(
-  node: HTMLElement,
-  boundaryWindow: Window | HTMLElement,
-): Rect {
+export function getNestedBoundingClientRect(node: HTMLElement, boundaryWindow: Window | HTMLElement): Rect
+export function getNestedBoundingClientRect(node: HTMLElement): Rect {
   return node.getBoundingClientRect()
 }
 

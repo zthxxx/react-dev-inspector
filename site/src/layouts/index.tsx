@@ -15,7 +15,7 @@ export const HomePage = () => {
     <Inspector
       disableLaunchEditor={!isDev}
       onClickElement={(inspect) => {
-        console.info(inspect)
+        console.debug(inspect)
         if (isDev || !inspect.codeInfo) return
 
         const {
