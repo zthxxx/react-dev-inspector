@@ -325,7 +325,7 @@ export REACT_EDITOR=vim
 
 ## Example Project Code
 
-code see: https://github.com/zthxxx/react-dev-inspector/tree/master/site
+code see: https://github.com/zthxxx/react-dev-inspector/tree/master/sites
 
 project preview: https://react-dev-inspector.zthxxx.me
 

@@ -1,25 +1,30 @@
 {
-  "name": "react-dev-inspector-site",
-  "version": "1.0.0",
-  "description": "website of react-dev-inspector",
+  "name": "@react-dev-inspector/site-umi3",
+  "version": "0.0.0",
+  "description": "website of react-dev-inspector via umi3",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist build src/.umi src/.umi-production",
     "dev": "COMPRESS=none HOST=0.0.0.0 umi dev",
     "build": "NODE_ENV=production npm-run-all clean build:*",
-    "build:umi": "COMPRESS=none SPEED_MEASURE=CONSOLE umi build",
-    "build:domain": "echo react-dev-inspector.zthxxx.me > dist/CNAME",
-    "build:assets": "cp -R ../docs/images dist/"
+    "build:umi": "COMPRESS=none SPEED_MEASURE=CONSOLE umi build"
   },
-  "repository": "zthxxx/react-dev-inspector",
+  "repository": "zthxxx/react-dev-inspector/sites/umi3",
   "private": true,
   "author": "zthxxx",
+  "homepage": "react-dev-inspector.zthxxx.me/umi3",
   "license": "MIT",
-  "homepage": "react-dev-inspector.zthxxx.me",
+  "publishConfig": {
+    "registry": false
+  },
+  "bugs": {
+    "url": "https://github.com/zthxxx/react-dev-inspector/issues"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
     "react": "^16.13.1",
+    "react-dev-inspector": "^1.1.4",
     "react-dom": "^16.13.1",
     "react-github-corner": "^2.5.0",
     "umi": "^3.2.22"

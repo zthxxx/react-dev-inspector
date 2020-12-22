@@ -4,13 +4,20 @@
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "scripts": {
+    "postinstall": "lerna bootstrap",
     "test": "jest",
-    "clean": "rimraf build dist es lib plugins",
-    "dev": "nodemon -w src -e ts,tsx -x 'npm run build && (cd site; npm run dev)'",
-    "build": "npm-run-all clean build:*",
+    "clean": "rimraf build dist site es lib plugins",
+    "dev": "nodemon -w src -e ts,tsx -x 'npm run build && (cd sites/umi3; npm run dev)'",
+    "build": "npm-run-all clean build:src build:plugins",
     "build:src": "tsc -p es-build.json",
     "build:plugins": "tsc -p cjs-build.json",
-    "lint": "TIMING=1 eslint --ext js,jsx,ts,tsx src site"
+    "build:site": "lerna run build && npm-run-all site:*",
+    "site:mkdir": "mkdir -p site",
+    "site:index": "cp -R sites/umi3/dist/* site/",
+    "site:routes": "npx lerna exec -- 'mv ./dist ../../site/$(basename $(pwd))'",
+    "site:domain": "echo react-dev-inspector.zthxxx.me > site/CNAME",
+    "site:assets": "cp -R docs/images site/",
+    "lint": "TIMING=1 eslint --ext js,jsx,ts,tsx src sites"
   },
   "repository": "zthxxx/react-dev-inspector",
   "publishConfig": {
@@ -65,6 +72,7 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-typescript": "^0.14.0",
     "husky": "^4.3.0",
+    "lerna": "^3.22.1",
     "lint-staged": "^10.5.3",
     "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
@@ -88,6 +96,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx,ts,tsx src site"
+    "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx,ts,tsx src sites"
   }
 }

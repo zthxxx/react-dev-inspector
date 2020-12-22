@@ -1,0 +1,26 @@
+{
+  "version": "0.0.0",
+  "packages": [
+    ".",
+    "sites/*"
+  ],
+  "command": {
+    "bootstrap": {
+      "ignore": "react-dev-inspector"
+    },
+    "clean": {
+      "ignore": "react-dev-inspector"
+    },
+    "run": {
+      "ignore": "react-dev-inspector",
+      "stream": true
+    },
+    "exec": {
+      "ignore": "react-dev-inspector",
+      "stream": true
+    },
+    "publish": {
+      "registry": false
+    }
+  }
+}

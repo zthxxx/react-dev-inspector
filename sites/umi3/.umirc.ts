@@ -19,7 +19,6 @@ export default defineConfig({
   publicPath: '/',
   alias: {
     src: path.resolve(__dirname, 'src'),
-    'react-dev-inspector': path.resolve(__dirname, '..'),
   },
   ignoreMomentLocale: true,
   targets: {
@@ -36,6 +35,6 @@ export default defineConfig({
     ],
   ],
   plugins: [
-    '../plugins/umi/react-inspector',
+    'react-dev-inspector/plugins/umi/react-inspector',
   ],
 })

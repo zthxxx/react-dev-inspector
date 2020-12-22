@@ -4,10 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "src/*": ["./src/*"],
-      "react-dev-inspector": ["../src"],
       "@@/*": ["./src/.umi/*"]
     },
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "esModuleInterop": true
   },
   "exclude": [
     "node_modules",
