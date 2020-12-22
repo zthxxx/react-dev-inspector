@@ -24,7 +24,7 @@ export const HomePage = () => {
         } = inspect.codeInfo
 
         window.open(
-          `https://github.com/zthxxx/react-dev-inspector/blob/master/site/${relativePath}#L${lineNumber}`,
+          `https://github.com/zthxxx/react-dev-inspector/blob/master/sites/umi3/${relativePath}#L${lineNumber}`,
         )
       }}
     >

@@ -13,10 +13,10 @@
     "build:plugins": "tsc -p cjs-build.json",
     "build:site": "lerna run build && npm-run-all site:*",
     "site:mkdir": "mkdir -p site",
-    "site:index": "cp -R sites/umi3/dist/* site/",
     "site:routes": "npx lerna exec -- 'mv ./dist ../../site/$(basename $(pwd))'",
+    "site:index": "cp -f site/umi3/index.html site/",
     "site:domain": "echo react-dev-inspector.zthxxx.me > site/CNAME",
-    "site:assets": "cp -R docs/images site/",
+    "site:assets": "cp -fR docs/images site/",
     "lint": "TIMING=1 eslint --ext js,jsx,ts,tsx src sites"
   },
   "repository": "zthxxx/react-dev-inspector",

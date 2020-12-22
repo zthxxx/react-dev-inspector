@@ -5,9 +5,6 @@ import path from 'path'
 
 export default defineConfig({
   title: false,
-  manifest: {
-    basePath: '/',
-  },
   hash: true,
   history: {
     type: 'browser',
@@ -16,7 +13,7 @@ export default defineConfig({
   // routes: [
   //   { exact: true, path: '/', component: 'index' },
   // ],
-  publicPath: '/',
+  publicPath: '/umi3/',
   alias: {
     src: path.resolve(__dirname, 'src'),
   },
