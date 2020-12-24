@@ -11825,8 +11825,10 @@ function parserForArrayFormat(options) {
     case 'comma':
     case 'separator':
       return function (key, value, accumulator) {
-        var isArray = typeof value === 'string' && value.split('').indexOf(options.arrayFormatSeparator) > -1;
-        var newValue = isArray ? value.split(options.arrayFormatSeparator).map(function (item) {
+        var isArray = typeof value === 'string' && value.includes(options.arrayFormatSeparator);
+        var isEncodedArray = typeof value === 'string' && !isArray && decode(value, options).includes(options.arrayFormatSeparator);
+        value = isEncodedArray ? decode(value, options) : value;
+        var newValue = isArray || isEncodedArray ? value.split(options.arrayFormatSeparator).map(function (item) {
           return decode(item, options);
         }) : value === null ? value : decode(value, options);
         accumulator[key] = newValue;
@@ -11924,7 +11926,7 @@ function parseValue(value, options) {
   return value;
 }
 
-function parse(input, options) {
+function parse(query, options) {
   options = Object.assign({
     decode: true,
     sort: true,
@@ -11938,17 +11940,17 @@ function parse(input, options) {
 
   var ret = Object.create(null);
 
-  if (typeof input !== 'string') {
+  if (typeof query !== 'string') {
     return ret;
   }
 
-  input = input.trim().replace(/^[?#&]/, '');
+  query = query.trim().replace(/^[?#&]/, '');
 
-  if (!input) {
+  if (!query) {
     return ret;
   }
 
-  var _iterator = _createForOfIteratorHelper(input.split('&')),
+  var _iterator = _createForOfIteratorHelper(query.split('&')),
       _step;
 
   try {
@@ -12061,45 +12063,45 @@ exports.stringify = function (object, options) {
   }).join('&');
 };
 
-exports.parseUrl = function (input, options) {
+exports.parseUrl = function (url, options) {
   options = Object.assign({
     decode: true
   }, options);
 
-  var _splitOnFirst3 = splitOnFirst(input, '#'),
+  var _splitOnFirst3 = splitOnFirst(url, '#'),
       _splitOnFirst4 = _slicedToArray(_splitOnFirst3, 2),
-      url = _splitOnFirst4[0],
+      url_ = _splitOnFirst4[0],
       hash = _splitOnFirst4[1];
 
   return Object.assign({
-    url: url.split('?')[0] || '',
-    query: parse(extract(input), options)
+    url: url_.split('?')[0] || '',
+    query: parse(extract(url), options)
   }, options && options.parseFragmentIdentifier && hash ? {
     fragmentIdentifier: decode(hash, options)
   } : {});
 };
 
-exports.stringifyUrl = function (input, options) {
+exports.stringifyUrl = function (object, options) {
   options = Object.assign({
     encode: true,
     strict: true
   }, options);
-  var url = removeHash(input.url).split('?')[0] || '';
-  var queryFromUrl = exports.extract(input.url);
+  var url = removeHash(object.url).split('?')[0] || '';
+  var queryFromUrl = exports.extract(object.url);
   var parsedQueryFromUrl = exports.parse(queryFromUrl, {
     sort: false
   });
-  var query = Object.assign(parsedQueryFromUrl, input.query);
+  var query = Object.assign(parsedQueryFromUrl, object.query);
   var queryString = exports.stringify(query, options);
 
   if (queryString) {
     queryString = "?".concat(queryString);
   }
 
-  var hash = getHash(input.url);
+  var hash = getHash(object.url);
 
-  if (input.fragmentIdentifier) {
-    hash = "#".concat(encode(input.fragmentIdentifier, options));
+  if (object.fragmentIdentifier) {
+    hash = "#".concat(encode(object.fragmentIdentifier, options));
   }
 
   return "".concat(url).concat(queryString).concat(hash);
