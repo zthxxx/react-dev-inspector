@@ -219,7 +219,6 @@ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return /* bi
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("q1tI");
-var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/inheritsLoose.js
 var inheritsLoose = __webpack_require__("VbXa");
@@ -2670,9 +2669,7 @@ const getElementInspect = (element, sourcePath) => {
  * remove all process for iframe, because iframe only need to think in chrome extension app,
  * which will deal multiple levels of nesting iframe.
  */
-// Calculate a boundingClientRect for a node relative to boundaryWindow,
-// taking into account any offsets caused by intermediate iframes.
-function getNestedBoundingClientRect(node, boundaryWindow) {
+function getNestedBoundingClientRect(node) {
     return node.getBoundingClientRect();
 }
 function getElementDimensions(domElement) {
@@ -3039,7 +3036,7 @@ const Inspector = (props) => {
             delete window.__REACT_DEV_INSPECTOR_TOGGLE__;
         };
     }, [hotkey, handleInspectKey]);
-    return (react_default.a.createElement(react_default.a.Fragment, null, children));
+    return children;
 };
 
 // CONCATENATED MODULE: ../es/index.js
@@ -3457,7 +3454,7 @@ var HomePage = () => {
   return core_browser_esm_jsx(Inspector, {
     disableLaunchEditor: !isDev,
     onClickElement: inspect => {
-      console.info(inspect);
+      console.debug(inspect);
       if (isDev || !inspect.codeInfo) return;
       var _inspect$codeInfo = inspect.codeInfo,
           relativePath = _inspect$codeInfo.relativePath,
