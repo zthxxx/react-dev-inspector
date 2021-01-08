@@ -3718,7 +3718,7 @@ var HomePage = () => {
       var _inspect$codeInfo = inspect.codeInfo,
           relativePath = _inspect$codeInfo.relativePath,
           lineNumber = _inspect$codeInfo.lineNumber;
-      window.open("https://github.com/zthxxx/react-dev-inspector/blob/master/site/".concat(relativePath, "#L").concat(lineNumber));
+      window.open("https://github.com/zthxxx/react-dev-inspector/blob/master/sites/umi3/".concat(relativePath, "#L").concat(lineNumber));
     },
     "data-inspector-line": "15",
     "data-inspector-column": "4",
