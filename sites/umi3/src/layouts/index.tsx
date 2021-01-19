@@ -41,7 +41,7 @@ export const HomePage = () => {
         </Title>
 
         <Slogan>
-          <p>Inspect react components and click will jump to local IDE to view component code.</p>
+          <p>Quick jump to local IDE source code directly from browser React component by just a simple click!</p>
           <p><small>( for this prod online demo page, jump to GitHub file )</small></p>
         </Slogan>
 

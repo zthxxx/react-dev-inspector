@@ -1,59 +1,86 @@
 <h1 align="center">React Dev Inspector</h1>
 
 <p align="center">
-dev-tool for inspect react components and jump to local IDE for component code.
-</p>
-
-<p align="center">
   <a href="https://www.npmjs.com/package/react-dev-inspector" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/npm/v/react-dev-inspector" alt="NPM Version" /></a>
   <a href="https://www.npmjs.com/package/react-dev-inspector" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/npm/dt/react-dev-inspector" alt="NPM Downloads" /></a>
   <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/npm/node/react-dev-inspector" alt="Node.js" /></a>
   <a href="https://github.com/zthxxx/react-dev-inspector/blob/master/LICENSE" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/github/license/zthxxx/react-dev-inspector" alt="License" /></a>
 </p>
 
+## Introduction
 
+This package allows you to jump to local IDE code directly from browser React component by just a simple click. Its behavior is similar to but beyond Chrome inspector.
 
-## Preview
+### Preview
 
-Online demo: https://react-dev-inspector.zthxxx.me
+online demo: https://react-dev-inspector.zthxxx.me
 
-Screen record (gif 8M): 
+> press toggle hotkey (`ctrl⌃ + shift⇧ + commmand⌘ + c`) then move mouse and click to try it out.
+
+screen record gif (8M size):
 
 [![inspector-gif](https://github.com/zthxxx/react-dev-inspector/raw/master/docs/images/inspect.gif)](https://react-dev-inspector.zthxxx.me/images/inspect.gif)
 
 
 
-## Install
+## Installation
 
 ```bash
 npm i -D react-dev-inspector
 ```
 
-
-
 ## Usage
 
-There are 3 steps required to use `react-dev-inspector`, here will list some **typical manual config** of webpack, and this lib also provide some **integrated plugins** to make you easy to use
+To use the `react-dev-inspector` in your project, you need to add a **React component** and some **webpack config**  .
 
-- **Step 1 - Compile Time**
-  - [webpack loader] inject source file path/line/column to JSX data attributes props (use babel)
-  - [webpack plugin] inject PWD (current working directory) env define for runtime
-- **Step 2 - Web React Runtime**
-  
-  - [component] `Inspector` Component in react, for listen hotkeys, and request api to dev-server for open IDE
-- **Step 3 - Dev-server Side**
-  
-  - [middleware]  `createLaunchEditorMiddleware` in webpack dev-server (or other dev-server), to open file in IDE according to the request.
-  
-    **Only need** in development mode,and you want to open IDE when click a component element.
-  
-    **Not need** in prod mode, or you just want inspect dom without open IDE (set `disableLaunchEditor={false}` to Inspector component)
+> Note that usually you shouldn't use it in production mode, both of component and config.
 
+<br />
 
+### Use Inspector React Component
 
-### Typical webpack config
+```tsx
+import React from 'react'
+import { Inspector, InspectParams } from 'react-dev-inspector'
 
-Include **step-1** and **step-3**, compile Time and dev-server Side
+const InspectorWrapper = process.env.NODE_ENV === 'development'
+  ? Inspector
+  : React.Fragment
+
+export const Layout = () => {
+  // ...
+
+  return (
+    <InspectorWrapper
+      // props docs see:
+      // https://github.com/zthxxx/react-dev-inspector#inspector-component-props
+      keys={['control', 'shift', 'command', 'c']}
+      disableLaunchEditor={false}
+      onHoverElement={(params: InspectParams) => {}}
+      onClickElement={(params: InspectParams) => {}}
+    >
+     <YourComponent>
+       ...
+     </YourComponent>
+    </InspectorWrapper>
+  )
+}
+
+```
+
+<br />
+
+### Set Webpack Config
+
+#### raw webpack config
+
+The typical raw webpack config like this below.
+
+In this config, we add
+
+- an "inspector-loader"
+- a "DefinePlugin" to get current working directory
+- a "devServer" api middleware for open IDE on when it be called
 
 ```ts
 import { Configuration, DefinePlugin } from 'webpack'
@@ -62,7 +89,7 @@ import { createLaunchEditorMiddleware } from 'react-dev-inspector/plugins/webpac
 
 const config: Configuration = {
   // ...
-  
+
   /**
    * [compile time] for inject source code file info
    */
@@ -78,7 +105,8 @@ const config: Configuration = {
           {
             loader: 'react-dev-inspector/plugins/webpack/inspector-loader',
             options: [{
-              // loader options type and docs see below
+              // loader options docs see:
+              // https://github.com/zthxxx/react-dev-inspector#inspector-loader-props
               exclude: [
                 'xxx-file-will-be-exclude',
                 /regexp-to-match-file /,
@@ -112,11 +140,19 @@ const config: Configuration = {
 }
 ```
 
+<br />
+
+We know this webpack config maybe too **complicated**, so we also provide some **integrated plugins / helper** to make you easy to use, if your project happen to be using those utils / framework.
 
 
-### Usage with Webpack Chain
 
-Include **step 1** and **step 3**, it's almost equivalent to `Typical webpack config` above,
+So here list some ways below for alternative the `raw webpack config` :
+
+<br />
+
+#### usage with webpack-chain
+
+This is almost equivalent to `raw webpack config` above,
 
 but it will NOT override `devServer.before`, just add middleware before origin `devServer.before`
 
@@ -125,18 +161,19 @@ import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack'
 
 
 webpackChainConfig = inspectorChainWebpack(webpackChainConfig, {
-  // loader options type and docs see below
+  // loader options docs see:
+  // https://github.com/zthxxx/react-dev-inspector#inspector-loader-props
   exclude: [],
   babelPlugins: [],
   babelOptions: {},
 })
 ```
 
+<br />
 
+#### usage with [Umi3](https://umijs.org/)
 
-### Usage with [Umi3](https://umijs.org/)
-
-Include **step 1** and **step 3**, also equivalent to `Usage with Webpack Chain`
+This is also equivalent to `usage with webpack-chain`
 
 Example `.umirc.dev.ts`:
 
@@ -149,7 +186,8 @@ export default defineConfig({
     'react-dev-inspector/plugins/umi/react-inspector',
   ],
   inspectorConfig: {
-    // loader options type and docs see below
+    // loader options docs see:
+    // https://github.com/zthxxx/react-dev-inspector#inspector-loader-props
     exclude: [],
     babelPlugins: [],
     babelOptions: {},
@@ -157,9 +195,9 @@ export default defineConfig({
 })
 ```
 
-### Usage with [Umi2](https://v2.umijs.org)
+<br />
 
-Include **step 1** and **step 3**
+#### usage with [Umi2](https://v2.umijs.org)
 
 Example `.umirc.dev.js`:
 
@@ -174,7 +212,7 @@ export default {
     })
     return config
   },
- 
+
   /**
    * And you need to set `false` to `dll` in `umi-plugin-react`,
    * becase these is a umi2 bug that `dll` cannot work with `devServer.before`
@@ -185,66 +223,9 @@ export default {
 }
 ```
 
+<br />
 
-
-### Use in React
-
-Include **step-2**, react runtime
-
-```tsx
-import React from 'react'
-import { Inspector, InspectParams } from 'react-dev-inspector'
-
-const InspectorWrapper = process.env.NODE_ENV === 'development'
-  ? Inspector
-  : React.Fragment
-
-export const Layout = () => { 
-  // ...
-  
-  return (
-    <InspectorWrapper
-      // props docs see below
-      keys={['control', 'shift', 'command', 'c']}
-      disableLaunchEditor={false}
-      onHoverElement={(params: InspectParams) => {}}
-      onClickElement={(params: InspectParams) => {}}
-    >
-     <YourComponent>
-       ...
-     </YourComponent>
-    </InspectorWrapper>
-  )
-}
-
-```
-
-after `<Inspector>` component  was mounted，you can use `window.__REACT_DEV_INSPECTOR_TOGGLE__()` to toggle inspector.
-
-
-
-## Config of Loader / Component / IDE
-
-### Inspector Loader Props
-
-```ts
-// import type { ParserPlugin, ParserOptions } from '@babel/parser'
-// import type { InspectorConfig } from 'react-dev-inspector/plugins/webpack'
-
-interface InspectorConfig {
-  /** patterns to exclude matched files */
-  exclude?: (string | RegExp)[],
-  /**
-   * add extra plugins for babel parser
-   * default is ['typescript', 'jsx', 'decorators-legacy', 'classProperties']
-   */
-  babelPlugins?: ParserPlugin[],
-  /** extra babel parser options */
-  babelOptions?: ParserOptions,
-}
-```
-
-
+## Configuration
 
 ### `<Inspector>` Component Props
 
@@ -276,15 +257,38 @@ interface InspectParams {
 }
 ```
 
+<br />
 
+### Inspector Loader Props
+
+```ts
+// import type { ParserPlugin, ParserOptions } from '@babel/parser'
+// import type { InspectorConfig } from 'react-dev-inspector/plugins/webpack'
+
+interface InspectorConfig {
+  /** patterns to exclude matched files */
+  exclude?: (string | RegExp)[],
+  /**
+   * add extra plugins for babel parser
+   * default is ['typescript', 'jsx', 'decorators-legacy', 'classProperties']
+   */
+  babelPlugins?: ParserPlugin[],
+  /** extra babel parser options */
+  babelOptions?: ParserOptions,
+}
+```
+
+<br />
 
 ### IDE / Editor config
 
-this lib use `react-dev-utils` to launch your local IDE app, but which one app will be open?
+This package use `react-dev-utils` to launch your local IDE app, but which one app will be open?
 
-In fact, it uses an **environment variable** named **`REACT_EDITOR`**, but if you not set this variable, it will guess a IDE in what you opened now or what you installed.
+In fact, it uses an **environment variable** named **`REACT_EDITOR`** to specify an IDE application, but if you not set this variable, it will guess an IDE by what are you opened or installed.
 
 For example, if you want it always open VSCode when inspect clicked, set `export REACT_EDITOR=code` in your shell.
+
+<br />
 
 #### VSCode
 
@@ -295,6 +299,8 @@ For example, if you want it always open VSCode when inspect clicked, set `export
   ```bash
   export REACT_EDITOR=code
   ```
+
+<br />
 
 #### WebStorm
 
@@ -313,6 +319,8 @@ For example, if you want it always open VSCode when inspect clicked, set `export
   export REACT_EDITOR=webstorm
   ```
 
+<br />
+
 #### Vim
 
 yes, you can also use vim if you prefer it, just set env to shell
@@ -321,7 +329,7 @@ yes, you can also use vim if you prefer it, just set env to shell
 export REACT_EDITOR=vim
 ```
 
-
+<br />
 
 ## Example Project Code
 
@@ -329,9 +337,37 @@ code see: https://github.com/zthxxx/react-dev-inspector/tree/master/sites
 
 project preview: https://react-dev-inspector.zthxxx.me
 
-## Analysis of Theory
+
+<br />
+
+## How It Work
+
+- **Stage 1 - Compile Time**
+
+  - [webpack loader] inject source file path/line/column to JSX data attributes props (use babel)
+  - [webpack plugin] inject PWD (current working directory) env define for runtime
+
+- **Stage 2 - Web React Runtime**
+
+  - [React component] `Inspector` Component in react, for listen hotkeys, and request api to dev-server for open IDE.
+
+    Specific, when you click a component DOM, the `Inspector` will try to obtain its source file info (path/line/column) and PWD path (both injected in Stage 1), then request launch-editor api (in stage 3) with absolute file path.
+
+- **Stage 3 - Dev-server Side**
+
+  - [middleware] setup  `createLaunchEditorMiddleware` in webpack dev-server (or other dev-server), to open file in IDE according to the request params.
+
+    **Only need** in development mode,and you want to open IDE when click a component element.
+
+    **Not need** in prod mode, or you just want inspect dom without open IDE (set `disableLaunchEditor={true}` to Inspector component props)
+
+
+
+### Analysis of Theory
 
 - [chinese] [🎉我点了页面上的元素，VSCode 乖乖打开了对应的组件？原理揭秘](https://juejin.cn/post/6901466406823575560)
+
+<br />
 
 ## License
 
