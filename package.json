@@ -4,7 +4,7 @@
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "scripts": {
-    "postinstall": "lerna bootstrap",
+    "postinstall": "lerna bootstrap --scope @demo-sites/* && lerna link",
     "test": "jest",
     "clean": "rimraf build dist site es lib plugins",
     "dev": "nodemon -w src -e ts,tsx -x 'npm run build && (cd sites/umi3; npm run dev)'",

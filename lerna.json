@@ -5,9 +5,6 @@
     "sites/*"
   ],
   "command": {
-    "bootstrap": {
-      "ignore": "react-dev-inspector"
-    },
     "clean": {
       "ignore": "react-dev-inspector"
     },

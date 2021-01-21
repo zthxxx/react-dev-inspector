@@ -1,7 +1,7 @@
 {
-  "name": "@react-dev-inspector/site-umi3",
+  "name": "@demo-sites/umi3",
   "version": "0.0.0",
-  "description": "website of react-dev-inspector via umi3",
+  "description": "website demo for react-dev-inspector using umi3",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist build src/.umi src/.umi-production",
