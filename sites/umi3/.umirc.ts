@@ -1,6 +1,5 @@
 // https://umijs.org/config/
 import { defineConfig } from 'umi'
-import path from 'path'
 
 
 export default defineConfig({
@@ -9,19 +8,14 @@ export default defineConfig({
   history: {
     type: 'browser',
   },
-  // umi routes: https://umijs.org/docs/routing
-  // routes: [
-  //   { exact: true, path: '/', component: 'index' },
-  // ],
   publicPath: '/umi3/',
   alias: {
-    src: path.resolve(__dirname, 'src'),
+    react: require.resolve('react'),
   },
   ignoreMomentLocale: true,
   targets: {
     chrome: 80,
   },
-
   extraBabelPresets: [
     [
       // https://github.com/emotion-js/emotion/tree/master/packages/babel-preset-css-prop#options
@@ -31,6 +25,10 @@ export default defineConfig({
       },
     ],
   ],
+
+  /**
+   * react-dev-inspector example configuration is as follows
+   */
   plugins: [
     'react-dev-inspector/plugins/umi/react-inspector',
   ],

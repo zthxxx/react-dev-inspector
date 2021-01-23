@@ -13,3 +13,7 @@ node_modules
 /es
 /lib
 /plugins
+
+react-app-env.d.ts
+
+!.umirc.*

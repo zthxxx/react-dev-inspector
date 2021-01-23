@@ -96,6 +96,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.[jt]sx$/,
         exclude: [
           /node_modules/,
@@ -333,9 +334,12 @@ export REACT_EDITOR=vim
 
 ## Example Project Code
 
-code see: https://github.com/zthxxx/react-dev-inspector/tree/master/sites
-
-project preview: https://react-dev-inspector.zthxxx.me
+- **create-react-app**
+  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/cra
+  - preview: https://react-dev-inspector.zthxxx.me/cra
+- **umi3**
+  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/umi3
+  - preview: https://react-dev-inspector.zthxxx.me/umi3
 
 
 <br />

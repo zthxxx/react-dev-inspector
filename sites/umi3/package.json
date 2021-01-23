@@ -4,7 +4,7 @@
   "description": "website demo for react-dev-inspector using umi3",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist build src/.umi src/.umi-production",
+    "clean": "rimraf dist src/.umi src/.umi-production",
     "dev": "COMPRESS=none HOST=0.0.0.0 umi dev",
     "build": "NODE_ENV=production npm-run-all clean build:*",
     "build:umi": "COMPRESS=none SPEED_MEASURE=CONSOLE umi build"
@@ -12,7 +12,7 @@
   "repository": "zthxxx/react-dev-inspector/sites/umi3",
   "private": true,
   "author": "zthxxx",
-  "homepage": "react-dev-inspector.zthxxx.me/umi3",
+  "homepage": "https://react-dev-inspector.zthxxx.me/umi3",
   "license": "MIT",
   "publishConfig": {
     "registry": false

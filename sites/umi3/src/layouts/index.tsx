@@ -1,9 +1,9 @@
 import React from 'react'
 import { Global } from '@emotion/core'
 import { Inspector } from 'react-dev-inspector'
-import { Title } from 'src/components/Title'
-import { Slogan } from 'src/components/Slogan'
-import { KeyPad, Keypress } from 'src/components/Keypress'
+import { Title } from '../components/Title'
+import { Slogan } from '../components/Slogan'
+import { KeyPad, Keypress } from '../components/Keypress'
 import * as S from './styles'
 
 
@@ -24,7 +24,7 @@ export const HomePage = () => {
         } = inspect.codeInfo
 
         window.open(
-          `https://github.com/zthxxx/react-dev-inspector/blob/master/sites/umi3/${relativePath}#L${lineNumber}`,
+          `${projectRepo}/blob/master/sites/umi3/${relativePath}#L${lineNumber}`,
         )
       }}
     >
