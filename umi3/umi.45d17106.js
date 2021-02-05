@@ -1961,7 +1961,7 @@ function _slicedToArray(arr, i) {
  * hotkeys-js v3.8.1
  * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies.
  * 
- * Copyright (c) 2020 kenny wong <wowohoo@qq.com>
+ * Copyright (c) 2021 kenny wong <wowohoo@qq.com>
  * http://jaywcjlove.github.io/hotkeys
  * 
  * Licensed under the MIT license.
@@ -3753,7 +3753,7 @@ var HomePage = () => {
     "data-inspector-line": "44",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
-  }, "Inspect react components and click will jump to local IDE to view component code."), core_browser_esm_jsx("p", {
+  }, "Quick jump to local IDE source code directly from browser React component by just a simple click!"), core_browser_esm_jsx("p", {
     "data-inspector-line": "45",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
