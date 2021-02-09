@@ -9,8 +9,8 @@
 
 ## Introduction
 
-This package allows you to jump to local IDE code directly from browser React component by just a simple click. Its behavior is similar to but beyond Chrome inspector.
-//This package is develped for users jumping to local IDE code directly from brower React component by a simple click, which is similar to Chrome inspector but more advanced .//
+This package allows users to jumping to local IDE code directly from browser React component by just a simple click, which is similar to Chrome inspector but more advanced.
+
 ### Preview
 
 online demo: https://react-dev-inspector.zthxxx.me
@@ -31,11 +31,9 @@ npm i -D react-dev-inspector
 
 ## Usage
 
-To use the `react-dev-inspector` in your project, you need to add a **React component** and some **webpack config**  .
-//users need to add **React component** and some other **webpac config** to perform 'react-dev-inspector' in your own projects.//
+Users need to add **React component** and some other **webpac config** to perform 'react-dev-inspector' in your own projects.
 
-> Note that usually you shouldn't use it in production mode, both of component and config.
-//> Note: It is limited to use this package in production mode, as the same as **React component** and **webpack config**//
+> Note: It should be limited to use this package in production mode, as the same as **React component** and **webpack config**
 
 <br />
 
@@ -76,8 +74,7 @@ export const Layout = () => {
 
 #### raw webpack config
 
-The typical raw webpack config like this below.
-//A typical raw webpack config is shown below.
+A typical raw webpack config is shown below.
 
 In this config, we add:
 
@@ -146,13 +143,11 @@ const config: Configuration = {
 
 <br />
 
-We know this webpack config maybe too **complicated**, so we also provide some **integrated plugins / helper** to make you easy to use, if your project happen to be using those utils / framework.
-//It seems like the **webpack config** is too 'complicated', thus some **integrated plugins/helper** is provided for quick trial if your project happen to use these utils/framework.//
+It seems like the **webpack config** is too 'complicated', thus some **integrated plugins / helper** is provided for quick trial if your project happen to use these utils / frameworks.
 
 
 
-So here list some ways below for alternative the `raw webpack config` :
-//So here is some ways for alternative the 'raw webpack config' listed below://
+So here are some ways for alternative the `raw webpack config` listed below:
 
 <br />
 
@@ -288,9 +283,9 @@ interface InspectorConfig {
 
 ### IDE / Editor config
 
-This package uses `react-dev-utils` to launch your local IDE application, but which one app will be open?
+This package uses `react-dev-utils` to launch your local IDE application, but, which one will be open?
 
-In fact, it uses an **environment variable** named **`REACT_EDITOR`** to specify an IDE application, but if you do not set this variable, it randomly open an IDE which you have opened or installed.
+In fact, it uses an **environment variable** named **`REACT_EDITOR`** to specify an IDE application, but if you do not set this variable, it will try to open a common IDE that you have open or installed once it is certified.
 
 For example, if you want it always open VSCode when inspection clicked, set `export REACT_EDITOR=code` in your shell.
 
