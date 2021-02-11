@@ -54,11 +54,19 @@ rules:
     - single
   # https://eslint.org/docs/rules/no-trailing-spaces
   no-trailing-spaces: error
+  # https://eslint.org/docs/rules/operator-linebreak
+  # align between '?' and ':'
+  operator-linebreak:
+    - error
+    - before
   # https://eslint.org/docs/rules/multiline-ternary
   # align between '?' and ':'
   multiline-ternary:
     - error
     - always-multiline
+  # https://eslint.org/docs/rules/keyword-spacing
+  keyword-spacing:
+    - error
 
   no-console:
     - error
