@@ -9,13 +9,13 @@
 
 ## Introduction
 
-This package allows users to jumping to local IDE code directly from browser React component by just a simple click, which is similar to Chrome inspector but more advanced.
+This package allows users to jump to local IDE code directly from browser React component by just a simple click, which is similar to Chrome inspector but more advanced.
 
 ### Preview
 
 online demo: https://react-dev-inspector.zthxxx.me
 
-> press toggle hotkey (`ctrl⌃ + shift⇧ + commmand⌘ + c`) then move mouse and click to try it out.
+> press hotkey (`ctrl⌃ + shift⇧ + commmand⌘ + c`), then click the HTML element you wish to inspect.
 
 screen record gif (8M size):
 
@@ -31,13 +31,13 @@ npm i -D react-dev-inspector
 
 ## Usage
 
-Users need to add **React component** and some other **webpac config** to perform 'react-dev-inspector' in your own projects.
+Users need to add **React component** and apply **webpack config** before connecting your React project with 'react-dev-inspector'.
 
-> Note: It should be limited to use this package in production mode, as the same as **React component** and **webpack config**
+> Note: You should NOT use this package, and **React component**, **webpack config** in production mode
 
 <br />
 
-### Use Inspector React Component
+### 1. Add Inspector React Component
 
 ```tsx
 import React from 'react'
@@ -65,22 +65,29 @@ export const Layout = () => {
     </InspectorWrapper>
   )
 }
-
 ```
 
 <br />
 
-### Set Webpack Config
+### 2. Set up Webpack Config
+
+There are 4 ways to set up webpack config, please pick the one fit your project best.
+
+In common cases (like create-react-app), you can use [#raw-webpack-config](https://github.com/zthxxx/react-dev-inspector#raw-webpack-config),
+
+If your project happen to use webpack-chain / umi2 / umi3, you can try out our **integrated plugins / helper** in [#usage-with-webpack-chain](https://github.com/zthxxx/react-dev-inspector#usage-with-webpack-chain), [#usage-with-umi2](https://github.com/zthxxx/react-dev-inspector#usage-with-umi2) and [#usage-with-umi3](https://github.com/zthxxx/react-dev-inspector#usage-with-umi3).
 
 #### raw webpack config
 
-A typical raw webpack config is shown below.
-
-In this config, we add:
+You should add:
 
 - an "inspector-loader"
 - a "DefinePlugin" to get current working directory
-- a "devServer" api middleware to open IDE on when it be called
+- an api server middleware, "devServer", to open local IDE
+
+to your current webpack config.
+
+Example:
 
 ```ts
 import { Configuration, DefinePlugin } from 'webpack'
@@ -141,21 +148,9 @@ const config: Configuration = {
 }
 ```
 
-<br />
-
-It seems like the **webpack config** is too 'complicated', thus some **integrated plugins / helper** is provided for quick trial if your project happen to use these utils / frameworks.
-
-
-
-So here are some ways for alternative the `raw webpack config` listed below:
-
-<br />
-
 #### usage with webpack-chain
 
-This is almost equivalent to `raw webpack config` above,
-
-but it will NOT override `devServer.before`, just add middleware before origin `devServer.before`
+This is almost equivalent to `raw webpack config`, except, it will NOT override `devServer.before`, it only adds middleware before origin `devServer.before`.
 
 ```ts
 import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack'
@@ -226,18 +221,29 @@ export default {
 
 <br />
 
+### Example Project Code
+
+- **create-react-app**
+  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/cra
+  - preview: https://react-dev-inspector.zthxxx.me/cra
+- **umi3**
+  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/umi3
+  - preview: https://react-dev-inspector.zthxxx.me/umi3
+
+<br />
+
 ## Configuration
 
 ### `<Inspector>` Component Props
 
-typescript define you can see in `react-dev-inspector/es/Inspector.d.ts`
+checkout TS definition under [`react-dev-inspector/es/Inspector.d.ts`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L29).
 
-| Property            | Description                                                  | Type                                                         | Default                                |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------- |
-| keys                | inspector toggle hotkeys<br /><br />supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys | `string[]`                                                   | `['control', 'shift', 'command', 'c']` |
-| disableLaunchEditor | whether disable click react component to open IDE for view component code<br /><br />(launchEditor by default only support be used with react-dev-inpector plugins in dev) | `boolean`                                                    | `false`                                |
-| onHoverElement      | triggered while inspector start and mouse hover in a HTMLElement | [`(params: InspectParams) => void`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L14) | -                                      |
-| onClickElement      | triggered while inspector start and mouse click on a HTMLElement | [`(params: InspectParams) => void`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L14) | -                                      |
+| Property            | Description                                                                                           | Type                                                                                                                           | Default                                |
+| ------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| keys                | inspector hotkeys<br /><br />supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys | `string[]`                                                                                                                     | `['control', 'shift', 'command', 'c']` |
+| disableLaunchEditor | disable editor launching<br /><br />(launch by default in dev Mode, but not in production mode)       | `boolean`                                                                                                                      | `false`                                |
+| onHoverElement      | triggered when mouse hover in inspector mode                                                          | [`(params: InspectParams) => void`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L14) | -                                      |
+| onClickElement      | triggered when mouse hover in inspector mode                                                          | [`(params: InspectParams) => void`](https://github.com/zthxxx/react-dev-inspector/blob/master/src/Inspector/Inspector.tsx#L14) | -                                      |
 
 ```ts
 // import type { InspectParams } from 'react-dev-inspector'
@@ -332,18 +338,6 @@ export REACT_EDITOR=vim
 
 <br />
 
-## Example Project Code
-
-- **create-react-app**
-  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/cra
-  - preview: https://react-dev-inspector.zthxxx.me/cra
-- **umi3**
-  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/umi3
-  - preview: https://react-dev-inspector.zthxxx.me/umi3
-
-
-<br />
-
 ## How It Works
 
 - **Stage 1 - Compile Time**
@@ -369,7 +363,7 @@ export REACT_EDITOR=vim
 
 ### Analysis of Theory
 
-- [chinese] [🎉我点了页面上的元素，VSCode 乖乖打开了对应的组件？原理揭秘](https://juejin.cn/post/6901466406823575560)
+- [chinese] [🎉 我点了页面上的元素，VSCode 乖乖打开了对应的组件？原理揭秘](https://juejin.cn/post/6901466406823575560)
 
 <br />
 
