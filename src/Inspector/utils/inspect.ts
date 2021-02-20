@@ -10,9 +10,8 @@ export interface CodeInfo {
   relativePath: string,
 }
 
-export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined => {
+export const getElementDefineCodeInfo = (element: HTMLElement): CodeInfo | undefined => {
   if (!element?.dataset) return undefined
-
   const { dataset } = element
 
   // data attributes auto create by loader in webpack plugin `inspector-loader`
@@ -29,7 +28,44 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
   }
 
   if (element.parentElement) {
-    return getElementCodeInfo(element.parentElement)
+    return getElementDefineCodeInfo(element.parentElement)
+  }
+
+  return undefined
+}
+
+export const getElementReferenceCodeInfo = (
+  element: HTMLElement,
+): CodeInfo | undefined => {
+  /**
+   * https://github.com/zthxxx/react-dev-inspector/issues/15
+   *
+   * the props used by react-devtools for displaying props
+   * the return property on fiber point to the father fiber
+   *
+   * such as:
+   * const App = () => <div line="2"></div> // current fiber
+   *
+   * <App line="1"/> // father fiber
+   * so both of its pendingProps or memoizedProps record the runtime props { line: "1" }
+   */
+  const returnFiberProps = getElementFiber(element)?.return?.pendingProps
+  if (!returnFiberProps) return undefined
+
+  const lineNumber = returnFiberProps['data-inspector-line']
+  const columnNumber = returnFiberProps['data-inspector-column']
+  const relativePath = returnFiberProps['data-inspector-relative-path']
+
+  if (lineNumber && columnNumber && relativePath) {
+    return {
+      lineNumber,
+      columnNumber,
+      relativePath,
+    }
+  }
+
+  if (element.parentElement) {
+    return getElementReferenceCodeInfo(element.parentElement)
   }
 
   return undefined

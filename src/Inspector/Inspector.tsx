@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef, ReactElement } from 'react'
+import React, { useState, useEffect, useRef, ReactElement, useCallback, Dispatch, SetStateAction } from 'react'
 import type { Fiber } from 'react-reconciler'
 import hotkeys from 'hotkeys-js'
 import { setupHighlighter } from './utils/hightlight'
 import {
-  getElementCodeInfo,
+  getElementDefineCodeInfo,
+  getElementReferenceCodeInfo,
   gotoEditor,
   getElementInspect,
   CodeInfo,
@@ -24,7 +25,40 @@ export interface InspectParams {
 
 export type ElementHandler = (params: InspectParams) => void
 
+enum JumpPlaceType {
+  Define,
+  Reference
+}
+
 export const defaultHotKeys = ['control', 'shift', 'command', 'c']
+
+const useKeyboardHold= (isInspect: boolean, setCodeInfoType: Dispatch<SetStateAction<JumpPlaceType>>, holdOnKey = 'Alt') => {
+  const onKeyboardDown = useCallback((e: KeyboardEvent) => {
+    if(e.key === holdOnKey) {
+      setCodeInfoType(JumpPlaceType.Define)
+    }
+  }, [setCodeInfoType])
+
+  const onKeyboardUp = useCallback((e: KeyboardEvent) => {
+    if(e.key === holdOnKey) {
+      setCodeInfoType(JumpPlaceType.Reference)
+    }
+  }, [setCodeInfoType])
+
+  useEffect(() => {
+    if(isInspect) {
+      window.addEventListener('keydown', onKeyboardDown)
+      window.addEventListener('keyup', onKeyboardUp)
+    }
+    return () => {
+      if(isInspect) {
+        window.removeEventListener('keydown', onKeyboardDown)
+        window.removeEventListener('keyup', onKeyboardUp)
+      }
+    }
+  }, [isInspect])
+}
+
 
 export interface InspectorProps {
   /**
@@ -53,7 +87,12 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
   const hotkey = (keys ?? defaultHotKeys).join('+')
 
   const [isInspect, setIsInspect] = useState(false)
+  const [jumpPlace, setJumpPlace] = useState(JumpPlaceType.Reference)
   const overlayRef = useRef<Overlay>()
+  // hold on keyboard to change jumpPlace to definition, default is place of reference
+  useKeyboardHold(isInspect, setJumpPlace)
+
+  const getElementCodeInfo = jumpPlace === JumpPlaceType.Define? getElementDefineCodeInfo: getElementReferenceCodeInfo
 
   const handleHoverElement = (element: HTMLElement) => {
     const overlay = overlayRef.current
@@ -133,6 +172,17 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
       delete window.__REACT_DEV_INSPECTOR_TOGGLE__
     }
   }, [hotkey, handleInspectKey])
+
+  useEffect(() => {
+    if(isInspect) {
+      /**
+       * when jumpPlace changed, restart the Inspector
+       * we can not change the fn getElementCodeInfo directly because setupHighlighter will make a closure
+       */
+      stopInspect()
+      startInspect()
+    }
+  }, [isInspect, jumpPlace])
 
   return children as ReactElement
 }
