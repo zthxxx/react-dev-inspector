@@ -38,7 +38,8 @@ type NodeHandler<T = Node, O = void> = (node: T, option: O) => {
 }
 
 const doJSXIdentifierName: NodeHandler<JSXIdentifier> = (name) => {
-  if (name.name.endsWith('Fragment')) {
+  // the name of ast node parsed by 'React.Fragment' is still 'Fragment'
+  if (name.name === 'Fragment') {
     return { stop: true }
   }
   return { stop: false }

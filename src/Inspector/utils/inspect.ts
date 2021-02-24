@@ -3,58 +3,89 @@ import type { Fiber } from 'react-reconciler'
 import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint'
 import queryString from 'query-string'
 
-
 export interface CodeInfo {
   lineNumber: string,
   columnNumber: string,
   relativePath: string,
 }
 
-export const getElementDefineCodeInfo = (element: HTMLElement): CodeInfo | undefined => {
-  if (!element?.dataset) return undefined
-  const { dataset } = element
-
-  // data attributes auto create by loader in webpack plugin `inspector-loader`
-  const lineNumber = dataset.inspectorLine
-  const columnNumber = dataset.inspectorColumn
-  const relativePath = dataset.inspectorRelativePath
-
-  if (lineNumber && columnNumber && relativePath) {
-    return {
-      lineNumber,
-      columnNumber,
-      relativePath,
-    }
-  }
-
-  if (element.parentElement) {
-    return getElementDefineCodeInfo(element.parentElement)
-  }
-
-  return undefined
+/**
+ * props that injected into react nodes
+ *
+ * like < div data-inspector-line="2" data-inspector-column="3" data-inspector-relative-path="xxx" />
+ * this props will be record in fiber
+ */
+interface InjectCodeInfo {
+  'data-inspector-line': string,
+  'data-inspector-column': string,
+  'data-inspector-relative-path': string,
 }
 
-export const getElementReferenceCodeInfo = (
-  element: HTMLElement,
-): CodeInfo | undefined => {
+/**
+ * judge if the inspected element is a component
+ */
+const isComponentFiber = (fiber: Fiber) => {
+  if(fiber.index || fiber.sibling) {
+    /**
+     * a special case like:
+     *
+     * const App = () => {
+     *  return (
+     *    <>
+     *      <p> my fiber.sibling is div and my fiber.index = 0 </p>
+     *      <div> my fiber.sibling is null but my fiber.index = 1 </div>
+     *      both of p's and div's father fiber are App's fiber, but they are not components
+     *    </>
+     *  )
+     * }
+     */
+    return false
+  }
   /**
-   * https://github.com/zthxxx/react-dev-inspector/issues/15
+   * a actual dom node's return property of fiber points to its father fiber(component's fiber)
    *
-   * the props used by react-devtools for displaying props
-   * the return property on fiber point to the father fiber
-   *
-   * such as:
-   * const App = () => <div line="2"></div> // current fiber
-   *
-   * <App line="1"/> // father fiber
-   * so both of its pendingProps or memoizedProps record the runtime props { line: "1" }
+   * such as: const App = () => <div line="2" />; --> inspected element fiber
+   * <App line="1"/> --> father fiber
+   * component fiber doesn't has the stateNode(actual dom node)
    */
-  const returnFiberProps = getElementFiber(element)?.return?.pendingProps
-  if (!returnFiberProps) return undefined
+  const fatherFiber = fiber?.return
+  return !fatherFiber.stateNode
+}
 
-  const lineNumber = returnFiberProps['data-inspector-line']
-  const columnNumber = returnFiberProps['data-inspector-column']
-  const relativePath = returnFiberProps['data-inspector-relative-path']
+/**
+ * get code info from normal nodes like div, span
+ */
+export const getCodeInfoFromNodeFiber = (fiber: Fiber): InjectCodeInfo => fiber.pendingProps
+
+/**
+ * fiber?.return points to component fiber,
+ * both pendingProps and memoizedProps record the runtime props
+ */
+export const getCodeInfoFromComponentFiber = (fiber: Fiber): InjectCodeInfo => fiber?.return.pendingProps
+
+export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined => {
+  // data attributes auto create by loader in webpack plugin `inspector-loader`
+  if (!element?.dataset) return undefined
+
+  const inspectedFiber: Fiber | null = getElementFiber(element)
+
+  if(!inspectedFiber) return undefined
+
+  /**
+   * the components and the normal nodes they can't share common logic to get the code info
+   *
+   * components get code info from father fiber
+   * normal nodes get code info from current fiber
+   */
+  const codePositionInfo: InjectCodeInfo =
+    isComponentFiber(inspectedFiber)?
+      getCodeInfoFromComponentFiber(inspectedFiber):
+      getCodeInfoFromNodeFiber(inspectedFiber)
+
+
+  const lineNumber = codePositionInfo['data-inspector-line']
+  const columnNumber = codePositionInfo['data-inspector-column']
+  const relativePath = codePositionInfo['data-inspector-relative-path']
 
   if (lineNumber && columnNumber && relativePath) {
     return {
@@ -64,12 +95,13 @@ export const getElementReferenceCodeInfo = (
     }
   }
 
-  if (element.parentElement) {
-    return getElementReferenceCodeInfo(element.parentElement)
+  if(element.parentElement) {
+    return getElementCodeInfo(element.parentElement)
   }
 
   return undefined
 }
+
 
 export const gotoEditor = (source?: CodeInfo) => {
   // PWD auto defined in webpack plugin `config-inspector`
