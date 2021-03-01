@@ -21,6 +21,22 @@ interface InjectCodeInfo {
   'data-inspector-relative-path': string,
 }
 
+const getCodeInfoFromInjectCodeInfo = (injectCodeInfo: InjectCodeInfo) => {
+  const lineNumber = injectCodeInfo['data-inspector-line']
+  const columnNumber = injectCodeInfo['data-inspector-column']
+  const relativePath = injectCodeInfo['data-inspector-relative-path']
+
+  if (lineNumber && columnNumber && relativePath) {
+    return {
+      lineNumber,
+      columnNumber,
+      relativePath,
+    }
+  }
+
+  return undefined
+}
+
 /**
  * judge if the inspected element is a component
  */
@@ -71,6 +87,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
 
   if(!inspectedFiber) return undefined
 
+  const isComponent = isComponentFiber(inspectedFiber)
   /**
    * the components and the normal nodes they can't share common logic to get the code info
    *
@@ -78,20 +95,27 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
    * normal nodes get code info from current fiber
    */
   const codePositionInfo: InjectCodeInfo =
-    isComponentFiber(inspectedFiber)?
+    isComponent ?
       getCodeInfoFromComponentFiber(inspectedFiber):
       getCodeInfoFromNodeFiber(inspectedFiber)
 
+  const codeInfo = getCodeInfoFromInjectCodeInfo(codePositionInfo)
 
-  const lineNumber = codePositionInfo['data-inspector-line']
-  const columnNumber = codePositionInfo['data-inspector-column']
-  const relativePath = codePositionInfo['data-inspector-relative-path']
+  if(codeInfo) {
+    return codeInfo
+  }
 
-  if (lineNumber && columnNumber && relativePath) {
-    return {
-      lineNumber,
-      columnNumber,
-      relativePath,
+  /**
+   * a special deal in case that a component's father fiber is Context.comsumer or forwardRef fiber
+   * current handling is to get current' fiber's codeInfo
+   *
+   * TODO: judge fiber by tag and recursive upward to get component's fiber
+   */
+  if(isComponent) {
+    const currentFiberInjectCodeInfo = getCodeInfoFromNodeFiber(inspectedFiber)
+    const currentFiberCodeInfo = getCodeInfoFromInjectCodeInfo(currentFiberInjectCodeInfo)
+    if(currentFiberCodeInfo) {
+      return currentFiberCodeInfo
     }
   }
 
