@@ -41,7 +41,7 @@ const getCodeInfoFromInjectCodeInfo = (injectCodeInfo: InjectCodeInfo) => {
  * judge if the inspected element is a component
  */
 const isComponentFiber = (fiber: Fiber) => {
-  if(fiber.index || fiber.sibling) {
+  if (fiber.index || fiber.sibling) {
     /**
      * a special case like:
      *
@@ -85,7 +85,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
 
   const inspectedFiber: Fiber | null = getElementFiber(element)
 
-  if(!inspectedFiber) return undefined
+  if (!inspectedFiber) return undefined
 
   const isComponent = isComponentFiber(inspectedFiber)
   /**
@@ -94,14 +94,13 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
    * components get code info from father fiber
    * normal nodes get code info from current fiber
    */
-  const codePositionInfo: InjectCodeInfo =
-    isComponent ?
-      getCodeInfoFromComponentFiber(inspectedFiber):
-      getCodeInfoFromNodeFiber(inspectedFiber)
+  const codePositionInfo: InjectCodeInfo = isComponent
+    ? getCodeInfoFromComponentFiber(inspectedFiber)
+    : getCodeInfoFromNodeFiber(inspectedFiber)
 
   const codeInfo = getCodeInfoFromInjectCodeInfo(codePositionInfo)
 
-  if(codeInfo) {
+  if (codeInfo) {
     return codeInfo
   }
 
@@ -111,15 +110,15 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
    *
    * TODO: judge fiber by tag and recursive upward to get component's fiber
    */
-  if(isComponent) {
+  if (isComponent) {
     const currentFiberInjectCodeInfo = getCodeInfoFromNodeFiber(inspectedFiber)
     const currentFiberCodeInfo = getCodeInfoFromInjectCodeInfo(currentFiberInjectCodeInfo)
-    if(currentFiberCodeInfo) {
+    if (currentFiberCodeInfo) {
       return currentFiberCodeInfo
     }
   }
 
-  if(element.parentElement) {
+  if (element.parentElement) {
     return getElementCodeInfo(element.parentElement)
   }
 
