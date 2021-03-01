@@ -39,7 +39,6 @@ jobs:
       - name: Install
         run: |
           npm ci
-          npm run bootstrap
 
       - name: ESLint
         run: |

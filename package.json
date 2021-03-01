@@ -1,9 +1,10 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.3.1",
+  "version": "1.3.3",
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "scripts": {
+    "postinstall": "node scripts/postinstall.js",
     "bootstrap": "lerna bootstrap --scope @demo-sites/* && lerna link",
     "test": "jest",
     "clean": "rimraf build dist site es lib plugins",
@@ -13,6 +14,7 @@
     "build:src": "tsc -p es-build.json",
     "build:plugins": "tsc -p cjs-build.json",
     "build:site": "lerna run build && npm-run-all site:*",
+    "vercel-build": "./scripts/vercel-build.sh",
     "site:mkdir": "mkdir -p site",
     "site:routes": "npx lerna exec -- 'mv ./dist ../../site/$(basename $(pwd))'",
     "site:index": "cp -f site/umi3/index.html site/",
@@ -38,6 +40,7 @@
   "files": [
     "README.md",
     ".npmrc",
+    "scripts",
     "src",
     "es",
     "lib",
