@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
-
+import { css } from '@emotion/css'
 
 /**
  * https://github.com/sindresorhus/github-markdown-css/blob/gh-pages/github-markdown.css#L183
  */
-export const KeyTone = styled.kbd`
+export const keyTone = css`
   display: inline-block;
   padding: 0.5rem 0.8rem;
   font: 12px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
@@ -24,7 +24,7 @@ export const Keys = styled.div`
   opacity:1;
   animation: flickerAnimation 1.6s ease-in-out infinite;
   
-  & > ${KeyTone} {
+  & > .${keyTone} {
     margin: auto 0.8rem;
   }
   

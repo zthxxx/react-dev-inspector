@@ -2,13 +2,13 @@ import React from 'react'
 import * as S from './styles'
 
 
-export const Keypress: React.FC = ({ children, ...props }) => {
+export const Keypress: React.FC = ({ children }) => {
   return (
-    <S.KeyTone
-      {...props}
+    <kbd
+      className={S.keyTone}
     >
       {children}
-    </S.KeyTone>
+    </kbd>
   )
 }
 
