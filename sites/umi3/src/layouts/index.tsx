@@ -4,6 +4,7 @@ import { Inspector } from 'react-dev-inspector'
 import { Title } from '../components/Title'
 import { Slogan } from '../components/Slogan'
 import { KeyPad, Keypress } from '../components/Keypress'
+import Addition from '../components/Addition'
 import * as S from './styles'
 
 
@@ -54,6 +55,8 @@ export const HomePage = () => {
           +
           <Keypress><div> C </div></Keypress>
         </KeyPad>
+
+        <Addition />
       </S.Base>
     </Inspector>
   )

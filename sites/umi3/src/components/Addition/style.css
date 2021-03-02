@@ -1,0 +1,16 @@
+.rdi-addition {
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  color: #999;
+}
+
+.rdi-enjoy {
+  display: inline-block;
+  font-weight: 550;
+  margin-top: 16px;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  color: #666;
+}
