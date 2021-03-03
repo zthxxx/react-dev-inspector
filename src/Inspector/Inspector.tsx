@@ -61,7 +61,7 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
     const codeInfo = getElementCodeInfo(element)
     const relativePath = codeInfo?.relativePath
 
-    const { fiber, name, title } = getElementInspect(element, relativePath)
+    const { fiber, name, title } = getElementInspect(element)
 
     overlay?.inspect?.([element], title, relativePath)
 
@@ -80,9 +80,8 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
     setIsInspect(false)
 
     const codeInfo = getElementCodeInfo(element)
-    const relativePath = codeInfo?.relativePath
 
-    const { fiber, name } = getElementInspect(element, relativePath)
+    const { fiber, name } = getElementInspect(element)
 
     if (!disableLaunchEditor) gotoEditor(codeInfo)
     onClickElement?.({
@@ -122,17 +121,19 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
     const handleHotKeys = (event, handler) => {
       if (handler.key === hotkey) {
         handleInspectKey()
+      } else if (isInspect && handler.key === 'esc') {
+        stopInspect()
       }
     }
 
-    hotkeys(hotkey, handleHotKeys)
+    hotkeys(`${hotkey}, esc`, handleHotKeys)
     window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey
 
     return () => {
-      hotkeys.unbind(hotkey, handleHotKeys)
+      hotkeys.unbind(`${hotkey}, esc`, handleHotKeys)
       delete window.__REACT_DEV_INSPECTOR_TOGGLE__
     }
-  }, [hotkey, handleInspectKey])
+  }, [hotkey, isInspect, handleInspectKey])
 
   return children as ReactElement
 }

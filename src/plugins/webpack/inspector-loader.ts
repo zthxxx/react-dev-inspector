@@ -99,7 +99,7 @@ const doJSXOpeningElement: NodeHandler<
 
   // Make sure that there are exist together
   if (attributes.every(Boolean)) {
-    node.attributes.push(...attributes)
+    node.attributes.unshift(...attributes)
   }
 
   return { result: node }
