@@ -67,12 +67,12 @@ const doJSXPathName: NodeHandler<JSXOpeningElement['name']> = (name) => {
 
 const doJSXOpeningElement: NodeHandler<
   JSXOpeningElement,
-  { relativePath: string }
+  { relativePath: string; pwd: string }
 > = (node, option) => {
   const { stop } = doJSXPathName(node.name)
   if (stop) return { stop }
 
-  const { relativePath } = option
+  const { relativePath, pwd } = option
   const line = node.loc?.start.line
   const column = node.loc?.start.column
 
@@ -92,7 +92,7 @@ const doJSXOpeningElement: NodeHandler<
 
   const relativePathAttr: JSXAttribute = jsxAttribute(
     jsxIdentifier('data-inspector-relative-path'),
-    stringLiteral(relativePath),
+    stringLiteral(path.join(pwd, relativePath)),
   )
 
   const attributes = [lineAttr, columnAttr, relativePathAttr] as JSXAttribute[]
@@ -175,7 +175,7 @@ export default function inspectorLoader(this: webpack.loader.LoaderContext, sour
       if (path.type === 'JSXOpeningElement') {
         doJSXOpeningElement(
           path.node as JSXOpeningElement,
-          { relativePath },
+          { relativePath, pwd: options.pwd },
         )
       }
     },
