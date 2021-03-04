@@ -9,7 +9,7 @@
     "clean": "rimraf build dist site es lib plugins",
     "dev": "nodemon -w src -e ts,tsx -x 'npm run build && npm run site'",
     "site": "_site(){ (cd sites/${1:-'umi3'}; npm run dev) }; _site",
-    "build": "npm-run-all clean build:src build:plugins",
+    "build": "npm-run-all -s clean -p build:src build:plugins",
     "build:src": "tsc -p es-build.json",
     "build:plugins": "tsc -p cjs-build.json",
     "build:site": "lerna run build && npm-run-all site:*",

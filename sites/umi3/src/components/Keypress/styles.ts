@@ -21,6 +21,7 @@ export const keyTone = css`
 
 export const Keys = styled.div`
   display: inline-block;
+  padding: 0 0.5rem;
   opacity:1;
   animation: flickerAnimation 1.6s ease-in-out infinite;
   
@@ -37,9 +38,8 @@ export const Keys = styled.div`
 
 export const Pad = styled.div`
   vertical-align: center;
-  margin: 2rem auto;
+  margin: 0 auto;
+  padding: 2rem;
   font-size: 1.5rem;
   color: #666;
-  height: 1.2rem;
-  line-height: 1.2rem;
 `
