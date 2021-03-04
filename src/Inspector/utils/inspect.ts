@@ -104,14 +104,14 @@ export const isNativeTagFiber = (fiber: Fiber): boolean => typeof fiber.type ===
  *    └─ span
  *    └─ div
  */
-export const getReferenceFiber = (baseFiber?: Fiber): Fiber | null => {
+export const getReferenceFiber = (baseFiber?: Fiber): Fiber | undefined => {
   if (!baseFiber) return undefined
 
   const directParent = getDirectParentFiber(baseFiber)
   if (!directParent) return undefined
 
   const isParentNative = isNativeTagFiber(directParent)
-  const isOnlyOneChild = !directParent.child.sibling
+  const isOnlyOneChild = !directParent.child!.sibling
 
   const referenceFiber = (!isParentNative && isOnlyOneChild)
     ? directParent
@@ -120,8 +120,8 @@ export const getReferenceFiber = (baseFiber?: Fiber): Fiber | null => {
   return referenceFiber
 }
 
-export const getCodeInfoFromProps = (fiber: Fiber): CodeInfo | undefined => {
-  if (!fiber.pendingProps) return undefined
+export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
+  if (!fiber?.pendingProps) return undefined
 
   // inspector data attributes inject by `plugins/webpack/inspector-loader`
   const {
@@ -142,15 +142,10 @@ export const getCodeInfoFromProps = (fiber: Fiber): CodeInfo | undefined => {
 }
 
 export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined => {
-  const fiber: Fiber | null = getElementFiber(element)
+  const fiber: Fiber | undefined = getElementFiber(element)
 
   const referenceFiber = getReferenceFiber(fiber)
-  // some nodes were not rendered by react didn't have fiber
-  if (referenceFiber) {
-    return getCodeInfoFromProps(referenceFiber)
-  }
-
-  return undefined
+  return getCodeInfoFromProps(referenceFiber)
 }
 
 export const gotoEditor = (source?: CodeInfo) => {
@@ -178,7 +173,7 @@ export const gotoEditor = (source?: CodeInfo) => {
 /**
  * https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
  */
-export const getElementFiber = (element: HTMLElement): Fiber | null => {
+export const getElementFiber = (element: HTMLElement): Fiber | undefined => {
   const fiberKey = Object.keys(element).find(key => (
     /**
      * for react <= v16.13.1
@@ -196,13 +191,13 @@ export const getElementFiber = (element: HTMLElement): Fiber | null => {
     return element[fiberKey] as Fiber
   }
 
-  return null
+  return undefined
 }
 
 
 export const debugToolNameRegex = /^(.*?\.Provider|.*?\.Consumer|Anonymous|Trigger|Tooltip|_.*|[a-z].*)$/
 
-export const getNamedFiber = (baseFiber?: Fiber): Fiber | null => {
+export const getNamedFiber = (baseFiber?: Fiber): Fiber | undefined => {
   let fiber = baseFiber
 
   while (fiber) {
@@ -211,10 +206,10 @@ export const getNamedFiber = (baseFiber?: Fiber): Fiber | null => {
       return fiber
     }
 
-    fiber = fiber.return
+    fiber = fiber.return!
   }
 
-  return null
+  return undefined
 }
 
 export const getFiberName = (fiber?: Fiber): string | undefined => {
