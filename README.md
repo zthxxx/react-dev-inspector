@@ -82,7 +82,6 @@ If your project happen to use webpack-chain / umi2 / umi3, you can try out our *
 You should add:
 
 - an "inspector-loader"
-- a "DefinePlugin" to get current working directory
 - an api server middleware, "devServer", to open local IDE
 
 to your current webpack config.
@@ -90,8 +89,8 @@ to your current webpack config.
 Example:
 
 ```ts
-import { Configuration, DefinePlugin } from 'webpack'
-import { createLaunchEditorMiddleware } from 'react-dev-inspector/plugins/webpack'
+import { Configuration } from 'webpack'
+import { launchEditorMiddleware } from 'react-dev-inspector/plugins/webpack'
 
 
 const config: Configuration = {
@@ -129,20 +128,11 @@ const config: Configuration = {
   },
 
   /**
-   * [compile time] for inject current working directory which used in web page runtime
-   */
-  plugins: [
-    new DefinePlugin({
-      'process.env.PWD': JSON.stringify(process.cwd()),
-    }),
-  ],
-
-  /**
    * [server side] webpack dev server side middleware for launch IDE app
    */
   devServer: {
     before: (app) => {
-      app.use(createLaunchEditorMiddleware())
+      app.use(launchEditorMiddleware)
     },
   },
 }
@@ -343,17 +333,16 @@ export REACT_EDITOR=vim
 - **Stage 1 - Compile Time**
 
   - [webpack loader] inject source file path/line/column to JSX data attributes props (use babel)
-  - [webpack plugin] inject PWD (current working directory) env define for runtime
 
 - **Stage 2 - Web React Runtime**
 
   - [React component] `Inspector` Component in react, for listen hotkeys, and request api to dev-server for open IDE.
 
-    Specific, when you click a component DOM, the `Inspector` will try to obtain its source file info (path/line/column) and PWD path (both injected in Stage 1), then request launch-editor api (in stage 3) with absolute file path.
+    Specific, when you click a component DOM, the `Inspector` will try to obtain its source file info (path/line/column), then request launch-editor api (in stage 3) with absolute file path.
 
 - **Stage 3 - Dev-server Side**
 
-  - [middleware] setup  `createLaunchEditorMiddleware` in webpack dev-server (or other dev-server), to open file in IDE according to the request params.
+  - [middleware] setup  `launchEditorMiddleware` in webpack dev-server (or other dev-server), to open file in IDE according to the request params.
 
     **Only need** in development mode,and you want to open IDE when click a component element.
 

@@ -1,5 +1,5 @@
 import type { Compiler } from 'webpack'
-import createLaunchEditorMiddleware from 'react-dev-utils/errorOverlayMiddleware'
+import { launchEditorMiddleware } from './launchEditorMiddleware'
 
 
 /**
@@ -15,7 +15,7 @@ export class ReactInspectorPlugin {
     if (!compiler.options.devServer) {
       compiler.options.devServer = {
         before: (app) => {
-          app.use(createLaunchEditorMiddleware())
+          app.use(launchEditorMiddleware)
         },
       }
       return
@@ -23,7 +23,7 @@ export class ReactInspectorPlugin {
 
     const originBefore = compiler.options.devServer.before
     compiler.options.devServer.before = (app, server, compiler) => {
-      app.use(createLaunchEditorMiddleware())
+      app.use(launchEditorMiddleware)
       originBefore?.(app, server, compiler)
     }
   }

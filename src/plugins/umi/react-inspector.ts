@@ -24,7 +24,7 @@ export default function inspectorPlugin(api: IApi) {
   })
 
   /**
-   * Inspector component open file into IDE via `__open-stack-frame-in-editor` api,
+   * Inspector component open file into IDE via `/__open-stack-frame-in-editor/relative` api,
    * which is created by `errorOverlayMiddleware` and
    * defined in 'react-dev-utils/launchEditorEndpoint'
    *

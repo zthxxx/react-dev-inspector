@@ -1,4 +1,3 @@
-import path from 'path'
 import type { Fiber } from 'react-reconciler'
 import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint'
 import queryString from 'query-string'
@@ -149,25 +148,20 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
 }
 
 export const gotoEditor = (source?: CodeInfo) => {
-  // PWD auto defined in webpack plugin `config-inspector`
-  const pwd = process.env.PWD
-  if (!source || !pwd) return
+  if (!source) return
 
   const { relativePath, lineNumber, columnNumber } = source
 
-  const fileName = path.join(pwd, relativePath)
-
   const launchParams = {
-    fileName,
+    fileName: relativePath,
     lineNumber,
     colNumber: columnNumber,
   }
 
   /**
-   * api createLaunchEditorMiddleware in 'react-dev-utils/errorOverlayMiddleware'
-   * auto launch in umi plugin `react-inspector`
+   * api in 'react-dev-inspector/plugins/webpack/launchEditorMiddleware'
    */
-  fetch(`${launchEditorEndpoint}?${queryString.stringify(launchParams)}`)
+  fetch(`${launchEditorEndpoint}/relative?${queryString.stringify(launchParams)}`)
 }
 
 /**

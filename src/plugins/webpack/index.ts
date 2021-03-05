@@ -5,4 +5,7 @@
 export * from './config-inspector'
 export * from './inspector-loader'
 export * from './inspector-plugin'
-export { default as createLaunchEditorMiddleware } from 'react-dev-utils/errorOverlayMiddleware'
+export {
+  createLaunchEditorMiddleware,
+  launchEditorMiddleware,
+} from './launchEditorMiddleware'

@@ -1,5 +1,3 @@
-const path = require('path')
-const { DefinePlugin } = require('webpack')
 const { ReactInspectorPlugin } = require('react-dev-inspector/plugins/webpack')
 const {
   override,
@@ -57,11 +55,6 @@ module.exports = override(
     })
     return config
   },
-  addWebpackPlugin(
-    new DefinePlugin({
-      'process.env.PWD': JSON.stringify(process.cwd()),
-    }),
-  ),
   addWebpackPlugin(
     new ReactInspectorPlugin(),
   ),

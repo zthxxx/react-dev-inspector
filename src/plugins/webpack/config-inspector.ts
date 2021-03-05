@@ -1,5 +1,4 @@
 import type { ParserPlugin, ParserOptions } from '@babel/parser'
-import { DefinePlugin } from 'webpack'
 import type WebpackChain from 'webpack-chain'
 import { ReactInspectorPlugin } from './inspector-plugin'
 
@@ -32,21 +31,6 @@ export const inspectorChainWebpack = (
     .use('inspector')
     .loader(require.resolve('./inspector-loader'))
     .options(inspectorConfig ?? {})
-    .end()
-
-  /**
-   * [compile time] used in web page runtime
-   */
-  config
-    .plugin('define-pwd')
-    .use(
-      DefinePlugin,
-      [
-        {
-          'process.env.PWD': JSON.stringify(process.cwd()),
-        },
-      ],
-    )
     .end()
 
   /**

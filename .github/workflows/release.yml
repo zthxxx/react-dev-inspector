@@ -27,6 +27,10 @@ jobs:
           node-version: 13.x
           registry-url: https://registry.npmjs.org
 
+      - name: Environment variables
+        run: |
+          env
+
       - name: Install
         run: |
           npm ci

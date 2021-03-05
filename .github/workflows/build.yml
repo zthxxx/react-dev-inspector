@@ -32,7 +32,7 @@ jobs:
           node-version: 13.x
           registry-url: https://registry.npmjs.org
 
-      - name: Environment variable
+      - name: Environment variables
         run: |
           env
 
