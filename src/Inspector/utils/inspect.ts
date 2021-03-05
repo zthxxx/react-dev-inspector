@@ -120,8 +120,8 @@ export const getReferenceFiber = (baseFiber?: Fiber): Fiber | null => {
   return referenceFiber
 }
 
-export const getCodeInfoFromProps = (fiber: Fiber): CodeInfo | undefined => {
-  if (!fiber.pendingProps) return undefined
+export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
+  if (!fiber?.pendingProps) return undefined
 
   // inspector data attributes inject by `plugins/webpack/inspector-loader`
   const {
