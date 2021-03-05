@@ -21,3 +21,6 @@ dist
 *.log
 
 coverage/
+
+// vscode history
+.history

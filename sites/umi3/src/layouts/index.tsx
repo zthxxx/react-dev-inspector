@@ -46,13 +46,13 @@ export const HomePage = () => {
         </Slogan>
 
         <KeyPad>
-          <Keypress><div> Ctrl ⌃ </div></Keypress>
+          <Keypress>Ctrl ⌃</Keypress>
           +
-          <Keypress><div> Shift ⇧ </div></Keypress>
+          <Keypress>Shift ⇧</Keypress>
           +
-          <Keypress><div> Command ⌘ </div></Keypress>
+          <Keypress>Command ⌘</Keypress>
           +
-          <Keypress><div> C </div></Keypress>
+          <Keypress>C</Keypress>
         </KeyPad>
       </S.Base>
     </Inspector>

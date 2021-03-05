@@ -6,7 +6,8 @@ export const Description = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem auto;
+  margin: 0 auto;
+  padding: 2rem;
   font-size: 1.5rem;
   color: #999;
   

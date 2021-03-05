@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
-
+import { css } from '@emotion/css'
 
 /**
  * https://github.com/sindresorhus/github-markdown-css/blob/gh-pages/github-markdown.css#L183
  */
-export const KeyTone = styled.kbd`
+export const keyTone = css`
   display: inline-block;
   padding: 0.5rem 0.8rem;
   font: 12px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
@@ -21,10 +21,11 @@ export const KeyTone = styled.kbd`
 
 export const Keys = styled.div`
   display: inline-block;
+  padding: 0 0.5rem;
   opacity:1;
   animation: flickerAnimation 1.6s ease-in-out infinite;
   
-  & > ${KeyTone} {
+  & > .${keyTone} {
     margin: auto 0.8rem;
   }
   
@@ -37,9 +38,8 @@ export const Keys = styled.div`
 
 export const Pad = styled.div`
   vertical-align: center;
-  margin: 2rem auto;
+  margin: 0 auto;
+  padding: 2rem;
   font-size: 1.5rem;
   color: #666;
-  height: 1.2rem;
-  line-height: 1.2rem;
 `
