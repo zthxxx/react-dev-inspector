@@ -146,7 +146,7 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
 
   const referenceFiber = getReferenceFiber(fiber)
   // some nodes were not rendered by react didn't have fiber
-  if(referenceFiber) {
+  if (referenceFiber) {
     return getCodeInfoFromProps(referenceFiber)
   }
 
