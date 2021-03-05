@@ -120,8 +120,8 @@ export const getReferenceFiber = (baseFiber?: Fiber): Fiber | null => {
   return referenceFiber
 }
 
-export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
-  if (!fiber?.pendingProps) return undefined
+export const getCodeInfoFromProps = (fiber: Fiber): CodeInfo | undefined => {
+  if (!fiber.pendingProps) return undefined
 
   // inspector data attributes inject by `plugins/webpack/inspector-loader`
   const {
@@ -145,7 +145,12 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
   const fiber: Fiber | null = getElementFiber(element)
 
   const referenceFiber = getReferenceFiber(fiber)
-  return getCodeInfoFromProps(referenceFiber)
+  // some nodes were not rendered by react didn't have fiber
+  if(referenceFiber) {
+    return getCodeInfoFromProps(referenceFiber)
+  }
+
+  return undefined
 }
 
 export const gotoEditor = (source?: CodeInfo) => {
