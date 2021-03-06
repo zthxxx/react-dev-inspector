@@ -197,7 +197,7 @@ module.exports = function (it) {
 
 /***/ "+ego":
 /*!********************************************!*\
-  !*** ./src/layouts/index.tsx + 47 modules ***!
+  !*** ./src/layouts/index.tsx + 48 modules ***!
   \********************************************/
 /*! exports provided: HomePage, default */
 /*! all exports used */
@@ -2620,17 +2620,67 @@ var launchEditorEndpoint_default = /*#__PURE__*/__webpack_require__.n(launchEdit
 var query_string = __webpack_require__("5Uft");
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/inspect.js
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/fiber.js
+/**
+ * only native html tag fiber's type will be string,
+ * all the others (component / functional component / context) type will be function or object
+ */
+var isNativeTagFiber = function isNativeTagFiber(fiber) {
+  return typeof (fiber === null || fiber === void 0 ? void 0 : fiber.type) === 'string';
+};
+/**
+ * react fiber symbol types see:
+ * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
+ */
 
+var isReactSymbolFiber = function isReactSymbolFiber(fiber) {
+  var _a;
 
+  return typeof ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === 'symbol';
+};
+var isForwardRef = function isForwardRef(fiber) {
+  var _a;
+
+  return ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === Symbol["for"]('react.forward_ref');
+};
+/**
+ * https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
+ */
+
+var getElementFiber = function getElementFiber(element) {
+  var fiberKey = Object.keys(element).find(function (key) {
+    return (
+      /**
+       * for react <= v16.13.1
+       * https://github.com/facebook/react/blob/v16.13.1/packages/react-dom/src/client/ReactDOMComponentTree.js#L21
+       */
+      key.startsWith('__reactInternalInstance$')
+      /**
+       * for react >= v16.14.0
+       * https://github.com/facebook/react/blob/v16.14.0/packages/react-dom/src/client/ReactDOMComponentTree.js#L39
+       */
+      || key.startsWith('__reactFiber$')
+    );
+  });
+
+  if (fiberKey) {
+    return element[fiberKey];
+  }
+
+  return undefined;
+};
+var getElementFiberUpward = function getElementFiberUpward(element) {
+  if (!element) return undefined;
+  var fiber = getElementFiber(element);
+  if (fiber) return fiber;
+  return getElementFiberUpward(element.parentElement);
+};
 /**
  * find first parent of native html tag or react component,
  * skip react Provider / Context / ForwardRef / Fragment etc.
  */
 
 var getDirectParentFiber = function getDirectParentFiber(child) {
-  var _a;
-
   var current = child["return"];
 
   while (current) {
@@ -2638,7 +2688,7 @@ var getDirectParentFiber = function getDirectParentFiber(child) {
      * react fiber symbol types see:
      * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
      */
-    if (typeof ((_a = current.type) === null || _a === void 0 ? void 0 : _a.$$typeof) !== 'symbol') {
+    if (isReactSymbolFiber(current)) {
       return current;
     }
 
@@ -2648,35 +2698,51 @@ var getDirectParentFiber = function getDirectParentFiber(child) {
   return null;
 };
 /**
- * only native html tag fiber's type will be string,
- * all the others (component / functional component / context) type will be function or object
+ * The displayName property is not guaranteed to be a string.
+ * It's only safe to use for our purposes if it's a string.
+ * github.com/facebook/react-devtools/issues/803
+ *
+ * https://github.com/facebook/react/blob/v17.0.0/packages/react-devtools-shared/src/utils.js#L90-L112
  */
 
-var isNativeTagFiber = function isNativeTagFiber(fiber) {
-  return typeof fiber.type === 'string';
+var getFiberName = function getFiberName(fiber) {
+  var fiberType = fiber === null || fiber === void 0 ? void 0 : fiber.type;
+  if (!fiberType) return undefined;
+  var displayName = fiberType.displayName,
+      name = fiberType.name;
+
+  if (typeof displayName === 'string') {
+    return displayName;
+  } else if (typeof name === 'string') {
+    return name;
+  }
+
+  return undefined;
+};
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/inspect.js
+
+
+
+var getCodeInfoFromProps = function getCodeInfoFromProps(fiber) {
+  if (!(fiber === null || fiber === void 0 ? void 0 : fiber.pendingProps)) return undefined; // inspector data attributes inject by `plugins/webpack/inspector-loader`
+
+  var _fiber$pendingProps = fiber.pendingProps,
+      lineNumber = _fiber$pendingProps['data-inspector-line'],
+      columnNumber = _fiber$pendingProps['data-inspector-column'],
+      relativePath = _fiber$pendingProps['data-inspector-relative-path'];
+
+  if (lineNumber && columnNumber && relativePath) {
+    return {
+      lineNumber: lineNumber,
+      columnNumber: columnNumber,
+      relativePath: relativePath
+    };
+  }
+
+  return undefined;
 };
 /**
  * try to get react component reference fiber from the dom fiber
- *
- * rules:
- *
- * example code:
- *
- * ```jsx
- *   S.TitleName = styled.h1``
- *   Title = ({ children }) => (<S.TitleName>{children}</S.TitleName>)
- *   Title = ({ children }) => (
- *     <>
- *       <S.TitleName>{children}</S.TitleName>
- *       <span>xxx</span>
- *       <div><div>
- *     </>
- *   )
- *
- *   <Title>
- *     <span>React Dev Inspector</span>
- *   </Title>
- * ```
  *
  * fiber examples see below:
  * *******************************************************
@@ -2713,36 +2779,24 @@ var isNativeTagFiber = function isNativeTagFiber(fiber) {
  *    └─ div
  */
 
-var getReferenceFiber = function getReferenceFiber(baseFiber) {
+var inspect_getReferenceFiber = function getReferenceFiber(baseFiber) {
   if (!baseFiber) return undefined;
   var directParent = getDirectParentFiber(baseFiber);
   if (!directParent) return undefined;
   var isParentNative = isNativeTagFiber(directParent);
   var isOnlyOneChild = !directParent.child.sibling;
   var referenceFiber = !isParentNative && isOnlyOneChild ? directParent : baseFiber;
-  return referenceFiber;
-};
-var getCodeInfoFromProps = function getCodeInfoFromProps(fiber) {
-  if (!(fiber === null || fiber === void 0 ? void 0 : fiber.pendingProps)) return undefined; // inspector data attributes inject by `plugins/webpack/inspector-loader`
 
-  var _fiber$pendingProps = fiber.pendingProps,
-      lineNumber = _fiber$pendingProps['data-inspector-line'],
-      columnNumber = _fiber$pendingProps['data-inspector-column'],
-      relativePath = _fiber$pendingProps['data-inspector-relative-path'];
-
-  if (lineNumber && columnNumber && relativePath) {
-    return {
-      lineNumber: lineNumber,
-      columnNumber: columnNumber,
-      relativePath: relativePath
-    };
+  while (referenceFiber) {
+    if (getCodeInfoFromProps(referenceFiber)) return referenceFiber;
+    referenceFiber = referenceFiber["return"];
   }
 
   return undefined;
 };
-var getElementCodeInfo = function getElementCodeInfo(element) {
-  var fiber = getElementFiber(element);
-  var referenceFiber = getReferenceFiber(fiber);
+var inspect_getElementCodeInfo = function getElementCodeInfo(element) {
+  var fiber = getElementFiberUpward(element);
+  var referenceFiber = inspect_getReferenceFiber(fiber);
   return getCodeInfoFromProps(referenceFiber);
 };
 var inspect_gotoEditor = function gotoEditor(source) {
@@ -2761,76 +2815,43 @@ var inspect_gotoEditor = function gotoEditor(source) {
 
   fetch("".concat(launchEditorEndpoint_default.a, "/relative?").concat(query_string_default.a.stringify(launchParams)));
 };
-/**
- * https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
- */
-
-var getElementFiber = function getElementFiber(element) {
-  var fiberKey = Object.keys(element).find(function (key) {
-    return (
-      /**
-       * for react <= v16.13.1
-       * https://github.com/facebook/react/blob/v16.13.1/packages/react-dom/src/client/ReactDOMComponentTree.js#L21
-       */
-      key.startsWith('__reactInternalInstance$')
-      /**
-       * for react >= v16.14.0
-       * https://github.com/facebook/react/blob/v16.14.0/packages/react-dom/src/client/ReactDOMComponentTree.js#L39
-       */
-      || key.startsWith('__reactFiber$')
-    );
-  });
-
-  if (fiberKey) {
-    return element[fiberKey];
-  }
-
-  return undefined;
-};
-var debugToolNameRegex = /^(.*?\.Provider|.*?\.Consumer|Anonymous|Trigger|Tooltip|_.*|[a-z].*)$/;
-var getNamedFiber = function getNamedFiber(baseFiber) {
-  var _a, _b, _c;
+var inspect_getNamedFiber = function getNamedFiber(baseFiber) {
+  var _a, _b;
 
   var fiber = baseFiber;
 
   while (fiber) {
-    var name = (_b = (_a = fiber.type) === null || _a === void 0 ? void 0 : _a.displayName) !== null && _b !== void 0 ? _b : (_c = fiber.type) === null || _c === void 0 ? void 0 : _c.name;
+    var parent = (_a = fiber["return"]) !== null && _a !== void 0 ? _a : undefined;
+    var forwardParent = void 0;
 
-    if (name && !debugToolNameRegex.test(name)) {
+    while (isReactSymbolFiber(parent)) {
+      if (isForwardRef(parent)) {
+        forwardParent = parent;
+      }
+
+      parent = (_b = parent === null || parent === void 0 ? void 0 : parent["return"]) !== null && _b !== void 0 ? _b : undefined;
+    }
+
+    if (forwardParent) {
+      fiber = forwardParent;
+    }
+
+    if (getFiberName(fiber) && getCodeInfoFromProps(fiber)) {
       return fiber;
     }
 
-    fiber = fiber["return"];
+    fiber = parent;
   }
 
   return undefined;
 };
-var getFiberName = function getFiberName(fiber) {
-  var _a;
-
-  var fiberType = (_a = getNamedFiber(fiber)) === null || _a === void 0 ? void 0 : _a.type;
-  var displayName; // The displayName property is not guaranteed to be a string.
-  // It's only safe to use for our purposes if it's a string.
-  // github.com/facebook/react-devtools/issues/803
-  //
-  // https://github.com/facebook/react/blob/v17.0.0/packages/react-devtools-shared/src/utils.js#L90-L112
-
-  if (typeof (fiberType === null || fiberType === void 0 ? void 0 : fiberType.displayName) === 'string') {
-    displayName = fiberType.displayName;
-  } else if (typeof (fiberType === null || fiberType === void 0 ? void 0 : fiberType.name) === 'string') {
-    displayName = fiberType.name;
-  }
-
-  return displayName;
-};
-var getElementInspect = function getElementInspect(element, sourcePath) {
-  var fiber = getElementFiber(element);
-  var referenceFiber = getReferenceFiber(fiber);
-  var namedFiber = getNamedFiber(fiber);
+var inspect_getElementInspect = function getElementInspect(element) {
+  var fiber = getElementFiberUpward(element);
+  var referenceFiber = inspect_getReferenceFiber(fiber);
+  var namedFiber = inspect_getNamedFiber(referenceFiber);
   var fiberName = getFiberName(namedFiber);
   var nodeName = element.nodeName.toLowerCase();
-  var elementName = fiberName ? fiberName : nodeName;
-  var title = sourcePath && referenceFiber !== fiber ? "<".concat(elementName, ">") : "".concat(nodeName, " in <").concat(fiberName, ">");
+  var title = fiberName ? "".concat(nodeName, " in <").concat(fiberName, ">") : nodeName;
   return {
     fiber: referenceFiber,
     name: fiberName,
@@ -3310,10 +3331,10 @@ var Inspector_Inspector = function Inspector(props) {
     var _a;
 
     var overlay = overlayRef.current;
-    var codeInfo = getElementCodeInfo(element);
+    var codeInfo = inspect_getElementCodeInfo(element);
     var relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
 
-    var _getElementInspect = getElementInspect(element, relativePath),
+    var _getElementInspect = inspect_getElementInspect(element),
         fiber = _getElementInspect.fiber,
         name = _getElementInspect.name,
         title = _getElementInspect.title;
@@ -3334,10 +3355,9 @@ var Inspector_Inspector = function Inspector(props) {
     (_a = overlay === null || overlay === void 0 ? void 0 : overlay.remove) === null || _a === void 0 ? void 0 : _a.call(overlay);
     overlayRef.current = undefined;
     setIsInspect(false);
-    var codeInfo = getElementCodeInfo(element);
-    var relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
+    var codeInfo = inspect_getElementCodeInfo(element);
 
-    var _getElementInspect2 = getElementInspect(element, relativePath),
+    var _getElementInspect2 = inspect_getElementInspect(element),
         fiber = _getElementInspect2.fiber,
         name = _getElementInspect2.name;
 
@@ -3376,16 +3396,18 @@ var Inspector_Inspector = function Inspector(props) {
     var handleHotKeys = function handleHotKeys(event, handler) {
       if (handler.key === hotkey) {
         handleInspectKey();
+      } else if (isInspect && handler.key === 'esc') {
+        stopInspect();
       }
     };
 
-    hotkeys_esm(hotkey, handleHotKeys);
+    hotkeys_esm("".concat(hotkey, ", esc"), handleHotKeys);
     window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey;
     return function () {
-      hotkeys_esm.unbind(hotkey, handleHotKeys);
+      hotkeys_esm.unbind("".concat(hotkey, ", esc"), handleHotKeys);
       delete window.__REACT_DEV_INSPECTOR_TOGGLE__;
     };
-  }, [hotkey, handleInspectKey]);
+  }, [hotkey, isInspect, handleInspectKey]);
   return children;
 };
 // CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/index.js
@@ -5171,10 +5193,10 @@ var Pad = styled_base_browser_esm("div", {
 var Keypress = (_ref) => {
   var children = _ref.children;
   return core_browser_esm_jsx("kbd", {
-    className: keyTone,
     "data-inspector-line": "7",
     "data-inspector-column": "4",
-    "data-inspector-relative-path": "src/components/Keypress/Keypress.tsx"
+    "data-inspector-relative-path": "src/components/Keypress/Keypress.tsx",
+    className: keyTone
   }, children);
 };
 class Keypress_KeyPad extends react["Component"] {
@@ -5241,6 +5263,9 @@ var projectRepo = 'https://github.com/zthxxx/react-dev-inspector';
 var isDev = "production" === 'development';
 var HomePage = () => {
   return core_browser_esm_jsx(Inspector_Inspector, {
+    "data-inspector-line": "15",
+    "data-inspector-column": "4",
+    "data-inspector-relative-path": "src/layouts/index.tsx",
     disableLaunchEditor: !isDev,
     onClickElement: inspect => {
       console.debug(inspect);
@@ -5249,24 +5274,21 @@ var HomePage = () => {
           relativePath = _inspect$codeInfo.relativePath,
           lineNumber = _inspect$codeInfo.lineNumber;
       window.open("".concat(projectRepo, "/blob/master/sites/umi3/").concat(relativePath, "#L").concat(lineNumber));
-    },
-    "data-inspector-line": "15",
-    "data-inspector-column": "4",
-    "data-inspector-relative-path": "src/layouts/index.tsx"
+    }
   }, core_browser_esm_jsx(Global, {
-    styles: globalCss,
     "data-inspector-line": "31",
     "data-inspector-column": "6",
-    "data-inspector-relative-path": "src/layouts/index.tsx"
+    "data-inspector-relative-path": "src/layouts/index.tsx",
+    styles: globalCss
   }), core_browser_esm_jsx(Base, {
     "data-inspector-line": "34",
     "data-inspector-column": "6",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx(styles_GithubCorner, {
-    href: projectRepo,
     "data-inspector-line": "35",
     "data-inspector-column": "8",
-    "data-inspector-relative-path": "src/layouts/index.tsx"
+    "data-inspector-relative-path": "src/layouts/index.tsx",
+    href: projectRepo
   }), core_browser_esm_jsx(Title, {
     "data-inspector-line": "39",
     "data-inspector-column": "8",
