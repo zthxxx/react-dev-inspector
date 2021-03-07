@@ -1,6 +1,6 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "types": "es/index.d.ts",
@@ -21,6 +21,7 @@
     "site:index": "cp -f site/umi3/index.html site/",
     "site:domain": "echo react-dev-inspector.zthxxx.me > site/CNAME",
     "site:assets": "cp -fR docs/images site/",
+    "tag": "git tag v$(node -e 'console.log(require(\"./package.json\").version)')",
     "lint": "TIMING=1 eslint --ext js,jsx,ts,tsx src sites"
   },
   "repository": "zthxxx/react-dev-inspector",

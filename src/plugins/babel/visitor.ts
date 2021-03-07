@@ -12,7 +12,7 @@ import {
   jsxAttribute,
   jsxIdentifier,
   stringLiteral,
-} from '@babel/types'
+} from '@babel/types/lib/builders/generated'
 import type { Visitor } from '@babel/traverse'
 
 
