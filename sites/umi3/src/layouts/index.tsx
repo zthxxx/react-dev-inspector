@@ -1,5 +1,5 @@
 import React from 'react'
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 import { Inspector } from 'react-dev-inspector'
 import type { InspectParams } from 'react-dev-inspector'
 import { Title } from './components/Title'

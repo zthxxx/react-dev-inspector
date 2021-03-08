@@ -75,7 +75,14 @@ There are 4 ways to set up webpack config, please pick the one fit your project 
 
 In common cases (like create-react-app), you can use [#raw-webpack-config](https://github.com/zthxxx/react-dev-inspector#raw-webpack-config),
 
-If your project happen to use cra / umi3, you can try out our **integrated plugins / helper** in [#usage-with-umi2](https://github.com/zthxxx/react-dev-inspector#usage-with-umi2) and [#usage-with-umi3](https://github.com/zthxxx/react-dev-inspector#usage-with-umi3).
+If your project happen to use vite2 / create-react-app / umi3 / umi2, you can try out our **integrated plugins / helper** in
+
+- [#usage-with-create-react-app](https://github.com/zthxxx/react-dev-inspector#usage-with-create-react-app)
+- [#usage-with-vite2](https://github.com/zthxxx/react-dev-inspector#usage-with-vite2)
+- [#usage-with-umi3](https://github.com/zthxxx/react-dev-inspector#usage-with-umi3)
+- [#usage-with-umi2](https://github.com/zthxxx/react-dev-inspector#usage-with-umi2) 
+
+
 
 #### raw webpack config
 
@@ -120,6 +127,53 @@ const config: Configuration = {
 
 <br />
 
+#### usage with [Vite2](https://vitejs.dev)
+
+Example `vite.config.ts`:
+
+```ts
+import { defineConfig } from 'vite'
+import { inspectorServer } from 'react-dev-inspector/plugins/vite'
+
+export default defineConfig({
+  plugins: [
+    inspectorServer(),
+  ],
+})
+```
+
+<br />
+
+#### usage with create-react-app
+
+cra + [react-app-rewired](https://github.com/timarney/react-app-rewired) + [customize-cra](https://github.com/arackaf/customize-cra) example `config-overrides.js`:
+
+```ts
+const { ReactInspectorPlugin } = require('react-dev-inspector/plugins/webpack')
+const {
+  addBabelPlugin,
+  addWebpackPlugin,
+} = require('customize-cra')
+
+module.exports = override(
+  addBabelPlugin([
+    'react-dev-inspector/plugins/babel',
+    // plugin options docs see:
+    // https://github.com/zthxxx/react-dev-inspector#inspector-babel-plugin-options
+    {
+      excludes: [
+        /xxxx-want-to-ignore/,
+      ],
+    },
+  ]),
+  addWebpackPlugin(
+    new ReactInspectorPlugin(),
+  ),
+)
+```
+
+<br />
+
 #### usage with [Umi3](https://umijs.org/)
 
 Example `.umirc.dev.ts`:
@@ -147,16 +201,15 @@ export default defineConfig({
 Example `.umirc.dev.js`:
 
 ```js
-import { inspectorChainWebpack } from 'react-dev-inspector/plugins/webpack'
+import { launchEditorMiddleware } from 'react-dev-inspector/plugins/webpack'
 
 export default {
   // ...
-  chainWebpack(config) {
-    inspectorChainWebpack(config, {
-      // ... options
-    })
-    return config
-  },
+  extraBabelPlugins: [
+    // plugin options docs see:
+    // https://github.com/zthxxx/react-dev-inspector#inspector-babel-plugin-options
+    'react-dev-inspector/plugins/babel',
+  ],
 
   /**
    * And you need to set `false` to `dll` in `umi-plugin-react`,
@@ -165,6 +218,18 @@ export default {
    * https://github.com/umijs/umi/issues/2599
    * https://github.com/umijs/umi/issues/2161
    */
+  chainWebpack(config, { webpack }) {
+    const originBefore = config.toConfig().devServer
+
+    config.devServer.before((app, server, compiler) => {
+      
+      app.use(launchEditorMiddleware)
+      
+      originBefore?.(app, server, compiler)
+    })
+
+    return config  
+  },
 }
 ```
 
@@ -178,6 +243,14 @@ export default {
 - **umi3**
   - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/umi3
   - preview: https://react-dev-inspector.zthxxx.me/umi3
+
+- **vite2**
+
+  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/vite2
+
+  - preview: https://react-dev-inspector.zthxxx.me/vite2
+
+    *(due to prod build, cannot jump in online vite2 demo)*
 
 <br />
 

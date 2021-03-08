@@ -1,12 +1,27 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@@/*": ["./src/.umi/*"]
     },
     "jsx": "preserve",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "module": "esnext",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "lib": [
+      "dom.iterable",
+      "dom",
+      "esnext"
+    ],
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules",

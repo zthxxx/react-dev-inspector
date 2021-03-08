@@ -1,6 +1,6 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "types": "es/index.d.ts",
@@ -58,7 +58,6 @@
     "@babel/traverse": "^7.11.5",
     "hotkeys-js": "^3.8.1",
     "loader-utils": "^2.0.0",
-    "query-string": "^6.13.2",
     "react-dev-utils": "^10.2.1"
   },
   "devDependencies": {
@@ -66,6 +65,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/babel__traverse": "^7.11.0",
+    "@types/connect": "^3.4.34",
     "@types/express": "^4.17.11",
     "@types/fs-extra": "^9.0.8",
     "@types/jest": "^26.0.20",
@@ -88,21 +88,22 @@
     "globby": "^11.0.2",
     "husky": "^4.3.0",
     "jest": "^26.6.0",
-    "lerna": "^3.22.1",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.5.3",
     "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
     "react": "^16.13.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.5.3",
-    "typescript": "^4.0.2",
+    "typescript": "^4.2.3",
+    "vite": "^2.0.5",
     "webpack": "^4.44.1",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {
     "@umijs/types": "^3.2.20",
-    "react": "^16.8.0",
-    "webpack": "^4.44.1",
+    "react": ">=16.8.0",
+    "webpack": ">=4.44.1",
     "webpack-chain": "^6.5.1"
   },
   "husky": {

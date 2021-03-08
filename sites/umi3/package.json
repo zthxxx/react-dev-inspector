@@ -2,7 +2,6 @@
   "name": "@demo-sites/umi3",
   "version": "0.0.0",
   "description": "website demo for react-dev-inspector using umi3",
-  "main": "index.js",
   "scripts": {
     "clean": "rimraf dist src/.umi src/.umi-production",
     "dev": "npm run clean && COMPRESS=none HOST=0.0.0.0 umi dev",
@@ -21,9 +20,9 @@
     "url": "https://github.com/zthxxx/react-dev-inspector/issues"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.35",
     "@emotion/css": "^11.1.3",
-    "@emotion/styled": "^10.0.27",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "react": "^16.13.1",
     "react-dev-inspector": "^1",
     "react-dom": "^16.13.1",
@@ -31,7 +30,7 @@
     "umi": "^3.2.22"
   },
   "devDependencies": {
-    "@emotion/babel-preset-css-prop": "^10.0.27",
+    "@emotion/babel-preset-css-prop": "^11.2.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "typescript": "^4.0.3"

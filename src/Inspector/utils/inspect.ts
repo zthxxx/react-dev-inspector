@@ -1,6 +1,6 @@
-import type { Fiber } from 'react-reconciler'
+import type { Fiber, Source } from 'react-reconciler'
 import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint'
-import queryString from 'query-string'
+import queryString from 'querystring'
 import {
   isNativeTagFiber,
   isReactSymbolFiber,
@@ -14,7 +14,16 @@ import {
 export interface CodeInfo {
   lineNumber: string,
   columnNumber: string,
-  relativePath: string,
+  /**
+   * code source file relative path to dev-server cwd(current working directory)
+   * need use with `react-dev-inspector/plugins/babel`
+   */
+  relativePath?: string,
+  /**
+   * code source file absolute path
+   * just need use with `@babel/plugin-transform-react-jsx-source` which auto set by most framework
+   */
+  absolutePath?: string,
 }
 
 /**
@@ -29,10 +38,47 @@ export interface CodeDataAttribute {
   'data-inspector-relative-path': string,
 }
 
-export const getCodeInfoFromFiber = (fiber?: Fiber): CodeInfo | undefined => {
+/**
+ * react fiber property `_debugSource` created by `@babel/plugin-transform-react-jsx-source`
+ *     https://github.com/babel/babel/blob/main/packages/babel-plugin-transform-react-jsx-source/src/index.js#L51
+ *
+ * and injected `__source` property used by `React.createElement`, then pass to `ReactElement`
+ *     https://github.com/facebook/react/blob/master/packages/react/src/ReactElement.js#L350-L374
+ *     https://github.com/facebook/react/blob/master/packages/react/src/ReactElement.js#L189
+ *
+ * finally, used by `createFiberFromElement` to become a fiber property `_debugSource`.
+ *     https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiber.new.js#L634
+ */
+export const getCodeInfoFromDebugSource = (fiber?: Fiber): CodeInfo | undefined => {
+  if (!fiber?._debugSource) return undefined
+
+  const {
+    fileName,
+    lineNumber,
+    columnNumber,
+  } = fiber._debugSource as Source & { columnNumber?: number }
+
+  if (fileName && lineNumber) {
+    return {
+      lineNumber: String(lineNumber),
+      columnNumber: String(columnNumber ?? 1),
+
+      /**
+       * fileName in debugSource is absolutely
+       */
+      absolutePath: fileName,
+    }
+  }
+
+  return undefined
+}
+
+/**
+ * code location data-attribute props inject by `react-dev-inspector/plugins/babel`
+ */
+export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
   if (!fiber?.pendingProps) return undefined
 
-  // inspector data attributes inject by `plugins/webpack/inspector-loader`
   const {
     'data-inspector-line': lineNumber,
     'data-inspector-column': columnNumber,
@@ -49,6 +95,11 @@ export const getCodeInfoFromFiber = (fiber?: Fiber): CodeInfo | undefined => {
 
   return undefined
 }
+
+export const getCodeInfoFromFiber = (fiber?: Fiber): CodeInfo | undefined => (
+  getCodeInfoFromProps(fiber)
+  ?? getCodeInfoFromDebugSource(fiber)
+)
 
 /**
  * try to get react component reference fiber from the dom fiber
@@ -100,13 +151,16 @@ export const getReferenceFiber = (baseFiber?: Fiber): Fiber | undefined => {
     ? directParent
     : baseFiber
 
+  // fallback for cannot find code-info fiber when traverse to root
+  const originReferenceFiber = referenceFiber
+
   while (referenceFiber) {
     if (getCodeInfoFromFiber(referenceFiber)) return referenceFiber
 
     referenceFiber = referenceFiber.return!
   }
 
-  return undefined
+  return originReferenceFiber
 }
 
 export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined => {
@@ -119,10 +173,17 @@ export const getElementCodeInfo = (element: HTMLElement): CodeInfo | undefined =
 export const gotoEditor = (source?: CodeInfo) => {
   if (!source) return
 
-  const { relativePath, lineNumber, columnNumber } = source
+  const {
+    lineNumber,
+    columnNumber,
+    relativePath,
+    absolutePath,
+  } = source
+
+  const isRelative = Boolean(relativePath)
 
   const launchParams = {
-    fileName: relativePath,
+    fileName: isRelative ? relativePath : absolutePath,
     lineNumber,
     colNumber: columnNumber,
   }
@@ -130,11 +191,18 @@ export const gotoEditor = (source?: CodeInfo) => {
   /**
    * api in 'react-dev-inspector/plugins/webpack/launchEditorMiddleware'
    */
-  fetch(`${launchEditorEndpoint}/relative?${queryString.stringify(launchParams)}`)
+  const apiRoute = isRelative
+    ? `${launchEditorEndpoint}/relative`
+    : launchEditorEndpoint
+
+  fetch(`${apiRoute}?${queryString.stringify(launchParams)}`)
 }
 
 export const getNamedFiber = (baseFiber?: Fiber): Fiber | undefined => {
   let fiber = baseFiber
+
+  // fallback for cannot find code-info fiber when traverse to root
+  let originNamedFiber: Fiber | undefined
 
   while (fiber) {
     let parent = fiber.return ?? undefined
@@ -151,17 +219,16 @@ export const getNamedFiber = (baseFiber?: Fiber): Fiber | undefined => {
       fiber = forwardParent
     }
 
-    if (
-      getFiberName(fiber)
-      && getCodeInfoFromFiber(fiber)
-    ) {
-      return fiber
+    if (getFiberName(fiber)) {
+      if (!originNamedFiber) originNamedFiber = fiber
+
+      if (getCodeInfoFromFiber(fiber)) return fiber
     }
 
     fiber = parent!
   }
 
-  return undefined
+  return originNamedFiber
 }
 
 export const getElementInspect = (element: HTMLElement): {
