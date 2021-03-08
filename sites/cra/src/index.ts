@@ -15,5 +15,3 @@ ReactDOM.render(
   React.createElement(Layout),
   rootElement,
 )
-
-

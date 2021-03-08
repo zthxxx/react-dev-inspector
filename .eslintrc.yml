@@ -54,8 +54,6 @@ rules:
   quotes:
     - error
     - single
-  # https://eslint.org/docs/rules/no-trailing-spaces
-  no-trailing-spaces: error
   # https://eslint.org/docs/rules/operator-linebreak
   # align between '?' and ':'
   operator-linebreak:
@@ -66,9 +64,44 @@ rules:
   multiline-ternary:
     - error
     - always-multiline
+
   # https://eslint.org/docs/rules/keyword-spacing
   keyword-spacing:
     - error
+  # https://eslint.org/docs/rules/no-trailing-spaces
+  no-trailing-spaces: error
+  # https://eslint.org/docs/rules/space-in-parens
+  space-in-parens:
+    - error
+    - never
+  # https://eslint.org/docs/rules/no-multi-spaces
+  no-multi-spaces:
+    - error
+    - ignoreEOLComments: true
+      exceptions:
+        Property: true
+        BinaryExpression: true
+        VariableDeclarator: true
+        ImportDeclaration: true
+  # https://eslint.org/docs/rules/object-curly-spacing
+  object-curly-spacing:
+    - error
+    - always
+  # https://eslint.org/docs/rules/space-infix-ops
+  space-infix-ops:
+    - error
+
+  # https://eslint.org/docs/rules/no-multiple-empty-lines
+  no-multiple-empty-lines:
+    - error
+    - max: 3
+      maxEOF: 1
+      maxBOF: 0
+  # https://eslint.org/docs/rules/lines-between-class-members
+  lines-between-class-members:
+    - error
+    - always
+    - exceptAfterSingleLine: true
 
   no-console:
     - error

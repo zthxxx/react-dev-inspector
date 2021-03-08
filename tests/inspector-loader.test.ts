@@ -2,7 +2,7 @@ import path from 'path'
 import globby from 'globby'
 import fs from 'fs'
 import type webpack from 'webpack'
-import inspectorLoader from '../plugins/webpack/inspector-loader'
+import inspectorLoader from '../src/plugins/webpack/inspector-loader'
 
 // working directory is project root dir
 const assetsBaseDir = './sites/umi3/src'

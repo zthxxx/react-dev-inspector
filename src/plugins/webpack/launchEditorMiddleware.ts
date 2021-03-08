@@ -16,7 +16,7 @@ export const launchEditorMiddleware: RequestHandler = (req, res, next) => {
       req.url.startsWith(`${launchEditorEndpoint}/relative`)
       && typeof req.query.fileName === 'string'
     ) {
-      req.query.fileName = path.join(process.cwd(), req.query.fileName )
+      req.query.fileName = path.join(process.cwd(), req.query.fileName)
     }
 
     reactLaunchEditorMiddleware(req, res, next)
