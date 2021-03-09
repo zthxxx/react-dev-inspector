@@ -197,14 +197,14 @@ module.exports = function (it) {
 
 /***/ "+ego":
 /*!********************************************!*\
-  !*** ./src/layouts/index.tsx + 48 modules ***!
+  !*** ./src/layouts/index.tsx + 39 modules ***!
   \********************************************/
 /*! exports provided: HomePage, default */
 /*! all exports used */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/@babel/runtime/helpers/defineProperty.js (<- Module is not an ECMAScript module) */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/@babel/runtime/helpers/inheritsLoose.js (<- Module is not an ECMAScript module) */
-/*! ModuleConcatenation bailout: Cannot concat with ./node_modules/react-dev-inspector/node_modules/query-string/index.js (<- Module is not an ECMAScript module) */
-/*! ModuleConcatenation bailout: Cannot concat with ./node_modules/react-dev-utils/launchEditorEndpoint.js (<- Module is not an ECMAScript module) */
+/*! ModuleConcatenation bailout: Cannot concat with /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/query-string/index.js (<- Module is not an ECMAScript module) */
+/*! ModuleConcatenation bailout: Cannot concat with /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/react-dev-utils/launchEditorEndpoint.js (<- Module is not an ECMAScript module) */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/react-github-corner/lib/GithubCorner.js (<- Module is not an ECMAScript module) */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/react/index.js (<- Module is not an ECMAScript module) */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1891,75 +1891,12 @@ var ClassNames = core_browser_esm_withEmotionCache(function (props, context) {
   });
 });
 
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/slicedToArray.js
-
-
-
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-// CONCATENATED MODULE: ./node_modules/hotkeys-js/dist/hotkeys.esm.js
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/hotkeys-js/dist/hotkeys.esm.js
 /*!
  * hotkeys-js v3.8.1
  * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies.
  * 
- * Copyright (c) 2021 kenny wong <wowohoo@qq.com>
+ * Copyright (c) 2020 kenny wong <wowohoo@qq.com>
  * http://jaywcjlove.github.io/hotkeys
  * 
  * Licensed under the MIT license.
@@ -2510,7 +2447,7 @@ if (typeof window !== 'undefined') {
 }
 
 /* harmony default export */ var hotkeys_esm = (hotkeys);
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/hightlight.js
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/hightlight.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/Highlighter/index.js
  */
@@ -2519,183 +2456,155 @@ if (typeof window !== 'undefined') {
 // (when connected to a browser).
 // It is not currently the mechanism used to highlight React Native views.
 // That is done by the React Native Inspector component.
-var iframesListeningTo = new Set();
+let iframesListeningTo = new Set();
 function setupHighlighter(handlers) {
-  function startInspectingNative() {
-    registerListenersOnWindow(window);
-  }
-
-  function registerListenersOnWindow(window) {
-    // This plug-in may run in non-DOM environments (e.g. React Native).
-    if (window && typeof window.addEventListener === 'function') {
-      window.addEventListener('click', onClick, true);
-      window.addEventListener('mousedown', onMouseEvent, true);
-      window.addEventListener('mouseover', onMouseEvent, true);
-      window.addEventListener('mouseup', onMouseEvent, true);
-      window.addEventListener('pointerdown', onPointerDown, true);
-      window.addEventListener('pointerover', onPointerOver, true);
-      window.addEventListener('pointerup', onPointerUp, true);
+    function startInspectingNative() {
+        registerListenersOnWindow(window);
     }
-  }
-
-  function stopInspectingNative() {
-    removeListenersOnWindow(window);
-    iframesListeningTo.forEach(function (frame) {
-      try {
-        removeListenersOnWindow(frame.contentWindow);
-      } catch (error) {// This can error when the iframe is on a cross-origin.
-      }
-    });
-    iframesListeningTo = new Set();
-  }
-
-  function removeListenersOnWindow(window) {
-    // This plug-in may run in non-DOM environments (e.g. React Native).
-    if (window && typeof window.removeEventListener === 'function') {
-      window.removeEventListener('click', onClick, true);
-      window.removeEventListener('mousedown', onMouseEvent, true);
-      window.removeEventListener('mouseover', onMouseEvent, true);
-      window.removeEventListener('mouseup', onMouseEvent, true);
-      window.removeEventListener('pointerdown', onPointerDown, true);
-      window.removeEventListener('pointerover', onPointerOver, true);
-      window.removeEventListener('pointerup', onPointerUp, true);
-    }
-  }
-
-  function onClick(event) {
-    var _a;
-
-    event.preventDefault();
-    event.stopPropagation();
-    stopInspectingNative();
-    (_a = handlers.onClick) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
-  }
-
-  function onMouseEvent(event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  function onPointerDown(event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  function onPointerOver(event) {
-    var _a;
-
-    event.preventDefault();
-    event.stopPropagation();
-    var target = event.target;
-
-    if (target.tagName === 'IFRAME') {
-      var iframe = target;
-
-      try {
-        if (!iframesListeningTo.has(iframe)) {
-          var _window = iframe.contentWindow;
-          registerListenersOnWindow(_window);
-          iframesListeningTo.add(iframe);
+    function registerListenersOnWindow(window) {
+        // This plug-in may run in non-DOM environments (e.g. React Native).
+        if (window && typeof window.addEventListener === 'function') {
+            window.addEventListener('click', onClick, true);
+            window.addEventListener('mousedown', onMouseEvent, true);
+            window.addEventListener('mouseover', onMouseEvent, true);
+            window.addEventListener('mouseup', onMouseEvent, true);
+            window.addEventListener('pointerdown', onPointerDown, true);
+            window.addEventListener('pointerover', onPointerOver, true);
+            window.addEventListener('pointerup', onPointerUp, true);
         }
-      } catch (error) {// This can error when the iframe is on a cross-origin.
-      }
     }
-
-    (_a = handlers.onPointerOver) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
-  }
-
-  function onPointerUp(event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  startInspectingNative();
-  return stopInspectingNative;
+    function stopInspectingNative() {
+        removeListenersOnWindow(window);
+        iframesListeningTo.forEach(function (frame) {
+            try {
+                removeListenersOnWindow(frame.contentWindow);
+            }
+            catch (error) {
+                // This can error when the iframe is on a cross-origin.
+            }
+        });
+        iframesListeningTo = new Set();
+    }
+    function removeListenersOnWindow(window) {
+        // This plug-in may run in non-DOM environments (e.g. React Native).
+        if (window && typeof window.removeEventListener === 'function') {
+            window.removeEventListener('click', onClick, true);
+            window.removeEventListener('mousedown', onMouseEvent, true);
+            window.removeEventListener('mouseover', onMouseEvent, true);
+            window.removeEventListener('mouseup', onMouseEvent, true);
+            window.removeEventListener('pointerdown', onPointerDown, true);
+            window.removeEventListener('pointerover', onPointerOver, true);
+            window.removeEventListener('pointerup', onPointerUp, true);
+        }
+    }
+    function onClick(event) {
+        var _a;
+        event.preventDefault();
+        event.stopPropagation();
+        stopInspectingNative();
+        (_a = handlers.onClick) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
+    }
+    function onMouseEvent(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    function onPointerDown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    function onPointerOver(event) {
+        var _a;
+        event.preventDefault();
+        event.stopPropagation();
+        const target = event.target;
+        if (target.tagName === 'IFRAME') {
+            const iframe = target;
+            try {
+                if (!iframesListeningTo.has(iframe)) {
+                    const window = iframe.contentWindow;
+                    registerListenersOnWindow(window);
+                    iframesListeningTo.add(iframe);
+                }
+            }
+            catch (error) {
+                // This can error when the iframe is on a cross-origin.
+            }
+        }
+        (_a = handlers.onPointerOver) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
+    }
+    function onPointerUp(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    startInspectingNative();
+    return stopInspectingNative;
 }
-// EXTERNAL MODULE: ./node_modules/react-dev-utils/launchEditorEndpoint.js
-var launchEditorEndpoint = __webpack_require__("L9jI");
+
+// EXTERNAL MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/react-dev-utils/launchEditorEndpoint.js
+var launchEditorEndpoint = __webpack_require__("6C+4");
 var launchEditorEndpoint_default = /*#__PURE__*/__webpack_require__.n(launchEditorEndpoint);
 
-// EXTERNAL MODULE: ./node_modules/react-dev-inspector/node_modules/query-string/index.js
-var query_string = __webpack_require__("5Uft");
+// EXTERNAL MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/query-string/index.js
+var query_string = __webpack_require__("JBtm");
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/fiber.js
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/fiber.js
 /**
  * only native html tag fiber's type will be string,
  * all the others (component / functional component / context) type will be function or object
  */
-var isNativeTagFiber = function isNativeTagFiber(fiber) {
-  return typeof (fiber === null || fiber === void 0 ? void 0 : fiber.type) === 'string';
-};
+const isNativeTagFiber = (fiber) => typeof (fiber === null || fiber === void 0 ? void 0 : fiber.type) === 'string';
 /**
  * react fiber symbol types see:
  * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
  */
-
-var isReactSymbolFiber = function isReactSymbolFiber(fiber) {
-  var _a;
-
-  return typeof ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === 'symbol';
-};
-var isForwardRef = function isForwardRef(fiber) {
-  var _a;
-
-  return ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === Symbol["for"]('react.forward_ref');
-};
+const isReactSymbolFiber = (fiber) => { var _a; return typeof ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === 'symbol'; };
+const isForwardRef = (fiber) => { var _a; return ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === Symbol.for('react.forward_ref'); };
 /**
  * https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
  */
-
-var getElementFiber = function getElementFiber(element) {
-  var fiberKey = Object.keys(element).find(function (key) {
-    return (
-      /**
-       * for react <= v16.13.1
-       * https://github.com/facebook/react/blob/v16.13.1/packages/react-dom/src/client/ReactDOMComponentTree.js#L21
-       */
-      key.startsWith('__reactInternalInstance$')
-      /**
-       * for react >= v16.14.0
-       * https://github.com/facebook/react/blob/v16.14.0/packages/react-dom/src/client/ReactDOMComponentTree.js#L39
-       */
-      || key.startsWith('__reactFiber$')
-    );
-  });
-
-  if (fiberKey) {
-    return element[fiberKey];
-  }
-
-  return undefined;
+const getElementFiber = (element) => {
+    const fiberKey = Object.keys(element).find(key => (
+    /**
+     * for react <= v16.13.1
+     * https://github.com/facebook/react/blob/v16.13.1/packages/react-dom/src/client/ReactDOMComponentTree.js#L21
+     */
+    key.startsWith('__reactInternalInstance$')
+        /**
+         * for react >= v16.14.0
+         * https://github.com/facebook/react/blob/v16.14.0/packages/react-dom/src/client/ReactDOMComponentTree.js#L39
+         */
+        || key.startsWith('__reactFiber$')));
+    if (fiberKey) {
+        return element[fiberKey];
+    }
+    return undefined;
 };
-var getElementFiberUpward = function getElementFiberUpward(element) {
-  if (!element) return undefined;
-  var fiber = getElementFiber(element);
-  if (fiber) return fiber;
-  return getElementFiberUpward(element.parentElement);
+const getElementFiberUpward = (element) => {
+    if (!element)
+        return undefined;
+    const fiber = getElementFiber(element);
+    if (fiber)
+        return fiber;
+    return getElementFiberUpward(element.parentElement);
 };
 /**
  * find first parent of native html tag or react component,
  * skip react Provider / Context / ForwardRef / Fragment etc.
  */
-
-var getDirectParentFiber = function getDirectParentFiber(child) {
-  var current = child["return"];
-
-  while (current) {
-    /**
-     * react fiber symbol types see:
-     * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
-     */
-    if (isReactSymbolFiber(current)) {
-      return current;
+const getDirectParentFiber = (child) => {
+    let current = child.return;
+    while (current) {
+        /**
+         * react fiber symbol types see:
+         * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
+         */
+        if (!isReactSymbolFiber(current)) {
+            return current;
+        }
+        current = current.return;
     }
-
-    current = current["return"];
-  }
-
-  return null;
+    return null;
 };
 /**
  * The displayName property is not guaranteed to be a string.
@@ -2704,42 +2613,37 @@ var getDirectParentFiber = function getDirectParentFiber(child) {
  *
  * https://github.com/facebook/react/blob/v17.0.0/packages/react-devtools-shared/src/utils.js#L90-L112
  */
-
-var getFiberName = function getFiberName(fiber) {
-  var fiberType = fiber === null || fiber === void 0 ? void 0 : fiber.type;
-  if (!fiberType) return undefined;
-  var displayName = fiberType.displayName,
-      name = fiberType.name;
-
-  if (typeof displayName === 'string') {
-    return displayName;
-  } else if (typeof name === 'string') {
-    return name;
-  }
-
-  return undefined;
+const getFiberName = (fiber) => {
+    const fiberType = fiber === null || fiber === void 0 ? void 0 : fiber.type;
+    if (!fiberType)
+        return undefined;
+    const { displayName, name } = fiberType;
+    if (typeof displayName === 'string') {
+        return displayName;
+    }
+    else if (typeof name === 'string') {
+        return name;
+    }
+    return undefined;
 };
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/inspect.js
+
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/inspect.js
 
 
 
-var getCodeInfoFromProps = function getCodeInfoFromProps(fiber) {
-  if (!(fiber === null || fiber === void 0 ? void 0 : fiber.pendingProps)) return undefined; // inspector data attributes inject by `plugins/webpack/inspector-loader`
-
-  var _fiber$pendingProps = fiber.pendingProps,
-      lineNumber = _fiber$pendingProps['data-inspector-line'],
-      columnNumber = _fiber$pendingProps['data-inspector-column'],
-      relativePath = _fiber$pendingProps['data-inspector-relative-path'];
-
-  if (lineNumber && columnNumber && relativePath) {
-    return {
-      lineNumber: lineNumber,
-      columnNumber: columnNumber,
-      relativePath: relativePath
-    };
-  }
-
-  return undefined;
+const getCodeInfoFromFiber = (fiber) => {
+    if (!(fiber === null || fiber === void 0 ? void 0 : fiber.pendingProps))
+        return undefined;
+    // inspector data attributes inject by `plugins/webpack/inspector-loader`
+    const { 'data-inspector-line': lineNumber, 'data-inspector-column': columnNumber, 'data-inspector-relative-path': relativePath, } = fiber.pendingProps;
+    if (lineNumber && columnNumber && relativePath) {
+        return {
+            lineNumber,
+            columnNumber,
+            relativePath,
+        };
+    }
+    return undefined;
 };
 /**
  * try to get react component reference fiber from the dom fiber
@@ -2778,167 +2682,83 @@ var getCodeInfoFromProps = function getCodeInfoFromProps(fiber) {
  *    └─ span
  *    └─ div
  */
-
-var inspect_getReferenceFiber = function getReferenceFiber(baseFiber) {
-  if (!baseFiber) return undefined;
-  var directParent = getDirectParentFiber(baseFiber);
-  if (!directParent) return undefined;
-  var isParentNative = isNativeTagFiber(directParent);
-  var isOnlyOneChild = !directParent.child.sibling;
-  var referenceFiber = !isParentNative && isOnlyOneChild ? directParent : baseFiber;
-
-  while (referenceFiber) {
-    if (getCodeInfoFromProps(referenceFiber)) return referenceFiber;
-    referenceFiber = referenceFiber["return"];
-  }
-
-  return undefined;
-};
-var inspect_getElementCodeInfo = function getElementCodeInfo(element) {
-  var fiber = getElementFiberUpward(element);
-  var referenceFiber = inspect_getReferenceFiber(fiber);
-  return getCodeInfoFromProps(referenceFiber);
-};
-var inspect_gotoEditor = function gotoEditor(source) {
-  if (!source) return;
-  var relativePath = source.relativePath,
-      lineNumber = source.lineNumber,
-      columnNumber = source.columnNumber;
-  var launchParams = {
-    fileName: relativePath,
-    lineNumber: lineNumber,
-    colNumber: columnNumber
-  };
-  /**
-   * api in 'react-dev-inspector/plugins/webpack/launchEditorMiddleware'
-   */
-
-  fetch("".concat(launchEditorEndpoint_default.a, "/relative?").concat(query_string_default.a.stringify(launchParams)));
-};
-var inspect_getNamedFiber = function getNamedFiber(baseFiber) {
-  var _a, _b;
-
-  var fiber = baseFiber;
-
-  while (fiber) {
-    var parent = (_a = fiber["return"]) !== null && _a !== void 0 ? _a : undefined;
-    var forwardParent = void 0;
-
-    while (isReactSymbolFiber(parent)) {
-      if (isForwardRef(parent)) {
-        forwardParent = parent;
-      }
-
-      parent = (_b = parent === null || parent === void 0 ? void 0 : parent["return"]) !== null && _b !== void 0 ? _b : undefined;
+const getReferenceFiber = (baseFiber) => {
+    if (!baseFiber)
+        return undefined;
+    const directParent = getDirectParentFiber(baseFiber);
+    if (!directParent)
+        return undefined;
+    const isParentNative = isNativeTagFiber(directParent);
+    const isOnlyOneChild = !directParent.child.sibling;
+    let referenceFiber = (!isParentNative && isOnlyOneChild)
+        ? directParent
+        : baseFiber;
+    while (referenceFiber) {
+        if (getCodeInfoFromFiber(referenceFiber))
+            return referenceFiber;
+        referenceFiber = referenceFiber.return;
     }
-
-    if (forwardParent) {
-      fiber = forwardParent;
-    }
-
-    if (getFiberName(fiber) && getCodeInfoFromProps(fiber)) {
-      return fiber;
-    }
-
-    fiber = parent;
-  }
-
-  return undefined;
+    return undefined;
 };
-var inspect_getElementInspect = function getElementInspect(element) {
-  var fiber = getElementFiberUpward(element);
-  var referenceFiber = inspect_getReferenceFiber(fiber);
-  var namedFiber = inspect_getNamedFiber(referenceFiber);
-  var fiberName = getFiberName(namedFiber);
-  var nodeName = element.nodeName.toLowerCase();
-  var title = fiberName ? "".concat(nodeName, " in <").concat(fiberName, ">") : nodeName;
-  return {
-    fiber: referenceFiber,
-    name: fiberName,
-    title: title
-  };
+const getElementCodeInfo = (element) => {
+    const fiber = getElementFiberUpward(element);
+    const referenceFiber = getReferenceFiber(fiber);
+    return getCodeInfoFromFiber(referenceFiber);
 };
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/createForOfIteratorHelper.js
-
-function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it;
-
-  if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-      if (it) o = it;
-      var i = 0;
-
-      var F = function F() {};
-
-      return {
-        s: F,
-        n: function n() {
-          if (i >= o.length) return {
-            done: true
-          };
-          return {
-            done: false,
-            value: o[i++]
-          };
-        },
-        e: function e(_e) {
-          throw _e;
-        },
-        f: F
-      };
+const gotoEditor = (source) => {
+    if (!source)
+        return;
+    const { relativePath, lineNumber, columnNumber } = source;
+    const launchParams = {
+        fileName: relativePath,
+        lineNumber,
+        colNumber: columnNumber,
+    };
+    /**
+     * api in 'react-dev-inspector/plugins/webpack/launchEditorMiddleware'
+     */
+    fetch(`${launchEditorEndpoint_default.a}/relative?${query_string_default.a.stringify(launchParams)}`);
+};
+const getNamedFiber = (baseFiber) => {
+    var _a, _b;
+    let fiber = baseFiber;
+    while (fiber) {
+        let parent = (_a = fiber.return) !== null && _a !== void 0 ? _a : undefined;
+        let forwardParent;
+        while (isReactSymbolFiber(parent)) {
+            if (isForwardRef(parent)) {
+                forwardParent = parent;
+            }
+            parent = (_b = parent === null || parent === void 0 ? void 0 : parent.return) !== null && _b !== void 0 ? _b : undefined;
+        }
+        if (forwardParent) {
+            fiber = forwardParent;
+        }
+        if (getFiberName(fiber)
+            && getCodeInfoFromFiber(fiber)) {
+            return fiber;
+        }
+        fiber = parent;
     }
+    return undefined;
+};
+const getElementInspect = (element) => {
+    const fiber = getElementFiberUpward(element);
+    const referenceFiber = getReferenceFiber(fiber);
+    const namedFiber = getNamedFiber(referenceFiber);
+    const fiberName = getFiberName(namedFiber);
+    const nodeName = element.nodeName.toLowerCase();
+    const title = fiberName
+        ? `${nodeName} in <${fiberName}>`
+        : nodeName;
+    return {
+        fiber: referenceFiber,
+        name: fiberName,
+        title,
+    };
+};
 
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-
-  var normalCompletion = true,
-      didErr = false,
-      err;
-  return {
-    s: function s() {
-      it = o[Symbol.iterator]();
-    },
-    n: function n() {
-      var step = it.next();
-      normalCompletion = step.done;
-      return step;
-    },
-    e: function e(_e2) {
-      didErr = true;
-      err = _e2;
-    },
-    f: function f() {
-      try {
-        if (!normalCompletion && it["return"] != null) it["return"]();
-      } finally {
-        if (didErr) throw err;
-      }
-    }
-  };
-}
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/createClass.js
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/overlay.js
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/overlay.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/Highlighter/Overlay.js
  *
@@ -2946,471 +2766,379 @@ function _createClass(Constructor, protoProps, staticProps) {
  * which will deal multiple levels of nesting iframe.
  */
 function getNestedBoundingClientRect(node) {
-  return node.getBoundingClientRect();
+    return node.getBoundingClientRect();
 }
 function getElementDimensions(domElement) {
-  var calculatedStyle = window.getComputedStyle(domElement);
-  return {
-    borderLeft: parseInt(calculatedStyle.borderLeftWidth, 10),
-    borderRight: parseInt(calculatedStyle.borderRightWidth, 10),
-    borderTop: parseInt(calculatedStyle.borderTopWidth, 10),
-    borderBottom: parseInt(calculatedStyle.borderBottomWidth, 10),
-    marginLeft: parseInt(calculatedStyle.marginLeft, 10),
-    marginRight: parseInt(calculatedStyle.marginRight, 10),
-    marginTop: parseInt(calculatedStyle.marginTop, 10),
-    marginBottom: parseInt(calculatedStyle.marginBottom, 10),
-    paddingLeft: parseInt(calculatedStyle.paddingLeft, 10),
-    paddingRight: parseInt(calculatedStyle.paddingRight, 10),
-    paddingTop: parseInt(calculatedStyle.paddingTop, 10),
-    paddingBottom: parseInt(calculatedStyle.paddingBottom, 10)
-  };
+    const calculatedStyle = window.getComputedStyle(domElement);
+    return {
+        borderLeft: parseInt(calculatedStyle.borderLeftWidth, 10),
+        borderRight: parseInt(calculatedStyle.borderRightWidth, 10),
+        borderTop: parseInt(calculatedStyle.borderTopWidth, 10),
+        borderBottom: parseInt(calculatedStyle.borderBottomWidth, 10),
+        marginLeft: parseInt(calculatedStyle.marginLeft, 10),
+        marginRight: parseInt(calculatedStyle.marginRight, 10),
+        marginTop: parseInt(calculatedStyle.marginTop, 10),
+        marginBottom: parseInt(calculatedStyle.marginBottom, 10),
+        paddingLeft: parseInt(calculatedStyle.paddingLeft, 10),
+        paddingRight: parseInt(calculatedStyle.paddingRight, 10),
+        paddingTop: parseInt(calculatedStyle.paddingTop, 10),
+        paddingBottom: parseInt(calculatedStyle.paddingBottom, 10),
+    };
 }
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/Overlay.js
 
-
-
-
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/Overlay.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/utils.js
  */
- // Note that the Overlay components are not affected by the active Theme,
+
+// Note that the Overlay components are not affected by the active Theme,
 // because they highlight elements in the main Chrome window (outside of devtools).
 // The colors below were chosen to roughly match those used by Chrome devtools.
-
-var Overlay_OverlayRect = /*#__PURE__*/function () {
-  function OverlayRect(doc, container) {
-    _classCallCheck(this, OverlayRect);
-
-    this.node = doc.createElement('div');
-    this.border = doc.createElement('div');
-    this.padding = doc.createElement('div');
-    this.content = doc.createElement('div');
-    this.border.style.borderColor = overlayStyles.border;
-    this.padding.style.borderColor = overlayStyles.padding;
-    this.content.style.backgroundColor = overlayStyles.background;
-    Object.assign(this.node.style, {
-      borderColor: overlayStyles.margin,
-      pointerEvents: 'none',
-      position: 'fixed'
-    });
-    this.node.style.zIndex = '10000000';
-    this.node.appendChild(this.border);
-    this.border.appendChild(this.padding);
-    this.padding.appendChild(this.content);
-    container.appendChild(this.node);
-  }
-
-  _createClass(OverlayRect, [{
-    key: "remove",
-    value: function remove() {
-      if (this.node.parentNode) {
-        this.node.parentNode.removeChild(this.node);
-      }
+class OverlayRect {
+    constructor(doc, container) {
+        this.node = doc.createElement('div');
+        this.border = doc.createElement('div');
+        this.padding = doc.createElement('div');
+        this.content = doc.createElement('div');
+        this.border.style.borderColor = overlayStyles.border;
+        this.padding.style.borderColor = overlayStyles.padding;
+        this.content.style.backgroundColor = overlayStyles.background;
+        Object.assign(this.node.style, {
+            borderColor: overlayStyles.margin,
+            pointerEvents: 'none',
+            position: 'fixed',
+        });
+        this.node.style.zIndex = '10000000';
+        this.node.appendChild(this.border);
+        this.border.appendChild(this.padding);
+        this.padding.appendChild(this.content);
+        container.appendChild(this.node);
     }
-  }, {
-    key: "update",
-    value: function update(box, dims) {
-      boxWrap(dims, 'margin', this.node);
-      boxWrap(dims, 'border', this.border);
-      boxWrap(dims, 'padding', this.padding);
-      Object.assign(this.content.style, {
-        height: "".concat(box.height - dims.borderTop - dims.borderBottom - dims.paddingTop - dims.paddingBottom, "px"),
-        width: "".concat(box.width - dims.borderLeft - dims.borderRight - dims.paddingLeft - dims.paddingRight, "px")
-      });
-      Object.assign(this.node.style, {
-        top: "".concat(box.top - dims.marginTop, "px"),
-        left: "".concat(box.left - dims.marginLeft, "px")
-      });
-    }
-  }]);
-
-  return OverlayRect;
-}();
-
-var Overlay_OverlayTip = /*#__PURE__*/function () {
-  function OverlayTip(doc, container) {
-    _classCallCheck(this, OverlayTip);
-
-    this.tip = doc.createElement('div');
-    Object.assign(this.tip.style, {
-      display: 'flex',
-      flexFlow: 'row nowrap',
-      alignItems: 'center',
-      backgroundColor: '#333740',
-      borderRadius: '2px',
-      fontFamily: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
-      fontWeight: 'bold',
-      padding: '6px 8px',
-      pointerEvents: 'none',
-      position: 'fixed',
-      fontSize: '12px',
-      whiteSpace: 'nowrap'
-    });
-    this.nameSpan = doc.createElement('span');
-    this.tip.appendChild(this.nameSpan);
-    Object.assign(this.nameSpan.style, {
-      display: 'flex',
-      flexDirection: 'column',
-      borderRight: '1px solid #aaaaaa',
-      paddingRight: '0.8rem',
-      marginRight: '0.8rem'
-    });
-    this.titleDiv = doc.createElement('div');
-    this.nameSpan.appendChild(this.titleDiv);
-    Object.assign(this.titleDiv.style, {
-      color: '#ee78e6',
-      fontSize: '16px'
-    });
-    this.infoDiv = doc.createElement('div');
-    this.nameSpan.appendChild(this.infoDiv);
-    Object.assign(this.infoDiv.style, {
-      color: '#ee78e6',
-      fontSize: '14px'
-    });
-    this.dimSpan = doc.createElement('span');
-    this.tip.appendChild(this.dimSpan);
-    Object.assign(this.dimSpan.style, {
-      color: '#d7d7d7'
-    });
-    this.tip.style.zIndex = '10000000';
-    container.appendChild(this.tip);
-  }
-
-  _createClass(OverlayTip, [{
-    key: "remove",
-    value: function remove() {
-      if (this.tip.parentNode) {
-        this.tip.parentNode.removeChild(this.tip);
-      }
-    }
-  }, {
-    key: "updateText",
-    value: function updateText(name, info, width, height) {
-      this.titleDiv.textContent = name;
-      this.infoDiv.textContent = info !== null && info !== void 0 ? info : '';
-      this.dimSpan.textContent = "".concat(Math.round(width), "px \xD7 ").concat(Math.round(height), "px");
-    }
-  }, {
-    key: "updatePosition",
-    value: function updatePosition(dims, bounds) {
-      var tipRect = this.tip.getBoundingClientRect();
-      var tipPos = findTipPos(dims, bounds, {
-        width: tipRect.width,
-        height: tipRect.height
-      });
-      Object.assign(this.tip.style, tipPos.style);
-    }
-  }]);
-
-  return OverlayTip;
-}();
-
-var Overlay_Overlay = /*#__PURE__*/function () {
-  function Overlay() {
-    _classCallCheck(this, Overlay);
-
-    // Find the root window, because overlays are positioned relative to it.
-    var currentWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
-    this.window = currentWindow; // When opened in shells/dev,
-    // the tooltip should be bound by the app iframe, not by the topmost window.
-
-    var tipBoundsWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
-    this.tipBoundsWindow = tipBoundsWindow;
-    var doc = currentWindow.document;
-    this.container = doc.createElement('div');
-    this.container.style.zIndex = '10000000';
-    this.tip = new Overlay_OverlayTip(doc, this.container);
-    this.rects = [];
-
-    this.removeCallback = function () {};
-
-    doc.body.appendChild(this.container);
-  }
-
-  _createClass(Overlay, [{
-    key: "remove",
-    value: function remove() {
-      this.tip.remove();
-      this.rects.forEach(function (rect) {
-        rect.remove();
-      });
-      this.rects.length = 0;
-
-      if (this.container.parentNode) {
-        this.container.parentNode.removeChild(this.container);
-      }
-
-      this.removeCallback();
-    }
-  }, {
-    key: "setRemoveCallback",
-    value: function setRemoveCallback(callback) {
-      this.removeCallback = callback.bind(this);
-    }
-  }, {
-    key: "inspect",
-    value: function inspect(nodes, name, info) {
-      var _this = this;
-
-      var _a; // We can't get the size of text nodes or comment nodes. React as of v15
-      // heavily uses comment nodes to delimit text.
-
-
-      var elements = nodes.filter(function (node) {
-        return node.nodeType === Node.ELEMENT_NODE;
-      });
-
-      while (this.rects.length > elements.length) {
-        var rect = this.rects.pop();
-        rect === null || rect === void 0 ? void 0 : rect.remove();
-      }
-
-      if (elements.length === 0) {
-        return;
-      }
-
-      while (this.rects.length < elements.length) {
-        this.rects.push(new Overlay_OverlayRect(this.window.document, this.container));
-      }
-
-      var outerBox = {
-        top: Number.POSITIVE_INFINITY,
-        right: Number.NEGATIVE_INFINITY,
-        bottom: Number.NEGATIVE_INFINITY,
-        left: Number.POSITIVE_INFINITY
-      };
-      elements.forEach(function (element, index) {
-        var box = getNestedBoundingClientRect(element, _this.window);
-        var dims = getElementDimensions(element);
-        outerBox.top = Math.min(outerBox.top, box.top - dims.marginTop);
-        outerBox.right = Math.max(outerBox.right, box.left + box.width + dims.marginRight);
-        outerBox.bottom = Math.max(outerBox.bottom, box.top + box.height + dims.marginBottom);
-        outerBox.left = Math.min(outerBox.left, box.left - dims.marginLeft);
-        var rect = _this.rects[index];
-        rect.update(box, dims);
-      });
-
-      if (!name) {
-        // eslint-disable-next-line no-param-reassign
-        name = elements[0].nodeName.toLowerCase();
-        var node = elements[0];
-        var hook = (_a = node.ownerDocument.defaultView) === null || _a === void 0 ? void 0 : _a.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-
-        if (hook === null || hook === void 0 ? void 0 : hook.rendererInterfaces) {
-          var ownerName = null;
-
-          var _iterator = _createForOfIteratorHelper(hook.rendererInterfaces.values()),
-              _step;
-
-          try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var rendererInterface = _step.value;
-              var id = rendererInterface.getFiberIDForNative(node, true);
-
-              if (id !== null) {
-                ownerName = rendererInterface.getDisplayNameForFiberID(id, true);
-                break;
-              }
-            }
-          } catch (err) {
-            _iterator.e(err);
-          } finally {
-            _iterator.f();
-          }
-
-          if (ownerName) {
-            // eslint-disable-next-line no-param-reassign
-            name += " (in ".concat(ownerName, ")");
-          }
+    remove() {
+        if (this.node.parentNode) {
+            this.node.parentNode.removeChild(this.node);
         }
-      }
-
-      this.tip.updateText(name, info, outerBox.right - outerBox.left, outerBox.bottom - outerBox.top);
-      var tipBounds = getNestedBoundingClientRect(this.tipBoundsWindow.document.documentElement, this.window);
-      this.tip.updatePosition({
-        top: outerBox.top,
-        left: outerBox.left,
-        height: outerBox.bottom - outerBox.top,
-        width: outerBox.right - outerBox.left
-      }, {
-        top: tipBounds.top + this.tipBoundsWindow.scrollY,
-        left: tipBounds.left + this.tipBoundsWindow.scrollX,
-        height: this.tipBoundsWindow.innerHeight,
-        width: this.tipBoundsWindow.innerWidth
-      });
     }
-  }]);
-
-  return Overlay;
-}();
-
-
-
+    update(box, dims) {
+        boxWrap(dims, 'margin', this.node);
+        boxWrap(dims, 'border', this.border);
+        boxWrap(dims, 'padding', this.padding);
+        Object.assign(this.content.style, {
+            height: `${box.height
+                - dims.borderTop
+                - dims.borderBottom
+                - dims.paddingTop
+                - dims.paddingBottom}px`,
+            width: `${box.width
+                - dims.borderLeft
+                - dims.borderRight
+                - dims.paddingLeft
+                - dims.paddingRight}px`,
+        });
+        Object.assign(this.node.style, {
+            top: `${box.top - dims.marginTop}px`,
+            left: `${box.left - dims.marginLeft}px`,
+        });
+    }
+}
+class OverlayTip {
+    constructor(doc, container) {
+        this.tip = doc.createElement('div');
+        Object.assign(this.tip.style, {
+            display: 'flex',
+            flexFlow: 'row nowrap',
+            alignItems: 'center',
+            backgroundColor: '#333740',
+            borderRadius: '2px',
+            fontFamily: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
+            fontWeight: 'bold',
+            padding: '6px 8px',
+            pointerEvents: 'none',
+            position: 'fixed',
+            fontSize: '12px',
+            whiteSpace: 'nowrap',
+        });
+        this.nameSpan = doc.createElement('span');
+        this.tip.appendChild(this.nameSpan);
+        Object.assign(this.nameSpan.style, {
+            display: 'flex',
+            flexDirection: 'column',
+            borderRight: '1px solid #aaaaaa',
+            paddingRight: '0.8rem',
+            marginRight: '0.8rem',
+        });
+        this.titleDiv = doc.createElement('div');
+        this.nameSpan.appendChild(this.titleDiv);
+        Object.assign(this.titleDiv.style, {
+            color: '#ee78e6',
+            fontSize: '16px',
+        });
+        this.infoDiv = doc.createElement('div');
+        this.nameSpan.appendChild(this.infoDiv);
+        Object.assign(this.infoDiv.style, {
+            color: '#ee78e6',
+            fontSize: '14px',
+        });
+        this.dimSpan = doc.createElement('span');
+        this.tip.appendChild(this.dimSpan);
+        Object.assign(this.dimSpan.style, {
+            color: '#d7d7d7',
+        });
+        this.tip.style.zIndex = '10000000';
+        container.appendChild(this.tip);
+    }
+    remove() {
+        if (this.tip.parentNode) {
+            this.tip.parentNode.removeChild(this.tip);
+        }
+    }
+    updateText(name, info, width, height) {
+        this.titleDiv.textContent = name;
+        this.infoDiv.textContent = info !== null && info !== void 0 ? info : '';
+        this.dimSpan.textContent
+            = `${Math.round(width)}px × ${Math.round(height)}px`;
+    }
+    updatePosition(dims, bounds) {
+        const tipRect = this.tip.getBoundingClientRect();
+        const tipPos = findTipPos(dims, bounds, {
+            width: tipRect.width,
+            height: tipRect.height,
+        });
+        Object.assign(this.tip.style, tipPos.style);
+    }
+}
+class Overlay_Overlay {
+    constructor() {
+        // Find the root window, because overlays are positioned relative to it.
+        const currentWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
+        this.window = currentWindow;
+        // When opened in shells/dev,
+        // the tooltip should be bound by the app iframe, not by the topmost window.
+        const tipBoundsWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
+        this.tipBoundsWindow = tipBoundsWindow;
+        const doc = currentWindow.document;
+        this.container = doc.createElement('div');
+        this.container.style.zIndex = '10000000';
+        this.tip = new OverlayTip(doc, this.container);
+        this.rects = [];
+        this.removeCallback = () => { };
+        doc.body.appendChild(this.container);
+    }
+    remove() {
+        this.tip.remove();
+        this.rects.forEach(rect => {
+            rect.remove();
+        });
+        this.rects.length = 0;
+        if (this.container.parentNode) {
+            this.container.parentNode.removeChild(this.container);
+        }
+        this.removeCallback();
+    }
+    setRemoveCallback(callback) {
+        this.removeCallback = callback.bind(this);
+    }
+    inspect(nodes, name, info) {
+        var _a;
+        // We can't get the size of text nodes or comment nodes. React as of v15
+        // heavily uses comment nodes to delimit text.
+        const elements = nodes.filter(node => node.nodeType === Node.ELEMENT_NODE);
+        while (this.rects.length > elements.length) {
+            const rect = this.rects.pop();
+            rect === null || rect === void 0 ? void 0 : rect.remove();
+        }
+        if (elements.length === 0) {
+            return;
+        }
+        while (this.rects.length < elements.length) {
+            this.rects.push(new OverlayRect(this.window.document, this.container));
+        }
+        const outerBox = {
+            top: Number.POSITIVE_INFINITY,
+            right: Number.NEGATIVE_INFINITY,
+            bottom: Number.NEGATIVE_INFINITY,
+            left: Number.POSITIVE_INFINITY,
+        };
+        elements.forEach((element, index) => {
+            const box = getNestedBoundingClientRect(element, this.window);
+            const dims = getElementDimensions(element);
+            outerBox.top = Math.min(outerBox.top, box.top - dims.marginTop);
+            outerBox.right = Math.max(outerBox.right, box.left + box.width + dims.marginRight);
+            outerBox.bottom = Math.max(outerBox.bottom, box.top + box.height + dims.marginBottom);
+            outerBox.left = Math.min(outerBox.left, box.left - dims.marginLeft);
+            const rect = this.rects[index];
+            rect.update(box, dims);
+        });
+        if (!name) {
+            // eslint-disable-next-line no-param-reassign
+            name = elements[0].nodeName.toLowerCase();
+            const node = elements[0];
+            const hook = (_a = node.ownerDocument.defaultView) === null || _a === void 0 ? void 0 : _a.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+            if (hook === null || hook === void 0 ? void 0 : hook.rendererInterfaces) {
+                let ownerName = null;
+                for (const rendererInterface of hook.rendererInterfaces.values()) {
+                    const id = rendererInterface.getFiberIDForNative(node, true);
+                    if (id !== null) {
+                        ownerName = rendererInterface.getDisplayNameForFiberID(id, true);
+                        break;
+                    }
+                }
+                if (ownerName) {
+                    // eslint-disable-next-line no-param-reassign
+                    name += ` (in ${ownerName})`;
+                }
+            }
+        }
+        this.tip.updateText(name, info, outerBox.right - outerBox.left, outerBox.bottom - outerBox.top);
+        const tipBounds = getNestedBoundingClientRect(this.tipBoundsWindow.document.documentElement, this.window);
+        this.tip.updatePosition({
+            top: outerBox.top,
+            left: outerBox.left,
+            height: outerBox.bottom - outerBox.top,
+            width: outerBox.right - outerBox.left,
+        }, {
+            top: tipBounds.top + this.tipBoundsWindow.scrollY,
+            left: tipBounds.left + this.tipBoundsWindow.scrollX,
+            height: this.tipBoundsWindow.innerHeight,
+            width: this.tipBoundsWindow.innerWidth,
+        });
+    }
+}
 function findTipPos(dims, bounds, tipSize) {
-  var tipHeight = Math.max(tipSize.height, 20);
-  var tipWidth = Math.max(tipSize.width, 60);
-  var margin = 5;
-  var top;
-
-  if (dims.top + dims.height + tipHeight <= bounds.top + bounds.height) {
-    if (dims.top + dims.height < bounds.top + 0) {
-      top = bounds.top + margin;
-    } else {
-      top = dims.top + dims.height + margin;
+    const tipHeight = Math.max(tipSize.height, 20);
+    const tipWidth = Math.max(tipSize.width, 60);
+    const margin = 5;
+    let top;
+    if (dims.top + dims.height + tipHeight <= bounds.top + bounds.height) {
+        if (dims.top + dims.height < bounds.top + 0) {
+            top = bounds.top + margin;
+        }
+        else {
+            top = dims.top + dims.height + margin;
+        }
     }
-  } else if (dims.top - tipHeight <= bounds.top + bounds.height) {
-    if (dims.top - tipHeight - margin < bounds.top + margin) {
-      top = bounds.top + margin;
-    } else {
-      top = dims.top - tipHeight - margin;
+    else if (dims.top - tipHeight <= bounds.top + bounds.height) {
+        if (dims.top - tipHeight - margin < bounds.top + margin) {
+            top = bounds.top + margin;
+        }
+        else {
+            top = dims.top - tipHeight - margin;
+        }
     }
-  } else {
-    top = bounds.top + bounds.height - tipHeight - margin;
-  }
-
-  var left = dims.left + margin;
-
-  if (dims.left < bounds.left) {
-    left = bounds.left + margin;
-  }
-
-  if (dims.left + tipWidth > bounds.left + bounds.width) {
-    left = bounds.left + bounds.width - tipWidth - margin;
-  }
-
-  top += 'px';
-  left += 'px';
-  return {
-    style: {
-      top: top,
-      left: left
+    else {
+        top = bounds.top + bounds.height - tipHeight - margin;
     }
-  };
+    let left = dims.left + margin;
+    if (dims.left < bounds.left) {
+        left = bounds.left + margin;
+    }
+    if (dims.left + tipWidth > bounds.left + bounds.width) {
+        left = bounds.left + bounds.width - tipWidth - margin;
+    }
+    top += 'px';
+    left += 'px';
+    return {
+        style: { top, left },
+    };
 }
-
 function boxWrap(dims, what, node) {
-  Object.assign(node.style, {
-    borderTopWidth: "".concat(dims["".concat(what, "Top")], "px"),
-    borderLeftWidth: "".concat(dims["".concat(what, "Left")], "px"),
-    borderRightWidth: "".concat(dims["".concat(what, "Right")], "px"),
-    borderBottomWidth: "".concat(dims["".concat(what, "Bottom")], "px"),
-    borderStyle: 'solid'
-  });
+    Object.assign(node.style, {
+        borderTopWidth: `${dims[`${what}Top`]}px`,
+        borderLeftWidth: `${dims[`${what}Left`]}px`,
+        borderRightWidth: `${dims[`${what}Right`]}px`,
+        borderBottomWidth: `${dims[`${what}Bottom`]}px`,
+        borderStyle: 'solid',
+    });
 }
-
-var overlayStyles = {
-  background: 'rgba(120, 170, 210, 0.7)',
-  padding: 'rgba(77, 200, 0, 0.3)',
-  margin: 'rgba(255, 155, 0, 0.3)',
-  border: 'rgba(255, 200, 50, 0.3)'
+const overlayStyles = {
+    background: 'rgba(120, 170, 210, 0.7)',
+    padding: 'rgba(77, 200, 0, 0.3)',
+    margin: 'rgba(255, 155, 0, 0.3)',
+    border: 'rgba(255, 200, 50, 0.3)',
 };
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/Inspector.js
+
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/Inspector.js
 
 
 
 
 
-
-var defaultHotKeys = ['control', 'shift', 'command', 'c'];
-var Inspector_Inspector = function Inspector(props) {
-  var keys = props.keys,
-      onHoverElement = props.onHoverElement,
-      onClickElement = props.onClickElement,
-      disableLaunchEditor = props.disableLaunchEditor,
-      children = props.children;
-  var hotkey = (keys !== null && keys !== void 0 ? keys : defaultHotKeys).join('+');
-
-  var _useState = Object(react["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isInspect = _useState2[0],
-      setIsInspect = _useState2[1];
-
-  var overlayRef = Object(react["useRef"])();
-
-  var handleHoverElement = function handleHoverElement(element) {
-    var _a;
-
-    var overlay = overlayRef.current;
-    var codeInfo = inspect_getElementCodeInfo(element);
-    var relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
-
-    var _getElementInspect = inspect_getElementInspect(element),
-        fiber = _getElementInspect.fiber,
-        name = _getElementInspect.name,
-        title = _getElementInspect.title;
-
-    (_a = overlay === null || overlay === void 0 ? void 0 : overlay.inspect) === null || _a === void 0 ? void 0 : _a.call(overlay, [element], title, relativePath);
-    onHoverElement === null || onHoverElement === void 0 ? void 0 : onHoverElement({
-      element: element,
-      fiber: fiber,
-      codeInfo: codeInfo,
-      name: name
-    });
-  };
-
-  var handleClickElement = function handleClickElement(element) {
-    var _a;
-
-    var overlay = overlayRef.current;
-    (_a = overlay === null || overlay === void 0 ? void 0 : overlay.remove) === null || _a === void 0 ? void 0 : _a.call(overlay);
-    overlayRef.current = undefined;
-    setIsInspect(false);
-    var codeInfo = inspect_getElementCodeInfo(element);
-
-    var _getElementInspect2 = inspect_getElementInspect(element),
-        fiber = _getElementInspect2.fiber,
-        name = _getElementInspect2.name;
-
-    if (!disableLaunchEditor) inspect_gotoEditor(codeInfo);
-    onClickElement === null || onClickElement === void 0 ? void 0 : onClickElement({
-      element: element,
-      fiber: fiber,
-      codeInfo: codeInfo,
-      name: name
-    });
-  };
-
-  var startInspect = function startInspect() {
-    var overlay = new Overlay_Overlay();
-    var stopCallback = setupHighlighter({
-      onPointerOver: handleHoverElement,
-      onClick: handleClickElement
-    });
-    overlay.setRemoveCallback(stopCallback);
-    overlayRef.current = overlay;
-    setIsInspect(true);
-  };
-
-  var stopInspect = function stopInspect() {
-    var _a;
-
-    (_a = overlayRef.current) === null || _a === void 0 ? void 0 : _a.remove();
-    setIsInspect(false);
-  };
-
-  var handleInspectKey = function handleInspectKey() {
-    return isInspect ? stopInspect() : startInspect();
-  };
-
-  Object(react["useEffect"])(function () {
-    var handleHotKeys = function handleHotKeys(event, handler) {
-      if (handler.key === hotkey) {
-        handleInspectKey();
-      } else if (isInspect && handler.key === 'esc') {
-        stopInspect();
-      }
+const defaultHotKeys = ['control', 'shift', 'command', 'c'];
+const Inspector = (props) => {
+    const { keys, onHoverElement, onClickElement, disableLaunchEditor, children, } = props;
+    const hotkey = (keys !== null && keys !== void 0 ? keys : defaultHotKeys).join('+');
+    const [isInspect, setIsInspect] = Object(react["useState"])(false);
+    const overlayRef = Object(react["useRef"])();
+    const handleHoverElement = (element) => {
+        var _a;
+        const overlay = overlayRef.current;
+        const codeInfo = getElementCodeInfo(element);
+        const relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
+        const { fiber, name, title } = getElementInspect(element);
+        (_a = overlay === null || overlay === void 0 ? void 0 : overlay.inspect) === null || _a === void 0 ? void 0 : _a.call(overlay, [element], title, relativePath);
+        onHoverElement === null || onHoverElement === void 0 ? void 0 : onHoverElement({
+            element,
+            fiber,
+            codeInfo,
+            name,
+        });
     };
-
-    hotkeys_esm("".concat(hotkey, ", esc"), handleHotKeys);
-    window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey;
-    return function () {
-      hotkeys_esm.unbind("".concat(hotkey, ", esc"), handleHotKeys);
-      delete window.__REACT_DEV_INSPECTOR_TOGGLE__;
+    const handleClickElement = (element) => {
+        var _a;
+        const overlay = overlayRef.current;
+        (_a = overlay === null || overlay === void 0 ? void 0 : overlay.remove) === null || _a === void 0 ? void 0 : _a.call(overlay);
+        overlayRef.current = undefined;
+        setIsInspect(false);
+        const codeInfo = getElementCodeInfo(element);
+        const { fiber, name } = getElementInspect(element);
+        if (!disableLaunchEditor)
+            gotoEditor(codeInfo);
+        onClickElement === null || onClickElement === void 0 ? void 0 : onClickElement({
+            element,
+            fiber,
+            codeInfo,
+            name,
+        });
     };
-  }, [hotkey, isInspect, handleInspectKey]);
-  return children;
+    const startInspect = () => {
+        const overlay = new Overlay_Overlay();
+        const stopCallback = setupHighlighter({
+            onPointerOver: handleHoverElement,
+            onClick: handleClickElement,
+        });
+        overlay.setRemoveCallback(stopCallback);
+        overlayRef.current = overlay;
+        setIsInspect(true);
+    };
+    const stopInspect = () => {
+        var _a;
+        (_a = overlayRef.current) === null || _a === void 0 ? void 0 : _a.remove();
+        setIsInspect(false);
+    };
+    const handleInspectKey = () => (isInspect
+        ? stopInspect()
+        : startInspect());
+    Object(react["useEffect"])(() => {
+        const handleHotKeys = (event, handler) => {
+            if (handler.key === hotkey) {
+                handleInspectKey();
+            }
+            else if (isInspect && handler.key === 'esc') {
+                stopInspect();
+            }
+        };
+        hotkeys_esm(`${hotkey}, esc`, handleHotKeys);
+        window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey;
+        return () => {
+            hotkeys_esm.unbind(`${hotkey}, esc`, handleHotKeys);
+            delete window.__REACT_DEV_INSPECTOR_TOGGLE__;
+        };
+    }, [hotkey, isInspect, handleInspectKey]);
+    return children;
 };
-// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/index.js
+
+// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/index.js
+
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
 var defineProperty = __webpack_require__("lSNA");
@@ -3614,19 +3342,19 @@ var styled_base_browser_esm_createStyled = function createStyled(tag, options) {
 };
 
 /* harmony default export */ var styled_base_browser_esm = (styled_base_browser_esm_createStyled);
-// CONCATENATED MODULE: ./src/components/Title/styles.ts
+// CONCATENATED MODULE: ./src/layouts/components/Title/styles.ts
 
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
 var TitleName = styled_base_browser_esm("h1", {
-  target: "e77si5p0",
+  target: "e13t542m0",
   label: "TitleName"
 })( true ? {
   name: "154vy6c",
   styles: "font-size:4rem;padding:0 3rem;"
 } : undefined);
-// CONCATENATED MODULE: ./src/components/Title/Title.tsx
+// CONCATENATED MODULE: ./src/layouts/components/Title/Title.tsx
 
 
 
@@ -3635,24 +3363,24 @@ var Title = props => {
   return core_browser_esm_jsx(TitleName, {
     "data-inspector-line": "11",
     "data-inspector-column": "4",
-    "data-inspector-relative-path": "src/components/Title/Title.tsx"
+    "data-inspector-relative-path": "src/layouts/components/Title/Title.tsx"
   }, children);
 };
-// CONCATENATED MODULE: ./src/components/Title/index.ts
+// CONCATENATED MODULE: ./src/layouts/components/Title/index.ts
 
-// CONCATENATED MODULE: ./src/components/Slogan/styles.ts
+// CONCATENATED MODULE: ./src/layouts/components/Slogan/styles.ts
 
 
 function styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
 var Description = styled_base_browser_esm("div", {
-  target: "e5f8ncs0",
+  target: "e1887tsf0",
   label: "Description"
 })( true ? {
   name: "17iv70g",
   styles: "display:flex;flex-direction:column;justify-content:center;align-items:center;margin:0 auto;padding:2rem;font-size:1.5rem;color:#999;p{margin:0.5rem auto;}"
 } : undefined);
-// CONCATENATED MODULE: ./src/components/Slogan/Slogan.tsx
+// CONCATENATED MODULE: ./src/layouts/components/Slogan/Slogan.tsx
 
 
 
@@ -3661,10 +3389,10 @@ var Slogan = props => {
   return core_browser_esm_jsx(Description, {
     "data-inspector-line": "11",
     "data-inspector-column": "4",
-    "data-inspector-relative-path": "src/components/Slogan/Slogan.tsx"
+    "data-inspector-relative-path": "src/layouts/components/Slogan/Slogan.tsx"
   }, children);
 };
-// CONCATENATED MODULE: ./src/components/Slogan/index.ts
+// CONCATENATED MODULE: ./src/layouts/components/Slogan/index.ts
 
 // CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js
 function _taggedTemplateLiteral(strings, raw) {
@@ -3816,13 +3544,13 @@ var e = "-ms-";
 var r = "-moz-";
 var stylis_a = "-webkit-";
 var c = "comm";
-var stylis_n = "rule";
+var n = "rule";
 var t = "decl";
 var s = "@page";
 var u = "@media";
 var stylis_i = "@import";
 var f = "@charset";
-var stylis_o = "@viewport";
+var o = "@viewport";
 var l = "@supports";
 var v = "@document";
 var h = "@namespace";
@@ -3881,7 +3609,7 @@ var q = 1;
 var B = 1;
 var D = 0;
 var E = 0;
-var stylis_F = 0;
+var F = 0;
 var G = "";
 
 function H(e, r, a, c, n, t, s) {
@@ -3904,13 +3632,13 @@ function I(e, r, a) {
 }
 
 function J() {
-  return stylis_F;
+  return F;
 }
 
 function K() {
-  stylis_F = E < D ? z(G, E++) : 0;
-  if (B++, stylis_F === 10) B = 1, q++;
-  return stylis_F;
+  F = E < D ? z(G, E++) : 0;
+  if (B++, F === 10) B = 1, q++;
+  return F;
 }
 
 function L() {
@@ -3980,26 +3708,26 @@ function V(e) {
 }
 
 function W(e) {
-  while (stylis_F = L()) {
-    if (stylis_F < 33) K();else break;
+  while (F = L()) {
+    if (F < 33) K();else break;
   }
 
-  return Q(e) > 2 || Q(stylis_F) > 3 ? "" : " ";
+  return Q(e) > 2 || Q(F) > 3 ? "" : " ";
 }
 
 function X(e) {
   while (K()) {
-    switch (Q(stylis_F)) {
+    switch (Q(F)) {
       case 0:
         O(_(E - 1), e);
         break;
 
       case 2:
-        O(U(stylis_F), e);
+        O(U(F), e);
         break;
 
       default:
-        O(d(stylis_F), e);
+        O(d(F), e);
     }
   }
 
@@ -4008,13 +3736,13 @@ function X(e) {
 
 function Y(e) {
   while (K()) {
-    switch (stylis_F) {
+    switch (F) {
       case e:
         return E;
 
       case 34:
       case 39:
-        return Y(e === 34 || e === 39 ? e : stylis_F);
+        return Y(e === 34 || e === 39 ? e : F);
 
       case 40:
         if (e === 41) Y(e);
@@ -4031,7 +3759,7 @@ function Y(e) {
 
 function Z(e, r) {
   while (K()) {
-    if (e + stylis_F === 47 + 10) break;else if (e + stylis_F === 42 + 42 && L() === 47) break;
+    if (e + F === 47 + 10) break;else if (e + F === 42 + 42 && L() === 47) break;
   }
 
   return "/*" + P(r, E - 1) + "*" + d(e === 47 ? e : K());
@@ -4169,7 +3897,7 @@ function ae(e, r, a, c, t, s, u, i, f, o, l) {
     }
   }
 
-  return H(e, r, a, t === 0 ? stylis_n : i, f, o, l);
+  return H(e, r, a, t === 0 ? n : i, f, o, l);
 }
 
 function ce(e, r, a) {
@@ -4337,7 +4065,7 @@ function ue(e, r, a, s) {
     case c:
       return "";
 
-    case stylis_n:
+    case n:
       e.value = e.props.join(",");
   }
 
@@ -4372,7 +4100,7 @@ function oe(c, s, u, i) {
     case p:
       return se([I(y(c.value, "@", "@" + stylis_a), c, "")], i);
 
-    case stylis_n:
+    case n:
       if (c.length) return S(c.props, function (n) {
         switch (x(n, /(::plac\w+|:read-\w+)/)) {
           case ":read-only":
@@ -4390,7 +4118,7 @@ function oe(c, s, u, i) {
 
 function le(e) {
   switch (e.type) {
-    case stylis_n:
+    case n:
       e.props = e.props.map(function (r) {
         return S(V(r), function (r, a, c) {
           switch (z(r, 0)) {
@@ -5154,7 +4882,7 @@ var _createEmotion = emotion_css_create_instance_esm({
     emotion_css_esm_cache = _createEmotion.cache;
 
 
-// CONCATENATED MODULE: ./src/components/Keypress/styles.ts
+// CONCATENATED MODULE: ./src/layouts/components/Keypress/styles.ts
 
 
 
@@ -5176,17 +4904,17 @@ function Keypress_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tri
  */
 var keyTone = emotion_css_esm_css(_templateObject());
 var Keys = styled_base_browser_esm("div", {
-  target: "eiy5uf50",
+  target: "e1wh3hm0",
   label: "Keys"
 })("display:inline-block;padding:0 0.5rem;opacity:1;animation:flickerAnimation 1.6s ease-in-out infinite;& > .", keyTone, "{margin:auto 0.8rem;}@keyframes flickerAnimation{0%{opacity:1;}50%{opacity:.4;}100%{opacity:1;}}" + ( true ? "" : undefined));
 var Pad = styled_base_browser_esm("div", {
-  target: "eiy5uf51",
+  target: "e1wh3hm1",
   label: "Pad"
 })( true ? {
   name: "1ej4us3",
   styles: "vertical-align:center;margin:0 auto;padding:2rem;font-size:1.5rem;color:#666;"
 } : undefined);
-// CONCATENATED MODULE: ./src/components/Keypress/Keypress.tsx
+// CONCATENATED MODULE: ./src/layouts/components/Keypress/Keypress.tsx
 
 
 
@@ -5195,7 +4923,7 @@ var Keypress = (_ref) => {
   return core_browser_esm_jsx("kbd", {
     "data-inspector-line": "7",
     "data-inspector-column": "4",
-    "data-inspector-relative-path": "src/components/Keypress/Keypress.tsx",
+    "data-inspector-relative-path": "src/layouts/components/Keypress/Keypress.tsx",
     className: keyTone
   }, children);
 };
@@ -5205,24 +4933,24 @@ class Keypress_KeyPad extends react["Component"] {
     return core_browser_esm_jsx(Pad, {
       "data-inspector-line": "22",
       "data-inspector-column": "6",
-      "data-inspector-relative-path": "src/components/Keypress/Keypress.tsx"
+      "data-inspector-relative-path": "src/layouts/components/Keypress/Keypress.tsx"
     }, core_browser_esm_jsx("span", {
       "data-inspector-line": "23",
       "data-inspector-column": "8",
-      "data-inspector-relative-path": "src/components/Keypress/Keypress.tsx"
+      "data-inspector-relative-path": "src/layouts/components/Keypress/Keypress.tsx"
     }, "press"), core_browser_esm_jsx(Keys, {
       "data-inspector-line": "25",
       "data-inspector-column": "8",
-      "data-inspector-relative-path": "src/components/Keypress/Keypress.tsx"
+      "data-inspector-relative-path": "src/layouts/components/Keypress/Keypress.tsx"
     }, children), core_browser_esm_jsx("span", {
       "data-inspector-line": "27",
       "data-inspector-column": "8",
-      "data-inspector-relative-path": "src/components/Keypress/Keypress.tsx"
+      "data-inspector-relative-path": "src/layouts/components/Keypress/Keypress.tsx"
     }, "to try! \uD83C\uDF6D"));
   }
 
 }
-// CONCATENATED MODULE: ./src/components/Keypress/index.ts
+// CONCATENATED MODULE: ./src/layouts/components/Keypress/index.ts
 
 // EXTERNAL MODULE: ./node_modules/react-github-corner/lib/GithubCorner.js
 var GithubCorner = __webpack_require__("XwpZ");
@@ -5262,8 +4990,8 @@ var styles_GithubCorner = /*#__PURE__*/styled_base_browser_esm(GithubCorner_defa
 var projectRepo = 'https://github.com/zthxxx/react-dev-inspector';
 var isDev = "production" === 'development';
 var HomePage = () => {
-  return core_browser_esm_jsx(Inspector_Inspector, {
-    "data-inspector-line": "15",
+  return core_browser_esm_jsx(Inspector, {
+    "data-inspector-line": "16",
     "data-inspector-column": "4",
     "data-inspector-relative-path": "src/layouts/index.tsx",
     disableLaunchEditor: !isDev,
@@ -5276,61 +5004,61 @@ var HomePage = () => {
       window.open("".concat(projectRepo, "/blob/master/sites/umi3/").concat(relativePath, "#L").concat(lineNumber));
     }
   }, core_browser_esm_jsx(Global, {
-    "data-inspector-line": "31",
+    "data-inspector-line": "32",
     "data-inspector-column": "6",
     "data-inspector-relative-path": "src/layouts/index.tsx",
     styles: globalCss
   }), core_browser_esm_jsx(Base, {
-    "data-inspector-line": "34",
+    "data-inspector-line": "35",
     "data-inspector-column": "6",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx(styles_GithubCorner, {
-    "data-inspector-line": "35",
+    "data-inspector-line": "36",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx",
     href: projectRepo
   }), core_browser_esm_jsx(Title, {
-    "data-inspector-line": "39",
+    "data-inspector-line": "40",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("span", {
-    "data-inspector-line": "40",
+    "data-inspector-line": "41",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "React Dev Inspector")), core_browser_esm_jsx(Slogan, {
-    "data-inspector-line": "43",
+    "data-inspector-line": "44",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("p", {
-    "data-inspector-line": "44",
+    "data-inspector-line": "45",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "Quick jump to local IDE source code directly from browser React component by just a simple click!"), core_browser_esm_jsx("p", {
-    "data-inspector-line": "45",
+    "data-inspector-line": "46",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx("small", {
-    "data-inspector-line": "45",
+    "data-inspector-line": "46",
     "data-inspector-column": "13",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "( for this prod online demo page, jump to GitHub file )"))), core_browser_esm_jsx(Keypress_KeyPad, {
-    "data-inspector-line": "48",
+    "data-inspector-line": "49",
     "data-inspector-column": "8",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "49",
+    "data-inspector-line": "50",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "Ctrl \u2303"), "+", core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "51",
+    "data-inspector-line": "52",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "Shift \u21E7"), "+", core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "53",
+    "data-inspector-line": "54",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "Command \u2318"), "+", core_browser_esm_jsx(Keypress, {
-    "data-inspector-line": "55",
+    "data-inspector-line": "56",
     "data-inspector-column": "10",
     "data-inspector-relative-path": "src/layouts/index.tsx"
   }, "C"))));
@@ -5974,26 +5702,6 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
 
 /***/ }),
 
-/***/ "0kzj":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/react-dev-inspector/node_modules/strict-uri-encode/index.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/*! all exports used */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (str) {
-  return encodeURIComponent(str).replace(/[!'()*]/g, function (x) {
-    return "%".concat(x.charCodeAt(0).toString(16).toUpperCase());
-  });
-};
-
-/***/ }),
-
 /***/ "0q/z":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/esnext.map.find.js ***!
@@ -6323,6 +6031,108 @@ module.exports = function (it, TAG, STATIC) {
   }
 };
 
+
+/***/ }),
+
+/***/ "1Fob":
+/*!************************************************************************************************************!*\
+  !*** /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/decode-uri-component/index.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var token = '%[a-f0-9]{2}';
+var singleMatcher = new RegExp(token, 'gi');
+var multiMatcher = new RegExp('(' + token + ')+', 'gi');
+
+function decodeComponents(components, split) {
+  try {
+    // Try to decode the entire string first
+    return decodeURIComponent(components.join(''));
+  } catch (err) {// Do nothing
+  }
+
+  if (components.length === 1) {
+    return components;
+  }
+
+  split = split || 1; // Split the array in 2 parts
+
+  var left = components.slice(0, split);
+  var right = components.slice(split);
+  return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+}
+
+function decode(input) {
+  try {
+    return decodeURIComponent(input);
+  } catch (err) {
+    var tokens = input.match(singleMatcher);
+
+    for (var i = 1; i < tokens.length; i++) {
+      input = decodeComponents(tokens, i).join('');
+      tokens = input.match(singleMatcher);
+    }
+
+    return input;
+  }
+}
+
+function customDecodeURIComponent(input) {
+  // Keep track of all the replacements and prefill the map with the `BOM`
+  var replaceMap = {
+    '%FE%FF': '\uFFFD\uFFFD',
+    '%FF%FE': '\uFFFD\uFFFD'
+  };
+  var match = multiMatcher.exec(input);
+
+  while (match) {
+    try {
+      // Decode as big chunks as possible
+      replaceMap[match[0]] = decodeURIComponent(match[0]);
+    } catch (err) {
+      var result = decode(match[0]);
+
+      if (result !== match[0]) {
+        replaceMap[match[0]] = result;
+      }
+    }
+
+    match = multiMatcher.exec(input);
+  } // Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
+
+
+  replaceMap['%C2'] = '\uFFFD';
+  var entries = Object.keys(replaceMap);
+
+  for (var i = 0; i < entries.length; i++) {
+    // Replace all decoded components
+    var key = entries[i];
+    input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
+  }
+
+  return input;
+}
+
+module.exports = function (encodedURI) {
+  if (typeof encodedURI !== 'string') {
+    throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+  }
+
+  try {
+    encodedURI = encodedURI.replace(/\+/g, ' '); // Try the built in decoder first
+
+    return decodeURIComponent(encodedURI);
+  } catch (err) {
+    // Fallback to a more advanced decoder
+    return customDecodeURIComponent(encodedURI);
+  }
+};
 
 /***/ }),
 
@@ -7069,459 +6879,6 @@ var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ 
 
 exports.f = wellKnownSymbol;
 
-
-/***/ }),
-
-/***/ "5Uft":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/react-dev-inspector/node_modules/query-string/index.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/*! exports used: default */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _slicedToArray = __webpack_require__(/*! ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/slicedToArray */ "5wUe");
-
-var _createForOfIteratorHelper = __webpack_require__(/*! ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/createForOfIteratorHelper */ "bfL6");
-
-var _toConsumableArray = __webpack_require__(/*! ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/toConsumableArray */ "R5yR");
-
-var strictUriEncode = __webpack_require__(/*! strict-uri-encode */ "0kzj");
-
-var decodeComponent = __webpack_require__(/*! decode-uri-component */ "8jRI");
-
-var splitOnFirst = __webpack_require__(/*! split-on-first */ "8yz6");
-
-var filterObject = __webpack_require__(/*! filter-obj */ "c0go");
-
-var isNullOrUndefined = function isNullOrUndefined(value) {
-  return value === null || value === undefined;
-};
-
-function encoderForArrayFormat(options) {
-  switch (options.arrayFormat) {
-    case 'index':
-      return function (key) {
-        return function (result, value) {
-          var index = result.length;
-
-          if (value === undefined || options.skipNull && value === null || options.skipEmptyString && value === '') {
-            return result;
-          }
-
-          if (value === null) {
-            return [].concat(_toConsumableArray(result), [[encode(key, options), '[', index, ']'].join('')]);
-          }
-
-          return [].concat(_toConsumableArray(result), [[encode(key, options), '[', encode(index, options), ']=', encode(value, options)].join('')]);
-        };
-      };
-
-    case 'bracket':
-      return function (key) {
-        return function (result, value) {
-          if (value === undefined || options.skipNull && value === null || options.skipEmptyString && value === '') {
-            return result;
-          }
-
-          if (value === null) {
-            return [].concat(_toConsumableArray(result), [[encode(key, options), '[]'].join('')]);
-          }
-
-          return [].concat(_toConsumableArray(result), [[encode(key, options), '[]=', encode(value, options)].join('')]);
-        };
-      };
-
-    case 'comma':
-    case 'separator':
-      return function (key) {
-        return function (result, value) {
-          if (value === null || value === undefined || value.length === 0) {
-            return result;
-          }
-
-          if (result.length === 0) {
-            return [[encode(key, options), '=', encode(value, options)].join('')];
-          }
-
-          return [[result, encode(value, options)].join(options.arrayFormatSeparator)];
-        };
-      };
-
-    default:
-      return function (key) {
-        return function (result, value) {
-          if (value === undefined || options.skipNull && value === null || options.skipEmptyString && value === '') {
-            return result;
-          }
-
-          if (value === null) {
-            return [].concat(_toConsumableArray(result), [encode(key, options)]);
-          }
-
-          return [].concat(_toConsumableArray(result), [[encode(key, options), '=', encode(value, options)].join('')]);
-        };
-      };
-  }
-}
-
-function parserForArrayFormat(options) {
-  var result;
-
-  switch (options.arrayFormat) {
-    case 'index':
-      return function (key, value, accumulator) {
-        result = /\[(\d*)\]$/.exec(key);
-        key = key.replace(/\[\d*\]$/, '');
-
-        if (!result) {
-          accumulator[key] = value;
-          return;
-        }
-
-        if (accumulator[key] === undefined) {
-          accumulator[key] = {};
-        }
-
-        accumulator[key][result[1]] = value;
-      };
-
-    case 'bracket':
-      return function (key, value, accumulator) {
-        result = /(\[\])$/.exec(key);
-        key = key.replace(/\[\]$/, '');
-
-        if (!result) {
-          accumulator[key] = value;
-          return;
-        }
-
-        if (accumulator[key] === undefined) {
-          accumulator[key] = [value];
-          return;
-        }
-
-        accumulator[key] = [].concat(accumulator[key], value);
-      };
-
-    case 'comma':
-    case 'separator':
-      return function (key, value, accumulator) {
-        var isArray = typeof value === 'string' && value.includes(options.arrayFormatSeparator);
-        var isEncodedArray = typeof value === 'string' && !isArray && decode(value, options).includes(options.arrayFormatSeparator);
-        value = isEncodedArray ? decode(value, options) : value;
-        var newValue = isArray || isEncodedArray ? value.split(options.arrayFormatSeparator).map(function (item) {
-          return decode(item, options);
-        }) : value === null ? value : decode(value, options);
-        accumulator[key] = newValue;
-      };
-
-    default:
-      return function (key, value, accumulator) {
-        if (accumulator[key] === undefined) {
-          accumulator[key] = value;
-          return;
-        }
-
-        accumulator[key] = [].concat(accumulator[key], value);
-      };
-  }
-}
-
-function validateArrayFormatSeparator(value) {
-  if (typeof value !== 'string' || value.length !== 1) {
-    throw new TypeError('arrayFormatSeparator must be single character string');
-  }
-}
-
-function encode(value, options) {
-  if (options.encode) {
-    return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
-  }
-
-  return value;
-}
-
-function decode(value, options) {
-  if (options.decode) {
-    return decodeComponent(value);
-  }
-
-  return value;
-}
-
-function keysSorter(input) {
-  if (Array.isArray(input)) {
-    return input.sort();
-  }
-
-  if (typeof input === 'object') {
-    return keysSorter(Object.keys(input)).sort(function (a, b) {
-      return Number(a) - Number(b);
-    }).map(function (key) {
-      return input[key];
-    });
-  }
-
-  return input;
-}
-
-function removeHash(input) {
-  var hashStart = input.indexOf('#');
-
-  if (hashStart !== -1) {
-    input = input.slice(0, hashStart);
-  }
-
-  return input;
-}
-
-function getHash(url) {
-  var hash = '';
-  var hashStart = url.indexOf('#');
-
-  if (hashStart !== -1) {
-    hash = url.slice(hashStart);
-  }
-
-  return hash;
-}
-
-function extract(input) {
-  input = removeHash(input);
-  var queryStart = input.indexOf('?');
-
-  if (queryStart === -1) {
-    return '';
-  }
-
-  return input.slice(queryStart + 1);
-}
-
-function parseValue(value, options) {
-  if (options.parseNumbers && !Number.isNaN(Number(value)) && typeof value === 'string' && value.trim() !== '') {
-    value = Number(value);
-  } else if (options.parseBooleans && value !== null && (value.toLowerCase() === 'true' || value.toLowerCase() === 'false')) {
-    value = value.toLowerCase() === 'true';
-  }
-
-  return value;
-}
-
-function parse(query, options) {
-  options = Object.assign({
-    decode: true,
-    sort: true,
-    arrayFormat: 'none',
-    arrayFormatSeparator: ',',
-    parseNumbers: false,
-    parseBooleans: false
-  }, options);
-  validateArrayFormatSeparator(options.arrayFormatSeparator);
-  var formatter = parserForArrayFormat(options); // Create an object with no prototype
-
-  var ret = Object.create(null);
-
-  if (typeof query !== 'string') {
-    return ret;
-  }
-
-  query = query.trim().replace(/^[?#&]/, '');
-
-  if (!query) {
-    return ret;
-  }
-
-  var _iterator = _createForOfIteratorHelper(query.split('&')),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var param = _step.value;
-
-      if (param === '') {
-        continue;
-      }
-
-      var _splitOnFirst = splitOnFirst(options.decode ? param.replace(/\+/g, ' ') : param, '='),
-          _splitOnFirst2 = _slicedToArray(_splitOnFirst, 2),
-          _key = _splitOnFirst2[0],
-          _value = _splitOnFirst2[1]; // Missing `=` should be `null`:
-      // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
-
-
-      _value = _value === undefined ? null : ['comma', 'separator'].includes(options.arrayFormat) ? _value : decode(_value, options);
-      formatter(decode(_key, options), _value, ret);
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-
-  for (var _i = 0, _Object$keys = Object.keys(ret); _i < _Object$keys.length; _i++) {
-    var key = _Object$keys[_i];
-    var value = ret[key];
-
-    if (typeof value === 'object' && value !== null) {
-      for (var _i2 = 0, _Object$keys2 = Object.keys(value); _i2 < _Object$keys2.length; _i2++) {
-        var k = _Object$keys2[_i2];
-        value[k] = parseValue(value[k], options);
-      }
-    } else {
-      ret[key] = parseValue(value, options);
-    }
-  }
-
-  if (options.sort === false) {
-    return ret;
-  }
-
-  return (options.sort === true ? Object.keys(ret).sort() : Object.keys(ret).sort(options.sort)).reduce(function (result, key) {
-    var value = ret[key];
-
-    if (Boolean(value) && typeof value === 'object' && !Array.isArray(value)) {
-      // Sort object keys, not values
-      result[key] = keysSorter(value);
-    } else {
-      result[key] = value;
-    }
-
-    return result;
-  }, Object.create(null));
-}
-
-exports.extract = extract;
-exports.parse = parse;
-
-exports.stringify = function (object, options) {
-  if (!object) {
-    return '';
-  }
-
-  options = Object.assign({
-    encode: true,
-    strict: true,
-    arrayFormat: 'none',
-    arrayFormatSeparator: ','
-  }, options);
-  validateArrayFormatSeparator(options.arrayFormatSeparator);
-
-  var shouldFilter = function shouldFilter(key) {
-    return options.skipNull && isNullOrUndefined(object[key]) || options.skipEmptyString && object[key] === '';
-  };
-
-  var formatter = encoderForArrayFormat(options);
-  var objectCopy = {};
-
-  for (var _i3 = 0, _Object$keys3 = Object.keys(object); _i3 < _Object$keys3.length; _i3++) {
-    var key = _Object$keys3[_i3];
-
-    if (!shouldFilter(key)) {
-      objectCopy[key] = object[key];
-    }
-  }
-
-  var keys = Object.keys(objectCopy);
-
-  if (options.sort !== false) {
-    keys.sort(options.sort);
-  }
-
-  return keys.map(function (key) {
-    var value = object[key];
-
-    if (value === undefined) {
-      return '';
-    }
-
-    if (value === null) {
-      return encode(key, options);
-    }
-
-    if (Array.isArray(value)) {
-      return value.reduce(formatter(key), []).join('&');
-    }
-
-    return encode(key, options) + '=' + encode(value, options);
-  }).filter(function (x) {
-    return x.length > 0;
-  }).join('&');
-};
-
-exports.parseUrl = function (url, options) {
-  options = Object.assign({
-    decode: true
-  }, options);
-
-  var _splitOnFirst3 = splitOnFirst(url, '#'),
-      _splitOnFirst4 = _slicedToArray(_splitOnFirst3, 2),
-      url_ = _splitOnFirst4[0],
-      hash = _splitOnFirst4[1];
-
-  return Object.assign({
-    url: url_.split('?')[0] || '',
-    query: parse(extract(url), options)
-  }, options && options.parseFragmentIdentifier && hash ? {
-    fragmentIdentifier: decode(hash, options)
-  } : {});
-};
-
-exports.stringifyUrl = function (object, options) {
-  options = Object.assign({
-    encode: true,
-    strict: true
-  }, options);
-  var url = removeHash(object.url).split('?')[0] || '';
-  var queryFromUrl = exports.extract(object.url);
-  var parsedQueryFromUrl = exports.parse(queryFromUrl, {
-    sort: false
-  });
-  var query = Object.assign(parsedQueryFromUrl, object.query);
-  var queryString = exports.stringify(query, options);
-
-  if (queryString) {
-    queryString = "?".concat(queryString);
-  }
-
-  var hash = getHash(object.url);
-
-  if (object.fragmentIdentifier) {
-    hash = "#".concat(encode(object.fragmentIdentifier, options));
-  }
-
-  return "".concat(url).concat(queryString).concat(hash);
-};
-
-exports.pick = function (input, filter, options) {
-  options = Object.assign({
-    parseFragmentIdentifier: true
-  }, options);
-
-  var _exports$parseUrl = exports.parseUrl(input, options),
-      url = _exports$parseUrl.url,
-      query = _exports$parseUrl.query,
-      fragmentIdentifier = _exports$parseUrl.fragmentIdentifier;
-
-  return exports.stringifyUrl({
-    url: url,
-    query: filterObject(query, filter),
-    fragmentIdentifier: fragmentIdentifier
-  }, options);
-};
-
-exports.exclude = function (input, filter, options) {
-  var exclusionFilter = Array.isArray(filter) ? function (key) {
-    return !filter.includes(key);
-  } : function (key, value) {
-    return !filter(key, value);
-  };
-  return exports.pick(input, exclusionFilter, options);
-};
 
 /***/ }),
 
@@ -8286,6 +7643,28 @@ module.exports = {
   TypedArrayPrototype: TypedArrayPrototype
 };
 
+
+/***/ }),
+
+/***/ "6C+4":
+/*!**********************************************************************************************************************!*\
+  !*** /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/react-dev-utils/launchEditorEndpoint.js ***!
+  \**********************************************************************************************************************/
+/*! no static exports found */
+/*! exports used: default */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ // TODO: we might want to make this injectable to support DEV-time non-root URLs.
+
+module.exports = '/__open-stack-frame-in-editor';
 
 /***/ }),
 
@@ -10686,6 +10065,427 @@ iterate.stop = function (result) {
 
 /***/ }),
 
+/***/ "JBtm":
+/*!****************************************************************************************************!*\
+  !*** /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/query-string/index.js ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/*! exports used: default */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _slicedToArray = __webpack_require__(/*! ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/slicedToArray */ "5wUe");
+
+var _createForOfIteratorHelper = __webpack_require__(/*! ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/createForOfIteratorHelper */ "bfL6");
+
+var _toConsumableArray = __webpack_require__(/*! ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/toConsumableArray */ "R5yR");
+
+var strictUriEncode = __webpack_require__(/*! strict-uri-encode */ "UM5q");
+
+var decodeComponent = __webpack_require__(/*! decode-uri-component */ "1Fob");
+
+var splitOnFirst = __webpack_require__(/*! split-on-first */ "p/97");
+
+var isNullOrUndefined = function isNullOrUndefined(value) {
+  return value === null || value === undefined;
+};
+
+function encoderForArrayFormat(options) {
+  switch (options.arrayFormat) {
+    case 'index':
+      return function (key) {
+        return function (result, value) {
+          var index = result.length;
+
+          if (value === undefined || options.skipNull && value === null || options.skipEmptyString && value === '') {
+            return result;
+          }
+
+          if (value === null) {
+            return [].concat(_toConsumableArray(result), [[encode(key, options), '[', index, ']'].join('')]);
+          }
+
+          return [].concat(_toConsumableArray(result), [[encode(key, options), '[', encode(index, options), ']=', encode(value, options)].join('')]);
+        };
+      };
+
+    case 'bracket':
+      return function (key) {
+        return function (result, value) {
+          if (value === undefined || options.skipNull && value === null || options.skipEmptyString && value === '') {
+            return result;
+          }
+
+          if (value === null) {
+            return [].concat(_toConsumableArray(result), [[encode(key, options), '[]'].join('')]);
+          }
+
+          return [].concat(_toConsumableArray(result), [[encode(key, options), '[]=', encode(value, options)].join('')]);
+        };
+      };
+
+    case 'comma':
+    case 'separator':
+      return function (key) {
+        return function (result, value) {
+          if (value === null || value === undefined || value.length === 0) {
+            return result;
+          }
+
+          if (result.length === 0) {
+            return [[encode(key, options), '=', encode(value, options)].join('')];
+          }
+
+          return [[result, encode(value, options)].join(options.arrayFormatSeparator)];
+        };
+      };
+
+    default:
+      return function (key) {
+        return function (result, value) {
+          if (value === undefined || options.skipNull && value === null || options.skipEmptyString && value === '') {
+            return result;
+          }
+
+          if (value === null) {
+            return [].concat(_toConsumableArray(result), [encode(key, options)]);
+          }
+
+          return [].concat(_toConsumableArray(result), [[encode(key, options), '=', encode(value, options)].join('')]);
+        };
+      };
+  }
+}
+
+function parserForArrayFormat(options) {
+  var result;
+
+  switch (options.arrayFormat) {
+    case 'index':
+      return function (key, value, accumulator) {
+        result = /\[(\d*)\]$/.exec(key);
+        key = key.replace(/\[\d*\]$/, '');
+
+        if (!result) {
+          accumulator[key] = value;
+          return;
+        }
+
+        if (accumulator[key] === undefined) {
+          accumulator[key] = {};
+        }
+
+        accumulator[key][result[1]] = value;
+      };
+
+    case 'bracket':
+      return function (key, value, accumulator) {
+        result = /(\[\])$/.exec(key);
+        key = key.replace(/\[\]$/, '');
+
+        if (!result) {
+          accumulator[key] = value;
+          return;
+        }
+
+        if (accumulator[key] === undefined) {
+          accumulator[key] = [value];
+          return;
+        }
+
+        accumulator[key] = [].concat(accumulator[key], value);
+      };
+
+    case 'comma':
+    case 'separator':
+      return function (key, value, accumulator) {
+        var isArray = typeof value === 'string' && value.includes(options.arrayFormatSeparator);
+        var isEncodedArray = typeof value === 'string' && !isArray && decode(value, options).includes(options.arrayFormatSeparator);
+        value = isEncodedArray ? decode(value, options) : value;
+        var newValue = isArray || isEncodedArray ? value.split(options.arrayFormatSeparator).map(function (item) {
+          return decode(item, options);
+        }) : value === null ? value : decode(value, options);
+        accumulator[key] = newValue;
+      };
+
+    default:
+      return function (key, value, accumulator) {
+        if (accumulator[key] === undefined) {
+          accumulator[key] = value;
+          return;
+        }
+
+        accumulator[key] = [].concat(accumulator[key], value);
+      };
+  }
+}
+
+function validateArrayFormatSeparator(value) {
+  if (typeof value !== 'string' || value.length !== 1) {
+    throw new TypeError('arrayFormatSeparator must be single character string');
+  }
+}
+
+function encode(value, options) {
+  if (options.encode) {
+    return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
+  }
+
+  return value;
+}
+
+function decode(value, options) {
+  if (options.decode) {
+    return decodeComponent(value);
+  }
+
+  return value;
+}
+
+function keysSorter(input) {
+  if (Array.isArray(input)) {
+    return input.sort();
+  }
+
+  if (typeof input === 'object') {
+    return keysSorter(Object.keys(input)).sort(function (a, b) {
+      return Number(a) - Number(b);
+    }).map(function (key) {
+      return input[key];
+    });
+  }
+
+  return input;
+}
+
+function removeHash(input) {
+  var hashStart = input.indexOf('#');
+
+  if (hashStart !== -1) {
+    input = input.slice(0, hashStart);
+  }
+
+  return input;
+}
+
+function getHash(url) {
+  var hash = '';
+  var hashStart = url.indexOf('#');
+
+  if (hashStart !== -1) {
+    hash = url.slice(hashStart);
+  }
+
+  return hash;
+}
+
+function extract(input) {
+  input = removeHash(input);
+  var queryStart = input.indexOf('?');
+
+  if (queryStart === -1) {
+    return '';
+  }
+
+  return input.slice(queryStart + 1);
+}
+
+function parseValue(value, options) {
+  if (options.parseNumbers && !Number.isNaN(Number(value)) && typeof value === 'string' && value.trim() !== '') {
+    value = Number(value);
+  } else if (options.parseBooleans && value !== null && (value.toLowerCase() === 'true' || value.toLowerCase() === 'false')) {
+    value = value.toLowerCase() === 'true';
+  }
+
+  return value;
+}
+
+function parse(query, options) {
+  options = Object.assign({
+    decode: true,
+    sort: true,
+    arrayFormat: 'none',
+    arrayFormatSeparator: ',',
+    parseNumbers: false,
+    parseBooleans: false
+  }, options);
+  validateArrayFormatSeparator(options.arrayFormatSeparator);
+  var formatter = parserForArrayFormat(options); // Create an object with no prototype
+
+  var ret = Object.create(null);
+
+  if (typeof query !== 'string') {
+    return ret;
+  }
+
+  query = query.trim().replace(/^[?#&]/, '');
+
+  if (!query) {
+    return ret;
+  }
+
+  var _iterator = _createForOfIteratorHelper(query.split('&')),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var param = _step.value;
+
+      var _splitOnFirst = splitOnFirst(options.decode ? param.replace(/\+/g, ' ') : param, '='),
+          _splitOnFirst2 = _slicedToArray(_splitOnFirst, 2),
+          _key = _splitOnFirst2[0],
+          _value = _splitOnFirst2[1]; // Missing `=` should be `null`:
+      // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+
+
+      _value = _value === undefined ? null : ['comma', 'separator'].includes(options.arrayFormat) ? _value : decode(_value, options);
+      formatter(decode(_key, options), _value, ret);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  for (var _i = 0, _Object$keys = Object.keys(ret); _i < _Object$keys.length; _i++) {
+    var key = _Object$keys[_i];
+    var value = ret[key];
+
+    if (typeof value === 'object' && value !== null) {
+      for (var _i2 = 0, _Object$keys2 = Object.keys(value); _i2 < _Object$keys2.length; _i2++) {
+        var k = _Object$keys2[_i2];
+        value[k] = parseValue(value[k], options);
+      }
+    } else {
+      ret[key] = parseValue(value, options);
+    }
+  }
+
+  if (options.sort === false) {
+    return ret;
+  }
+
+  return (options.sort === true ? Object.keys(ret).sort() : Object.keys(ret).sort(options.sort)).reduce(function (result, key) {
+    var value = ret[key];
+
+    if (Boolean(value) && typeof value === 'object' && !Array.isArray(value)) {
+      // Sort object keys, not values
+      result[key] = keysSorter(value);
+    } else {
+      result[key] = value;
+    }
+
+    return result;
+  }, Object.create(null));
+}
+
+exports.extract = extract;
+exports.parse = parse;
+
+exports.stringify = function (object, options) {
+  if (!object) {
+    return '';
+  }
+
+  options = Object.assign({
+    encode: true,
+    strict: true,
+    arrayFormat: 'none',
+    arrayFormatSeparator: ','
+  }, options);
+  validateArrayFormatSeparator(options.arrayFormatSeparator);
+
+  var shouldFilter = function shouldFilter(key) {
+    return options.skipNull && isNullOrUndefined(object[key]) || options.skipEmptyString && object[key] === '';
+  };
+
+  var formatter = encoderForArrayFormat(options);
+  var objectCopy = {};
+
+  for (var _i3 = 0, _Object$keys3 = Object.keys(object); _i3 < _Object$keys3.length; _i3++) {
+    var key = _Object$keys3[_i3];
+
+    if (!shouldFilter(key)) {
+      objectCopy[key] = object[key];
+    }
+  }
+
+  var keys = Object.keys(objectCopy);
+
+  if (options.sort !== false) {
+    keys.sort(options.sort);
+  }
+
+  return keys.map(function (key) {
+    var value = object[key];
+
+    if (value === undefined) {
+      return '';
+    }
+
+    if (value === null) {
+      return encode(key, options);
+    }
+
+    if (Array.isArray(value)) {
+      return value.reduce(formatter(key), []).join('&');
+    }
+
+    return encode(key, options) + '=' + encode(value, options);
+  }).filter(function (x) {
+    return x.length > 0;
+  }).join('&');
+};
+
+exports.parseUrl = function (url, options) {
+  options = Object.assign({
+    decode: true
+  }, options);
+
+  var _splitOnFirst3 = splitOnFirst(url, '#'),
+      _splitOnFirst4 = _slicedToArray(_splitOnFirst3, 2),
+      url_ = _splitOnFirst4[0],
+      hash = _splitOnFirst4[1];
+
+  return Object.assign({
+    url: url_.split('?')[0] || '',
+    query: parse(extract(url), options)
+  }, options && options.parseFragmentIdentifier && hash ? {
+    fragmentIdentifier: decode(hash, options)
+  } : {});
+};
+
+exports.stringifyUrl = function (object, options) {
+  options = Object.assign({
+    encode: true,
+    strict: true
+  }, options);
+  var url = removeHash(object.url).split('?')[0] || '';
+  var queryFromUrl = exports.extract(object.url);
+  var parsedQueryFromUrl = exports.parse(queryFromUrl, {
+    sort: false
+  });
+  var query = Object.assign(parsedQueryFromUrl, object.query);
+  var queryString = exports.stringify(query, options);
+
+  if (queryString) {
+    queryString = "?".concat(queryString);
+  }
+
+  var hash = getHash(object.url);
+
+  if (object.fragmentIdentifier) {
+    hash = "#".concat(encode(object.fragmentIdentifier, options));
+  }
+
+  return "".concat(url).concat(queryString).concat(hash);
+};
+
+/***/ }),
+
 /***/ "JBy8":
 /*!*************************************************************************!*\
   !*** ./node_modules/core-js/internals/object-get-own-property-names.js ***!
@@ -11937,28 +11737,6 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
   URL: URLConstructor
 });
 
-
-/***/ }),
-
-/***/ "L9jI":
-/*!**************************************************************!*\
-  !*** ./node_modules/react-dev-utils/launchEditorEndpoint.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/*! exports used: default */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
- // TODO: we might want to make this injectable to support DEV-time non-root URLs.
-
-module.exports = '/__open-stack-frame-in-editor';
 
 /***/ }),
 
@@ -15328,6 +15106,26 @@ if (DESCRIPTORS && (/./g.flags != 'g' || UNSUPPORTED_Y)) {
   });
 }
 
+
+/***/ }),
+
+/***/ "UM5q":
+/*!*********************************************************************************************************!*\
+  !*** /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/strict-uri-encode/index.js ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (str) {
+  return encodeURIComponent(str).replace(/[!'()*]/g, function (x) {
+    return "%".concat(x.charCodeAt(0).toString(16).toUpperCase());
+  });
+};
 
 /***/ }),
 
@@ -19926,37 +19724,6 @@ var TEMPLATE = String(String).split('String');
 
 /***/ }),
 
-/***/ "c0go":
-/*!******************************************!*\
-  !*** ./node_modules/filter-obj/index.js ***!
-  \******************************************/
-/*! no static exports found */
-/*! all exports used */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (obj, predicate) {
-  var ret = {};
-  var keys = Object.keys(obj);
-  var isArr = Array.isArray(predicate);
-
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var val = obj[key];
-
-    if (isArr ? predicate.indexOf(key) !== -1 : predicate(key, val, obj)) {
-      ret[key] = val;
-    }
-  }
-
-  return ret;
-};
-
-/***/ }),
-
 /***/ "c9m3":
 /*!***********************************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.unscopables.flat-map.js ***!
@@ -23126,6 +22893,38 @@ var flattenIntoArray = function (target, original, source, sourceLen, start, dep
 
 module.exports = flattenIntoArray;
 
+
+/***/ }),
+
+/***/ "p/97":
+/*!******************************************************************************************************!*\
+  !*** /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/split-on-first/index.js ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (string, separator) {
+  if (!(typeof string === 'string' && typeof separator === 'string')) {
+    throw new TypeError('Expected the arguments to be of type `string`');
+  }
+
+  if (separator === '') {
+    return [string];
+  }
+
+  var separatorIndex = string.indexOf(separator);
+
+  if (separatorIndex === -1) {
+    return [string];
+  }
+
+  return [string.slice(0, separatorIndex), string.slice(separatorIndex + separator.length)];
+};
 
 /***/ }),
 
