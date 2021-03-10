@@ -17,7 +17,7 @@ export const HomePage = () => {
       disableLaunchEditor={!isDev}
       onClickElement={(inspect: InspectParams) => {
         console.debug(inspect)
-        if (isDev || !inspect.codeInfo) return
+        if (isDev || !inspect.codeInfo?.relativePath) return
 
         const {
           relativePath,

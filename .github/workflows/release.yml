@@ -10,6 +10,12 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      # https://github.com/chalk/supports-color/blob/main/index.js#L54
+      # https://github.com/chalk/supports-color/blob/main/index.js#L16
+      # https://github.com/chalk/supports-color/blob/main/index.js#L21
+      color: true
+      FORCE_COLOR: true
 
     steps:
       - name: Checkout
@@ -38,6 +44,10 @@ jobs:
       - name: ESLint
         run: |
           npm run lint
+
+      - name: Unit test
+        run: |
+          npm test
 
       - name: Build
         run: |

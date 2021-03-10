@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "vite",
-    "build": "npm run clean && tsc && vite build --base=/vite2/",
+    "build": "npm run clean && vite build --base=/vite2/",
     "serve": "vite preview"
   },
   "repository": "zthxxx/react-dev-inspector/sites/vite2",
@@ -30,6 +30,7 @@
     "react-github-corner": "^2.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.10",
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@types/node": "^14.14.33",
     "@types/react": "^17.0.0",

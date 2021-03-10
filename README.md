@@ -71,11 +71,25 @@ export const Layout = () => {
 
 ### 2. Set up Inspector Config
 
-There are 4 ways to set up webpack config, please pick the one fit your project best.
+You should add:
 
-In common cases (like create-react-app), you can use [#raw-webpack-config](https://github.com/zthxxx/react-dev-inspector#raw-webpack-config),
+- an inspector **babel plugin**, to inject source code location info
+  - `react-dev-inspector/plugins/babel`
+- an server **api middleware**, to open local IDE
+  - `import { launchEditorMiddleware } from 'react-dev-inspector/plugins/webpack'`
 
-If your project happen to use vite2 / create-react-app / umi3 / umi2, you can try out our **integrated plugins / helper** in
+to your current project development config.
+
+Such as add **babel plugin** into your `.babelrc` or webpack `babel-loader` config,
+add **api middleware** into your `webpack-dev-server` config or other server setup.
+
+<br />
+
+There are some example ways to set up, please pick the one fit your project best.
+
+In common cases, if you're using webpack, you can see [#raw-webpack-config](https://github.com/zthxxx/react-dev-inspector#raw-webpack-config),
+
+If your project happen to use create-react-app / vite2 / umi3 / umi2, you can also try out our **integrated plugins / examples** with
 
 - [#usage-with-create-react-app](https://github.com/zthxxx/react-dev-inspector#usage-with-create-react-app)
 - [#usage-with-vite2](https://github.com/zthxxx/react-dev-inspector#usage-with-vite2)
@@ -85,15 +99,6 @@ If your project happen to use vite2 / create-react-app / umi3 / umi2, you can tr
 
 
 #### raw webpack config
-
-You should add:
-
-- an inspector **babel plugin** (in babelrc or webpack babel-loader)
-  - `react-dev-inspector/plugins/babel`
-- an api server **middleware**, "devServer", to open local IDE
-  - `import { launchEditorMiddleware } from 'react-dev-inspector/plugins/webpack'`
-
-to your current webpack config.
 
 Example:
 
@@ -187,7 +192,7 @@ export default defineConfig({
     'react-dev-inspector/plugins/umi/react-inspector',
   ],
   inspectorConfig: {
-    // loader options docs see:
+    // babel plugin options docs see:
     // https://github.com/zthxxx/react-dev-inspector#inspector-babel-plugin-options
     excludes: [],
   },
@@ -225,7 +230,7 @@ export default {
       
       app.use(launchEditorMiddleware)
       
-      originBefore?.(app, server, compiler)
+      originBefore?.before?.(app, server, compiler)
     })
 
     return config  
@@ -240,17 +245,12 @@ export default {
 - **create-react-app**
   - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/cra
   - preview: https://react-dev-inspector.zthxxx.me/cra
+- **vite2**
+  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/vite2
+  - preview: https://react-dev-inspector.zthxxx.me/vite2
 - **umi3**
   - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/umi3
   - preview: https://react-dev-inspector.zthxxx.me/umi3
-
-- **vite2**
-
-  - code: https://github.com/zthxxx/react-dev-inspector/tree/master/sites/vite2
-
-  - preview: https://react-dev-inspector.zthxxx.me/vite2
-
-    *(due to prod build, cannot jump in online vite2 demo)*
 
 <br />
 
@@ -279,7 +279,16 @@ interface InspectParams {
   codeInfo?: {
     lineNumber: string,
     columnNumber: string,
-    relativePath: string,
+    /**
+    * code source file relative path to dev-server cwd(current working directory)
+    * need use with `react-dev-inspector/plugins/babel`
+    */
+    relativePath?: string,
+    /**
+    * code source file absolute path
+    * just need use with `@babel/plugin-transform-react-jsx-source` which auto set by most framework
+    */
+    absolutePath?: string,
   },
   /** react component name for dom element */
   name?: string,
@@ -288,7 +297,7 @@ interface InspectParams {
 
 <br />
 
-###Inspector Babel Plugin Options
+### Inspector Babel Plugin Options
 
 ```ts
 interface InspectorPluginOptions {
@@ -377,7 +386,7 @@ export REACT_EDITOR=vim
 
 - **Stage 1 - Compile Time**
 
-  - [webpack loader] inject source file path/line/column to JSX data attributes props (use babel)
+  - [babel plugin] inject source file path/line/column to JSX data attributes props
 
 - **Stage 2 - Web React Runtime**
 

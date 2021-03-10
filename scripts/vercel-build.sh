@@ -12,4 +12,8 @@ npm run build
 rm -rf sites/cra/src/layouts
 cp -rf sites/umi3/src/layouts sites/cra/src/
 
+rm -rf sites/vite/src/layouts
+cp -rf sites/umi3/src/layouts sites/vite/src/
+
+
 npm run build:site
