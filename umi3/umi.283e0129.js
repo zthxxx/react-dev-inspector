@@ -4883,11 +4883,13 @@ var HomePage = () => {
     "data-inspector-relative-path": "src/layouts/index.tsx",
     disableLaunchEditor: !isDev,
     onClickElement: inspect => {
+      var _inspect$codeInfo;
+
       console.debug(inspect);
-      if (isDev || !inspect.codeInfo) return;
-      var _inspect$codeInfo = inspect.codeInfo,
-          relativePath = _inspect$codeInfo.relativePath,
-          lineNumber = _inspect$codeInfo.lineNumber;
+      if (isDev || !((_inspect$codeInfo = inspect.codeInfo) === null || _inspect$codeInfo === void 0 ? void 0 : _inspect$codeInfo.relativePath)) return;
+      var _inspect$codeInfo2 = inspect.codeInfo,
+          relativePath = _inspect$codeInfo2.relativePath,
+          lineNumber = _inspect$codeInfo2.lineNumber;
       window.open("".concat(projectRepo, "/blob/master/sites/umi3/").concat(relativePath, "#L").concat(lineNumber));
     }
   }, emotion_react_browser_esm_jsx(Global, {
