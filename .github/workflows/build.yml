@@ -16,10 +16,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # https://github.com/chalk/supports-color/blob/main/index.js#L54
-      # https://github.com/chalk/supports-color/blob/main/index.js#L16
       # https://github.com/chalk/supports-color/blob/main/index.js#L21
-      color: true
+      # https://github.com/chalk/supports-color/blob/main/index.js#L54
       FORCE_COLOR: true
 
     steps:
