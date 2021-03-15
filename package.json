@@ -6,7 +6,7 @@
   "types": "es/index.d.ts",
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
-    "bootstrap": "lerna bootstrap --scope @demo-sites/* && lerna link",
+    "bootstrap": "lerna bootstrap --scope @demo-sites/* --ci && lerna link",
     "test": "jest tests",
     "clean": "rimraf build dist site es lib plugins",
     "dev": "nodemon -w src -e ts,tsx -x 'npm run build && npm run site'",
