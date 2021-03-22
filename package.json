@@ -1,6 +1,7 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.5.1",
+  "version": "1.5.2",
+  "sideEffects":false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "types": "es/index.d.ts",
