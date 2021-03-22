@@ -197,7 +197,7 @@ module.exports = function (it) {
 
 /***/ "+ego":
 /*!********************************************!*\
-  !*** ./src/layouts/index.tsx + 40 modules ***!
+  !*** ./src/layouts/index.tsx + 39 modules ***!
   \********************************************/
 /*! exports provided: HomePage, default */
 /*! all exports used */
@@ -3405,9 +3405,6 @@ const Inspector = (props) => {
     }, [hotkey, isInspect, handleInspectKey]);
     return children;
 };
-
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/index.js
-
 
 // CONCATENATED MODULE: ./node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.browser.esm.js
 
