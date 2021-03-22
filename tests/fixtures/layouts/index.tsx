@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV === 'development';
 export const HomePage = () => {
   return <Inspector data-inspector-line="16" data-inspector-column="4" data-inspector-relative-path="layouts/index.tsx" disableLaunchEditor={!isDev} onClickElement={(inspect: InspectParams) => {
     console.debug(inspect);
-    if (isDev || !inspect.codeInfo) return;
+    if (isDev || !inspect.codeInfo?.relativePath) return;
     const {
       relativePath,
       lineNumber

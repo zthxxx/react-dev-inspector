@@ -1,13 +1,13 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.5.0",
+  "version": "1.5.2",
   "sideEffects":false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "types": "es/index.d.ts",
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
-    "bootstrap": "lerna bootstrap --scope @demo-sites/* && lerna link",
+    "bootstrap": "lerna bootstrap --scope @demo-sites/* --ci && lerna link",
     "test": "jest tests",
     "clean": "rimraf build dist site es lib plugins",
     "dev": "nodemon -w src -e ts,tsx -x 'npm run build && npm run site'",
@@ -59,6 +59,7 @@
     "@babel/traverse": "^7.11.5",
     "hotkeys-js": "^3.8.1",
     "loader-utils": "^2.0.0",
+    "querystring": "^0.2.1",
     "react-dev-utils": "^10.2.1"
   },
   "devDependencies": {
