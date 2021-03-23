@@ -1,9 +1,10 @@
 {
   "name": "react-dev-inspector",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "sideEffects":false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
+  "module": "es/index.js",
   "types": "es/index.d.ts",
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
