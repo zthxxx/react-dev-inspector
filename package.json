@@ -1,10 +1,32 @@
 {
   "name": "react-dev-inspector",
   "version": "1.5.2",
-  "sideEffects":false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
+  "keywords": [
+    "react",
+    "component",
+    "inspector"
+  ],
+  "homepage": "https://github.com/zthxxx/react-dev-inspector#readme",
+  "bugs": {
+    "url": "https://github.com/zthxxx/react-dev-inspector/issues"
+  },
+  "repository": "zthxxx/react-dev-inspector",
+  "license": "MIT",
+  "author": "zthxxx",
+  "sideEffects": false,
   "main": "es/index.js",
+  "module": "es/index.js",
   "types": "es/index.d.ts",
+  "files": [
+    "README.md",
+    ".npmrc",
+    "scripts",
+    "src",
+    "es",
+    "lib",
+    "plugins"
+  ],
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
     "bootstrap": "lerna bootstrap --scope @demo-sites/* --ci && lerna link",
@@ -23,34 +45,23 @@
     "site:domain": "echo react-dev-inspector.zthxxx.me > site/CNAME",
     "site:assets": "cp -fR docs/images site/",
     "tag": "git tag v$(node -e 'console.log(require(\"./package.json\").version)')",
-    "lint": "TIMING=1 eslint --ext js,jsx,ts,tsx src sites"
+    "lint": "TIMING=1 eslint --ext js,jsx,ts,tsx src sites",
+    "sort-package-json": "sort-package-json"
   },
-  "repository": "zthxxx/react-dev-inspector",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
-  "keywords": [
-    "react",
-    "component",
-    "inspector"
-  ],
-  "author": "zthxxx",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zthxxx/react-dev-inspector/issues"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx,ts,tsx src sites"
   },
-  "homepage": "https://github.com/zthxxx/react-dev-inspector#readme",
-  "files": [
-    "README.md",
-    ".npmrc",
-    "scripts",
-    "src",
-    "es",
-    "lib",
-    "plugins"
-  ],
-  "engines": {
-    "node": ">=12.0.0"
+  "jest": {
+    "preset": "ts-jest",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
   },
   "dependencies": {
     "@babel/core": "^7.11.6",
@@ -60,7 +71,7 @@
     "hotkeys-js": "^3.8.1",
     "loader-utils": "^2.0.0",
     "querystring": "^0.2.1",
-    "react-dev-utils": "^10.2.1"
+    "react-dev-utils": "^11.0.4"
   },
   "devDependencies": {
     "@babel/types": "^7.11.5",
@@ -96,6 +107,7 @@
     "npm-run-all": "^4.1.5",
     "react": "^16.13.1",
     "rimraf": "^3.0.2",
+    "sort-package-json": "^1.49.0",
     "ts-jest": "^26.5.3",
     "typescript": "^4.2.3",
     "vite": "^2.0.5",
@@ -108,19 +120,10 @@
     "webpack": ">=4.44.1",
     "webpack-chain": "^6.5.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "engines": {
+    "node": ">=12.0.0"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx,ts,tsx src sites"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testPathIgnorePatterns": [
-      "fixtures"
-    ]
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
