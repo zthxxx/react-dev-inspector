@@ -55,7 +55,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx,ts,tsx src sites"
+    "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx,ts,tsx src sites",
+    "{package.json,sites/*/package.json}": "npm run sort-package-json"
   },
   "jest": {
     "preset": "ts-jest",
