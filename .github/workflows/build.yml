@@ -53,10 +53,12 @@ jobs:
           npm test
 
       - name: Build package
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           npm run build
 
       - name: Build site
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           npm run build:site
 
