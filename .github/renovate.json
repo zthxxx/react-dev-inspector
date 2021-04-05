@@ -4,6 +4,6 @@
     "group:allNonMajor"
   ],
   "rangeStrategy": "bump",
-  "schedule": ["before 12am every 2 weeks on the first day of the week"],
+  "schedule": ["after 10am before 12am on Monday"],
   "timezone": "Asia/Shanghai"
 }
