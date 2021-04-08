@@ -61,7 +61,7 @@
     "hotkeys-js": "^3.8.1",
     "loader-utils": "^2.0.0",
     "querystring": "^0.2.1",
-    "react-dev-utils": "^10.2.1"
+    "react-dev-utils": "^11.0.0"
   },
   "devDependencies": {
     "@babel/types": "^7.11.5",
