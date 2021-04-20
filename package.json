@@ -123,5 +123,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "renovate": {
+    "enabled": false
   }
 }
