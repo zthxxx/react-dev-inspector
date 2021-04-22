@@ -54,6 +54,8 @@ rules:
   quotes:
     - error
     - single
+    - avoidEscape: true
+      allowTemplateLiterals: true
   # https://eslint.org/docs/rules/operator-linebreak
   # align between '?' and ':'
   operator-linebreak:
@@ -123,6 +125,12 @@ rules:
       singleline:
         delimiter: semi
         requireLast: false
+  '@typescript-eslint/explicit-member-accessibility':
+    - error
+    - accessibility: explicit
+      overrides:
+        constructors: no-public
+
 overrides:
   - files: ['**/*.js', '**/*.jsx']
     rules:
