@@ -82,7 +82,7 @@
     "babel-plugin-tester": "10.0.0",
     "babel-preset-react-app": "10.0.0",
     "eslint": "7.17.0",
-    "eslint-config-alloy": "3.10.0",
+    "eslint-config-alloy": "4.1.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
