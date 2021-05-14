@@ -1,7 +1,7 @@
 {
   "name": "react-dev-inspector",
   "version": "1.5.3",
-  "sideEffects":false,
+  "sideEffects": false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "main": "es/index.js",
   "module": "es/index.js",
@@ -58,6 +58,7 @@
     "@babel/generator": "^7.11.6",
     "@babel/parser": "^7.11.5",
     "@babel/traverse": "^7.11.5",
+    "build-scripts": "^0.1.25",
     "hotkeys-js": "^3.8.1",
     "loader-utils": "^2.0.0",
     "querystring": "^0.2.1",

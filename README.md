@@ -179,6 +179,24 @@ module.exports = override(
 
 <br />
 
+#### usage with [Ice.js](https://ice.work/)
+
+Example `build.json`:
+
+```ts
+// https://ice.work/docs/guide/basic/build
+{
+  "plugins": [
+    "react-dev-inspector/plugins/ice",
+  ]
+
+}
+```
+
+<br />
+
+
+
 #### usage with [Umi3](https://umijs.org/)
 
 Example `.umirc.dev.ts`:
@@ -200,7 +218,6 @@ export default defineConfig({
 ```
 
 <br />
-
 #### usage with [Umi2](https://v2.umijs.org)
 
 Example `.umirc.dev.js`:
