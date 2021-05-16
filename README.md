@@ -240,6 +240,24 @@ export default {
 
 <br />
 
+#### usage with [Ice.js](https://ice.work/)
+
+Example `build.json`:
+
+```ts
+// https://ice.work/docs/guide/basic/build
+{
+  "plugins": [
+    "react-dev-inspector/plugins/ice",
+  ]
+}
+```
+
+
+
+
+<br />
+
 ### Example Project Code
 
 - **create-react-app**
