@@ -27,7 +27,7 @@
     "react-dev-inspector": "1.5.3",
     "react-dom": "16.14.0",
     "react-github-corner": "2.5.0",
-    "umi": "3.4.20"
+    "umi": "3.4.22"
   },
   "devDependencies": {
     "@emotion/babel-preset-css-prop": "11.2.0",
