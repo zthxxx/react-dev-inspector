@@ -16,7 +16,7 @@ const plugin = ({ onGetWebpackConfig }) => {
       .add(/\.rax\//)
       .end()
       .use('inspector')
-      .loader(path.join(__dirname, './loader'))
+      .loader(path.join(__dirname, '../webpack/inspector-loader'))
       .options({})
       .end()
 
