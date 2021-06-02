@@ -135,13 +135,13 @@ module.exports = function (it) {
 
 /***/ "+ego":
 /*!********************************************!*\
-  !*** ./src/layouts/index.tsx + 39 modules ***!
+  !*** ./src/layouts/index.tsx + 48 modules ***!
   \********************************************/
 /*! exports provided: HomePage, default */
 /*! all exports used */
-/*! ModuleConcatenation bailout: Cannot concat with /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/react-dev-utils/launchEditorEndpoint.js (<- Module is not an ECMAScript module) */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js (<- Module is not an ECMAScript module) */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/querystring-es3/index.js (<- Module is not an ECMAScript module) */
+/*! ModuleConcatenation bailout: Cannot concat with ./node_modules/react-dev-utils/launchEditorEndpoint.js (<- Module is not an ECMAScript module) */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/react-github-corner/lib/GithubCorner.js (<- Module is not an ECMAScript module) */
 /*! ModuleConcatenation bailout: Cannot concat with ./node_modules/react/index.js (<- Module is not an ECMAScript module) */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -294,13 +294,13 @@ var e = "-ms-";
 var r = "-moz-";
 var a = "-webkit-";
 var c = "comm";
-var n = "rule";
+var stylis_n = "rule";
 var t = "decl";
 var s = "@page";
 var u = "@media";
 var stylis_i = "@import";
 var f = "@charset";
-var o = "@viewport";
+var stylis_o = "@viewport";
 var l = "@supports";
 var v = "@document";
 var h = "@namespace";
@@ -359,7 +359,7 @@ var q = 1;
 var B = 1;
 var D = 0;
 var E = 0;
-var F = 0;
+var stylis_F = 0;
 var G = "";
 
 function H(e, r, a, c, n, t, s) {
@@ -382,13 +382,13 @@ function I(e, r, a) {
 }
 
 function J() {
-  return F;
+  return stylis_F;
 }
 
 function K() {
-  F = E < D ? z(G, E++) : 0;
-  if (B++, F === 10) B = 1, q++;
-  return F;
+  stylis_F = E < D ? z(G, E++) : 0;
+  if (B++, stylis_F === 10) B = 1, q++;
+  return stylis_F;
 }
 
 function L() {
@@ -458,26 +458,26 @@ function V(e) {
 }
 
 function W(e) {
-  while (F = L()) {
-    if (F < 33) K();else break;
+  while (stylis_F = L()) {
+    if (stylis_F < 33) K();else break;
   }
 
-  return Q(e) > 2 || Q(F) > 3 ? "" : " ";
+  return Q(e) > 2 || Q(stylis_F) > 3 ? "" : " ";
 }
 
 function X(e) {
   while (K()) {
-    switch (Q(F)) {
+    switch (Q(stylis_F)) {
       case 0:
         O(_(E - 1), e);
         break;
 
       case 2:
-        O(U(F), e);
+        O(U(stylis_F), e);
         break;
 
       default:
-        O(d(F), e);
+        O(d(stylis_F), e);
     }
   }
 
@@ -486,13 +486,13 @@ function X(e) {
 
 function Y(e) {
   while (K()) {
-    switch (F) {
+    switch (stylis_F) {
       case e:
         return E;
 
       case 34:
       case 39:
-        return Y(e === 34 || e === 39 ? e : F);
+        return Y(e === 34 || e === 39 ? e : stylis_F);
 
       case 40:
         if (e === 41) Y(e);
@@ -509,7 +509,7 @@ function Y(e) {
 
 function Z(e, r) {
   while (K()) {
-    if (e + F === 47 + 10) break;else if (e + F === 42 + 42 && L() === 47) break;
+    if (e + stylis_F === 47 + 10) break;else if (e + stylis_F === 42 + 42 && L() === 47) break;
   }
 
   return "/*" + P(r, E - 1) + "*" + d(e === 47 ? e : K());
@@ -647,7 +647,7 @@ function ae(e, r, a, c, t, s, u, i, f, o, l) {
     }
   }
 
-  return H(e, r, a, t === 0 ? n : i, f, o, l);
+  return H(e, r, a, t === 0 ? stylis_n : i, f, o, l);
 }
 
 function ce(e, r, a) {
@@ -815,7 +815,7 @@ function ue(e, r, a, s) {
     case c:
       return "";
 
-    case n:
+    case stylis_n:
       e.value = e.props.join(",");
   }
 
@@ -850,7 +850,7 @@ function oe(c, s, u, i) {
     case p:
       return se([I(y(c.value, "@", "@" + a), c, "")], i);
 
-    case n:
+    case stylis_n:
       if (c.length) return S(c.props, function (n) {
         switch (x(n, /(::plac\w+|:read-\w+)/)) {
           case ":read-only":
@@ -868,7 +868,7 @@ function oe(c, s, u, i) {
 
 function le(e) {
   switch (e.type) {
-    case n:
+    case stylis_n:
       e.props = e.props.map(function (r) {
         return S(V(r), function (r, a, c) {
           switch (z(r, 0)) {
@@ -2091,12 +2091,75 @@ if (false) {}
 if (false) { var globalKey, globalContext, isJest, emotion_react_browser_esm_isBrowser; }
 
 
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/hotkeys-js/dist/hotkeys.esm.js
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/slicedToArray.js
+
+
+
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+// CONCATENATED MODULE: ./node_modules/hotkeys-js/dist/hotkeys.esm.js
 /*!
- * hotkeys-js v3.8.1
+ * hotkeys-js v3.8.5
  * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies.
  * 
- * Copyright (c) 2020 kenny wong <wowohoo@qq.com>
+ * Copyright (c) 2021 kenny wong <wowohoo@qq.com>
  * http://jaywcjlove.github.io/hotkeys
  * 
  * Licensed under the MIT license.
@@ -2177,6 +2240,22 @@ var _keyMap = {
   pageup: 33,
   pagedown: 34,
   capslock: 20,
+  num_0: 96,
+  num_1: 97,
+  num_2: 98,
+  num_3: 99,
+  num_4: 100,
+  num_5: 101,
+  num_6: 102,
+  num_7: 103,
+  num_8: 104,
+  num_9: 105,
+  num_multiply: 106,
+  num_add: 107,
+  num_enter: 108,
+  num_subtract: 109,
+  num_decimal: 110,
+  num_divide: 111,
   '⇪': 20,
   ',': 188,
   '.': 190,
@@ -2647,7 +2726,7 @@ if (typeof window !== 'undefined') {
 }
 
 /* harmony default export */ var hotkeys_esm = (hotkeys);
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/hightlight.js
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/hightlight.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/Highlighter/index.js
  */
@@ -2656,155 +2735,183 @@ if (typeof window !== 'undefined') {
 // (when connected to a browser).
 // It is not currently the mechanism used to highlight React Native views.
 // That is done by the React Native Inspector component.
-let iframesListeningTo = new Set();
+var iframesListeningTo = new Set();
 function setupHighlighter(handlers) {
-    function startInspectingNative() {
-        registerListenersOnWindow(window);
-    }
-    function registerListenersOnWindow(window) {
-        // This plug-in may run in non-DOM environments (e.g. React Native).
-        if (window && typeof window.addEventListener === 'function') {
-            window.addEventListener('click', onClick, true);
-            window.addEventListener('mousedown', onMouseEvent, true);
-            window.addEventListener('mouseover', onMouseEvent, true);
-            window.addEventListener('mouseup', onMouseEvent, true);
-            window.addEventListener('pointerdown', onPointerDown, true);
-            window.addEventListener('pointerover', onPointerOver, true);
-            window.addEventListener('pointerup', onPointerUp, true);
-        }
-    }
-    function stopInspectingNative() {
-        removeListenersOnWindow(window);
-        iframesListeningTo.forEach(function (frame) {
-            try {
-                removeListenersOnWindow(frame.contentWindow);
-            }
-            catch (error) {
-                // This can error when the iframe is on a cross-origin.
-            }
-        });
-        iframesListeningTo = new Set();
-    }
-    function removeListenersOnWindow(window) {
-        // This plug-in may run in non-DOM environments (e.g. React Native).
-        if (window && typeof window.removeEventListener === 'function') {
-            window.removeEventListener('click', onClick, true);
-            window.removeEventListener('mousedown', onMouseEvent, true);
-            window.removeEventListener('mouseover', onMouseEvent, true);
-            window.removeEventListener('mouseup', onMouseEvent, true);
-            window.removeEventListener('pointerdown', onPointerDown, true);
-            window.removeEventListener('pointerover', onPointerOver, true);
-            window.removeEventListener('pointerup', onPointerUp, true);
-        }
-    }
-    function onClick(event) {
-        var _a;
-        event.preventDefault();
-        event.stopPropagation();
-        stopInspectingNative();
-        (_a = handlers.onClick) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
-    }
-    function onMouseEvent(event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    function onPointerDown(event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    function onPointerOver(event) {
-        var _a;
-        event.preventDefault();
-        event.stopPropagation();
-        const target = event.target;
-        if (target.tagName === 'IFRAME') {
-            const iframe = target;
-            try {
-                if (!iframesListeningTo.has(iframe)) {
-                    const window = iframe.contentWindow;
-                    registerListenersOnWindow(window);
-                    iframesListeningTo.add(iframe);
-                }
-            }
-            catch (error) {
-                // This can error when the iframe is on a cross-origin.
-            }
-        }
-        (_a = handlers.onPointerOver) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
-    }
-    function onPointerUp(event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    startInspectingNative();
-    return stopInspectingNative;
-}
+  function startInspectingNative() {
+    registerListenersOnWindow(window);
+  }
 
-// EXTERNAL MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/react-dev-utils/launchEditorEndpoint.js
-var launchEditorEndpoint = __webpack_require__("6C+4");
+  function registerListenersOnWindow(window) {
+    // This plug-in may run in non-DOM environments (e.g. React Native).
+    if (window && typeof window.addEventListener === 'function') {
+      window.addEventListener('click', onClick, true);
+      window.addEventListener('mousedown', onMouseEvent, true);
+      window.addEventListener('mouseover', onMouseEvent, true);
+      window.addEventListener('mouseup', onMouseEvent, true);
+      window.addEventListener('pointerdown', onPointerDown, true);
+      window.addEventListener('pointerover', onPointerOver, true);
+      window.addEventListener('pointerup', onPointerUp, true);
+    }
+  }
+
+  function stopInspectingNative() {
+    removeListenersOnWindow(window);
+    iframesListeningTo.forEach(function (frame) {
+      try {
+        removeListenersOnWindow(frame.contentWindow);
+      } catch (error) {// This can error when the iframe is on a cross-origin.
+      }
+    });
+    iframesListeningTo = new Set();
+  }
+
+  function removeListenersOnWindow(window) {
+    // This plug-in may run in non-DOM environments (e.g. React Native).
+    if (window && typeof window.removeEventListener === 'function') {
+      window.removeEventListener('click', onClick, true);
+      window.removeEventListener('mousedown', onMouseEvent, true);
+      window.removeEventListener('mouseover', onMouseEvent, true);
+      window.removeEventListener('mouseup', onMouseEvent, true);
+      window.removeEventListener('pointerdown', onPointerDown, true);
+      window.removeEventListener('pointerover', onPointerOver, true);
+      window.removeEventListener('pointerup', onPointerUp, true);
+    }
+  }
+
+  function onClick(event) {
+    var _a;
+
+    event.preventDefault();
+    event.stopPropagation();
+    stopInspectingNative();
+    (_a = handlers.onClick) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
+  }
+
+  function onMouseEvent(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  function onPointerDown(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  function onPointerOver(event) {
+    var _a;
+
+    event.preventDefault();
+    event.stopPropagation();
+    var target = event.target;
+
+    if (target.tagName === 'IFRAME') {
+      var iframe = target;
+
+      try {
+        if (!iframesListeningTo.has(iframe)) {
+          var _window = iframe.contentWindow;
+          registerListenersOnWindow(_window);
+          iframesListeningTo.add(iframe);
+        }
+      } catch (error) {// This can error when the iframe is on a cross-origin.
+      }
+    }
+
+    (_a = handlers.onPointerOver) === null || _a === void 0 ? void 0 : _a.call(handlers, event.target);
+  }
+
+  function onPointerUp(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  startInspectingNative();
+  return stopInspectingNative;
+}
+// EXTERNAL MODULE: ./node_modules/react-dev-utils/launchEditorEndpoint.js
+var launchEditorEndpoint = __webpack_require__("L9jI");
 var launchEditorEndpoint_default = /*#__PURE__*/__webpack_require__.n(launchEditorEndpoint);
 
 // EXTERNAL MODULE: ./node_modules/querystring-es3/index.js
 var querystring_es3 = __webpack_require__("s4NR");
 var querystring_es3_default = /*#__PURE__*/__webpack_require__.n(querystring_es3);
 
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/fiber.js
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/fiber.js
 /**
  * only native html tag fiber's type will be string,
  * all the others (component / functional component / context) type will be function or object
  */
-const isNativeTagFiber = (fiber) => typeof (fiber === null || fiber === void 0 ? void 0 : fiber.type) === 'string';
+var isNativeTagFiber = function isNativeTagFiber(fiber) {
+  return typeof (fiber === null || fiber === void 0 ? void 0 : fiber.type) === 'string';
+};
 /**
  * react fiber symbol types see:
  * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
  */
-const isReactSymbolFiber = (fiber) => { var _a; return typeof ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === 'symbol'; };
-const isForwardRef = (fiber) => { var _a; return ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === Symbol.for('react.forward_ref'); };
+
+var isReactSymbolFiber = function isReactSymbolFiber(fiber) {
+  var _a;
+
+  return typeof ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === 'symbol';
+};
+var isForwardRef = function isForwardRef(fiber) {
+  var _a;
+
+  return ((_a = fiber === null || fiber === void 0 ? void 0 : fiber.type) === null || _a === void 0 ? void 0 : _a.$$typeof) === Symbol["for"]('react.forward_ref');
+};
 /**
  * https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
  */
-const getElementFiber = (element) => {
-    const fiberKey = Object.keys(element).find(key => (
-    /**
-     * for react <= v16.13.1
-     * https://github.com/facebook/react/blob/v16.13.1/packages/react-dom/src/client/ReactDOMComponentTree.js#L21
-     */
-    key.startsWith('__reactInternalInstance$')
-        /**
-         * for react >= v16.14.0
-         * https://github.com/facebook/react/blob/v16.14.0/packages/react-dom/src/client/ReactDOMComponentTree.js#L39
-         */
-        || key.startsWith('__reactFiber$')));
-    if (fiberKey) {
-        return element[fiberKey];
-    }
-    return undefined;
+
+var getElementFiber = function getElementFiber(element) {
+  var fiberKey = Object.keys(element).find(function (key) {
+    return (
+      /**
+       * for react <= v16.13.1
+       * https://github.com/facebook/react/blob/v16.13.1/packages/react-dom/src/client/ReactDOMComponentTree.js#L21
+       */
+      key.startsWith('__reactInternalInstance$')
+      /**
+       * for react >= v16.14.0
+       * https://github.com/facebook/react/blob/v16.14.0/packages/react-dom/src/client/ReactDOMComponentTree.js#L39
+       */
+      || key.startsWith('__reactFiber$')
+    );
+  });
+
+  if (fiberKey) {
+    return element[fiberKey];
+  }
+
+  return undefined;
 };
-const getElementFiberUpward = (element) => {
-    if (!element)
-        return undefined;
-    const fiber = getElementFiber(element);
-    if (fiber)
-        return fiber;
-    return getElementFiberUpward(element.parentElement);
+var getElementFiberUpward = function getElementFiberUpward(element) {
+  if (!element) return undefined;
+  var fiber = getElementFiber(element);
+  if (fiber) return fiber;
+  return getElementFiberUpward(element.parentElement);
 };
 /**
  * find first parent of native html tag or react component,
  * skip react Provider / Context / ForwardRef / Fragment etc.
  */
-const getDirectParentFiber = (child) => {
-    let current = child.return;
-    while (current) {
-        /**
-         * react fiber symbol types see:
-         * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
-         */
-        if (!isReactSymbolFiber(current)) {
-            return current;
-        }
-        current = current.return;
+
+var getDirectParentFiber = function getDirectParentFiber(child) {
+  var current = child["return"];
+
+  while (current) {
+    /**
+     * react fiber symbol types see:
+     * https://github.com/facebook/react/blob/v17.0.0/packages/shared/ReactSymbols.js#L39-L58
+     */
+    if (!isReactSymbolFiber(current)) {
+      return current;
     }
-    return null;
+
+    current = current["return"];
+  }
+
+  return null;
 };
 /**
  * The displayName property is not guaranteed to be a string.
@@ -2813,21 +2920,22 @@ const getDirectParentFiber = (child) => {
  *
  * https://github.com/facebook/react/blob/v17.0.0/packages/react-devtools-shared/src/utils.js#L90-L112
  */
-const getFiberName = (fiber) => {
-    const fiberType = fiber === null || fiber === void 0 ? void 0 : fiber.type;
-    if (!fiberType)
-        return undefined;
-    const { displayName, name } = fiberType;
-    if (typeof displayName === 'string') {
-        return displayName;
-    }
-    else if (typeof name === 'string') {
-        return name;
-    }
-    return undefined;
-};
 
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/inspect.js
+var getFiberName = function getFiberName(fiber) {
+  var fiberType = fiber === null || fiber === void 0 ? void 0 : fiber.type;
+  if (!fiberType) return undefined;
+  var displayName = fiberType.displayName,
+      name = fiberType.name;
+
+  if (typeof displayName === 'string') {
+    return displayName;
+  } else if (typeof name === 'string') {
+    return name;
+  }
+
+  return undefined;
+};
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/inspect.js
 
 
 
@@ -2842,41 +2950,53 @@ const getFiberName = (fiber) => {
  * finally, used by `createFiberFromElement` to become a fiber property `_debugSource`.
  *     https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiber.new.js#L634
  */
-const getCodeInfoFromDebugSource = (fiber) => {
-    if (!(fiber === null || fiber === void 0 ? void 0 : fiber._debugSource))
-        return undefined;
-    const { fileName, lineNumber, columnNumber, } = fiber._debugSource;
-    if (fileName && lineNumber) {
-        return {
-            lineNumber: String(lineNumber),
-            columnNumber: String(columnNumber !== null && columnNumber !== void 0 ? columnNumber : 1),
-            /**
-             * fileName in debugSource is absolutely
-             */
-            absolutePath: fileName,
-        };
-    }
-    return undefined;
+
+var getCodeInfoFromDebugSource = function getCodeInfoFromDebugSource(fiber) {
+  if (!(fiber === null || fiber === void 0 ? void 0 : fiber._debugSource)) return undefined;
+  var _fiber$_debugSource = fiber._debugSource,
+      fileName = _fiber$_debugSource.fileName,
+      lineNumber = _fiber$_debugSource.lineNumber,
+      columnNumber = _fiber$_debugSource.columnNumber;
+
+  if (fileName && lineNumber) {
+    return {
+      lineNumber: String(lineNumber),
+      columnNumber: String(columnNumber !== null && columnNumber !== void 0 ? columnNumber : 1),
+
+      /**
+       * fileName in debugSource is absolutely
+       */
+      absolutePath: fileName
+    };
+  }
+
+  return undefined;
 };
 /**
  * code location data-attribute props inject by `react-dev-inspector/plugins/babel`
  */
-const getCodeInfoFromProps = (fiber) => {
-    if (!(fiber === null || fiber === void 0 ? void 0 : fiber.pendingProps))
-        return undefined;
-    const { 'data-inspector-line': lineNumber, 'data-inspector-column': columnNumber, 'data-inspector-relative-path': relativePath, } = fiber.pendingProps;
-    if (lineNumber && columnNumber && relativePath) {
-        return {
-            lineNumber,
-            columnNumber,
-            relativePath,
-        };
-    }
-    return undefined;
+
+var getCodeInfoFromProps = function getCodeInfoFromProps(fiber) {
+  if (!(fiber === null || fiber === void 0 ? void 0 : fiber.pendingProps)) return undefined;
+  var _fiber$pendingProps = fiber.pendingProps,
+      lineNumber = _fiber$pendingProps['data-inspector-line'],
+      columnNumber = _fiber$pendingProps['data-inspector-column'],
+      relativePath = _fiber$pendingProps['data-inspector-relative-path'];
+
+  if (lineNumber && columnNumber && relativePath) {
+    return {
+      lineNumber: lineNumber,
+      columnNumber: columnNumber,
+      relativePath: relativePath
+    };
+  }
+
+  return undefined;
 };
-const getCodeInfoFromFiber = (fiber) => {
-    var _a;
-    return ((_a = getCodeInfoFromProps(fiber)) !== null && _a !== void 0 ? _a : getCodeInfoFromDebugSource(fiber));
+var getCodeInfoFromFiber = function getCodeInfoFromFiber(fiber) {
+  var _a;
+
+  return (_a = getCodeInfoFromProps(fiber)) !== null && _a !== void 0 ? _a : getCodeInfoFromDebugSource(fiber);
 };
 /**
  * try to get react component reference fiber from the dom fiber
@@ -2915,93 +3035,175 @@ const getCodeInfoFromFiber = (fiber) => {
  *    └─ span
  *    └─ div
  */
-const getReferenceFiber = (baseFiber) => {
-    if (!baseFiber)
-        return undefined;
-    const directParent = getDirectParentFiber(baseFiber);
-    if (!directParent)
-        return undefined;
-    const isParentNative = isNativeTagFiber(directParent);
-    const isOnlyOneChild = !directParent.child.sibling;
-    let referenceFiber = (!isParentNative && isOnlyOneChild)
-        ? directParent
-        : baseFiber;
-    // fallback for cannot find code-info fiber when traverse to root
-    const originReferenceFiber = referenceFiber;
-    while (referenceFiber) {
-        if (getCodeInfoFromFiber(referenceFiber))
-            return referenceFiber;
-        referenceFiber = referenceFiber.return;
-    }
-    return originReferenceFiber;
-};
-const getElementCodeInfo = (element) => {
-    const fiber = getElementFiberUpward(element);
-    const referenceFiber = getReferenceFiber(fiber);
-    return getCodeInfoFromFiber(referenceFiber);
-};
-const gotoEditor = (source) => {
-    if (!source)
-        return;
-    const { lineNumber, columnNumber, relativePath, absolutePath, } = source;
-    const isRelative = Boolean(relativePath);
-    const launchParams = {
-        fileName: isRelative ? relativePath : absolutePath,
-        lineNumber,
-        colNumber: columnNumber,
-    };
-    /**
-     * api in 'react-dev-inspector/plugins/webpack/launchEditorMiddleware'
-     */
-    const apiRoute = isRelative
-        ? `${launchEditorEndpoint_default.a}/relative`
-        : launchEditorEndpoint_default.a;
-    fetch(`${apiRoute}?${querystring_es3_default.a.stringify(launchParams)}`);
-};
-const getNamedFiber = (baseFiber) => {
-    var _a, _b;
-    let fiber = baseFiber;
-    // fallback for cannot find code-info fiber when traverse to root
-    let originNamedFiber;
-    while (fiber) {
-        let parent = (_a = fiber.return) !== null && _a !== void 0 ? _a : undefined;
-        let forwardParent;
-        while (isReactSymbolFiber(parent)) {
-            if (isForwardRef(parent)) {
-                forwardParent = parent;
-            }
-            parent = (_b = parent === null || parent === void 0 ? void 0 : parent.return) !== null && _b !== void 0 ? _b : undefined;
-        }
-        if (forwardParent) {
-            fiber = forwardParent;
-        }
-        if (getFiberName(fiber)) {
-            if (!originNamedFiber)
-                originNamedFiber = fiber;
-            if (getCodeInfoFromFiber(fiber))
-                return fiber;
-        }
-        fiber = parent;
-    }
-    return originNamedFiber;
-};
-const getElementInspect = (element) => {
-    const fiber = getElementFiberUpward(element);
-    const referenceFiber = getReferenceFiber(fiber);
-    const namedFiber = getNamedFiber(referenceFiber);
-    const fiberName = getFiberName(namedFiber);
-    const nodeName = element.nodeName.toLowerCase();
-    const title = fiberName
-        ? `${nodeName} in <${fiberName}>`
-        : nodeName;
-    return {
-        fiber: referenceFiber,
-        name: fiberName,
-        title,
-    };
-};
 
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/utils/overlay.js
+var inspect_getReferenceFiber = function getReferenceFiber(baseFiber) {
+  if (!baseFiber) return undefined;
+  var directParent = getDirectParentFiber(baseFiber);
+  if (!directParent) return undefined;
+  var isParentNative = isNativeTagFiber(directParent);
+  var isOnlyOneChild = !directParent.child.sibling;
+  var referenceFiber = !isParentNative && isOnlyOneChild ? directParent : baseFiber; // fallback for cannot find code-info fiber when traverse to root
+
+  var originReferenceFiber = referenceFiber;
+
+  while (referenceFiber) {
+    if (getCodeInfoFromFiber(referenceFiber)) return referenceFiber;
+    referenceFiber = referenceFiber["return"];
+  }
+
+  return originReferenceFiber;
+};
+var inspect_getElementCodeInfo = function getElementCodeInfo(element) {
+  var fiber = getElementFiberUpward(element);
+  var referenceFiber = inspect_getReferenceFiber(fiber);
+  return getCodeInfoFromFiber(referenceFiber);
+};
+var inspect_gotoEditor = function gotoEditor(source) {
+  if (!source) return;
+  var lineNumber = source.lineNumber,
+      columnNumber = source.columnNumber,
+      relativePath = source.relativePath,
+      absolutePath = source.absolutePath;
+  var isRelative = Boolean(relativePath);
+  var launchParams = {
+    fileName: isRelative ? relativePath : absolutePath,
+    lineNumber: lineNumber,
+    colNumber: columnNumber
+  };
+  /**
+   * api in 'react-dev-inspector/plugins/webpack/launchEditorMiddleware'
+   */
+
+  var apiRoute = isRelative ? "".concat(launchEditorEndpoint_default.a, "/relative") : launchEditorEndpoint_default.a;
+  fetch("".concat(apiRoute, "?").concat(querystring_es3_default.a.stringify(launchParams)));
+};
+var inspect_getNamedFiber = function getNamedFiber(baseFiber) {
+  var _a, _b;
+
+  var fiber = baseFiber; // fallback for cannot find code-info fiber when traverse to root
+
+  var originNamedFiber;
+
+  while (fiber) {
+    var parent = (_a = fiber["return"]) !== null && _a !== void 0 ? _a : undefined;
+    var forwardParent = void 0;
+
+    while (isReactSymbolFiber(parent)) {
+      if (isForwardRef(parent)) {
+        forwardParent = parent;
+      }
+
+      parent = (_b = parent === null || parent === void 0 ? void 0 : parent["return"]) !== null && _b !== void 0 ? _b : undefined;
+    }
+
+    if (forwardParent) {
+      fiber = forwardParent;
+    }
+
+    if (getFiberName(fiber)) {
+      if (!originNamedFiber) originNamedFiber = fiber;
+      if (getCodeInfoFromFiber(fiber)) return fiber;
+    }
+
+    fiber = parent;
+  }
+
+  return originNamedFiber;
+};
+var inspect_getElementInspect = function getElementInspect(element) {
+  var fiber = getElementFiberUpward(element);
+  var referenceFiber = inspect_getReferenceFiber(fiber);
+  var namedFiber = inspect_getNamedFiber(referenceFiber);
+  var fiberName = getFiberName(namedFiber);
+  var nodeName = element.nodeName.toLowerCase();
+  var title = fiberName ? "".concat(nodeName, " in <").concat(fiberName, ">") : nodeName;
+  return {
+    fiber: referenceFiber,
+    name: fiberName,
+    title: title
+  };
+};
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/createForOfIteratorHelper.js
+
+function _createForOfIteratorHelper(o, allowArrayLike) {
+  var it;
+
+  if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+      if (it) o = it;
+      var i = 0;
+
+      var F = function F() {};
+
+      return {
+        s: F,
+        n: function n() {
+          if (i >= o.length) return {
+            done: true
+          };
+          return {
+            done: false,
+            value: o[i++]
+          };
+        },
+        e: function e(_e) {
+          throw _e;
+        },
+        f: F
+      };
+    }
+
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  var normalCompletion = true,
+      didErr = false,
+      err;
+  return {
+    s: function s() {
+      it = o[Symbol.iterator]();
+    },
+    n: function n() {
+      var step = it.next();
+      normalCompletion = step.done;
+      return step;
+    },
+    e: function e(_e2) {
+      didErr = true;
+      err = _e2;
+    },
+    f: function f() {
+      try {
+        if (!normalCompletion && it["return"] != null) it["return"]();
+      } finally {
+        if (didErr) throw err;
+      }
+    }
+  };
+}
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/classCallCheck.js
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+// CONCATENATED MODULE: ./node_modules/@umijs/babel-preset-umi/node_modules/@babel/runtime/helpers/esm/createClass.js
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/utils/overlay.js
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/Highlighter/Overlay.js
  *
@@ -3009,377 +3211,470 @@ const getElementInspect = (element) => {
  * which will deal multiple levels of nesting iframe.
  */
 function getNestedBoundingClientRect(node) {
-    return node.getBoundingClientRect();
+  return node.getBoundingClientRect();
 }
 function getElementDimensions(domElement) {
-    const calculatedStyle = window.getComputedStyle(domElement);
-    return {
-        borderLeft: parseInt(calculatedStyle.borderLeftWidth, 10),
-        borderRight: parseInt(calculatedStyle.borderRightWidth, 10),
-        borderTop: parseInt(calculatedStyle.borderTopWidth, 10),
-        borderBottom: parseInt(calculatedStyle.borderBottomWidth, 10),
-        marginLeft: parseInt(calculatedStyle.marginLeft, 10),
-        marginRight: parseInt(calculatedStyle.marginRight, 10),
-        marginTop: parseInt(calculatedStyle.marginTop, 10),
-        marginBottom: parseInt(calculatedStyle.marginBottom, 10),
-        paddingLeft: parseInt(calculatedStyle.paddingLeft, 10),
-        paddingRight: parseInt(calculatedStyle.paddingRight, 10),
-        paddingTop: parseInt(calculatedStyle.paddingTop, 10),
-        paddingBottom: parseInt(calculatedStyle.paddingBottom, 10),
-    };
+  var calculatedStyle = window.getComputedStyle(domElement);
+  return {
+    borderLeft: parseInt(calculatedStyle.borderLeftWidth, 10),
+    borderRight: parseInt(calculatedStyle.borderRightWidth, 10),
+    borderTop: parseInt(calculatedStyle.borderTopWidth, 10),
+    borderBottom: parseInt(calculatedStyle.borderBottomWidth, 10),
+    marginLeft: parseInt(calculatedStyle.marginLeft, 10),
+    marginRight: parseInt(calculatedStyle.marginRight, 10),
+    marginTop: parseInt(calculatedStyle.marginTop, 10),
+    marginBottom: parseInt(calculatedStyle.marginBottom, 10),
+    paddingLeft: parseInt(calculatedStyle.paddingLeft, 10),
+    paddingRight: parseInt(calculatedStyle.paddingRight, 10),
+    paddingTop: parseInt(calculatedStyle.paddingTop, 10),
+    paddingBottom: parseInt(calculatedStyle.paddingBottom, 10)
+  };
 }
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/Overlay.js
 
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/Overlay.js
+
+
+
 /**
  * mirror from https://github.com/facebook/react/blob/v16.13.1/packages/react-devtools-shared/src/backend/views/utils.js
  */
-
-// Note that the Overlay components are not affected by the active Theme,
+ // Note that the Overlay components are not affected by the active Theme,
 // because they highlight elements in the main Chrome window (outside of devtools).
 // The colors below were chosen to roughly match those used by Chrome devtools.
-class OverlayRect {
-    constructor(doc, container) {
-        this.node = doc.createElement('div');
-        this.border = doc.createElement('div');
-        this.padding = doc.createElement('div');
-        this.content = doc.createElement('div');
-        this.border.style.borderColor = overlayStyles.border;
-        this.padding.style.borderColor = overlayStyles.padding;
-        this.content.style.backgroundColor = overlayStyles.background;
-        Object.assign(this.node.style, {
-            borderColor: overlayStyles.margin,
-            pointerEvents: 'none',
-            position: 'fixed',
-        });
-        this.node.style.zIndex = '10000000';
-        this.node.appendChild(this.border);
-        this.border.appendChild(this.padding);
-        this.padding.appendChild(this.content);
-        container.appendChild(this.node);
-    }
-    remove() {
-        if (this.node.parentNode) {
-            this.node.parentNode.removeChild(this.node);
-        }
-    }
-    update(box, dims) {
-        boxWrap(dims, 'margin', this.node);
-        boxWrap(dims, 'border', this.border);
-        boxWrap(dims, 'padding', this.padding);
-        Object.assign(this.content.style, {
-            height: `${box.height
-                - dims.borderTop
-                - dims.borderBottom
-                - dims.paddingTop
-                - dims.paddingBottom}px`,
-            width: `${box.width
-                - dims.borderLeft
-                - dims.borderRight
-                - dims.paddingLeft
-                - dims.paddingRight}px`,
-        });
-        Object.assign(this.node.style, {
-            top: `${box.top - dims.marginTop}px`,
-            left: `${box.left - dims.marginLeft}px`,
-        });
-    }
-}
-class OverlayTip {
-    constructor(doc, container) {
-        this.tip = doc.createElement('div');
-        Object.assign(this.tip.style, {
-            display: 'flex',
-            flexFlow: 'row nowrap',
-            alignItems: 'center',
-            backgroundColor: '#333740',
-            borderRadius: '2px',
-            fontFamily: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
-            fontWeight: 'bold',
-            padding: '6px 8px',
-            pointerEvents: 'none',
-            position: 'fixed',
-            fontSize: '12px',
-            whiteSpace: 'nowrap',
-        });
-        this.nameSpan = doc.createElement('span');
-        this.tip.appendChild(this.nameSpan);
-        Object.assign(this.nameSpan.style, {
-            display: 'flex',
-            flexDirection: 'column',
-            borderRight: '1px solid #aaaaaa',
-            paddingRight: '0.8rem',
-            marginRight: '0.8rem',
-        });
-        this.titleDiv = doc.createElement('div');
-        this.nameSpan.appendChild(this.titleDiv);
-        Object.assign(this.titleDiv.style, {
-            color: '#ee78e6',
-            fontSize: '16px',
-        });
-        this.infoDiv = doc.createElement('div');
-        this.nameSpan.appendChild(this.infoDiv);
-        Object.assign(this.infoDiv.style, {
-            color: '#ee78e6',
-            fontSize: '14px',
-        });
-        this.dimSpan = doc.createElement('span');
-        this.tip.appendChild(this.dimSpan);
-        Object.assign(this.dimSpan.style, {
-            color: '#d7d7d7',
-        });
-        this.tip.style.zIndex = '10000000';
-        container.appendChild(this.tip);
-    }
-    remove() {
-        if (this.tip.parentNode) {
-            this.tip.parentNode.removeChild(this.tip);
-        }
-    }
-    updateText(name, info, width, height) {
-        this.titleDiv.textContent = name;
-        this.infoDiv.textContent = info !== null && info !== void 0 ? info : '';
-        this.dimSpan.textContent
-            = `${Math.round(width)}px × ${Math.round(height)}px`;
-    }
-    updatePosition(dims, bounds) {
-        const tipRect = this.tip.getBoundingClientRect();
-        const tipPos = findTipPos(dims, bounds, {
-            width: tipRect.width,
-            height: tipRect.height,
-        });
-        Object.assign(this.tip.style, tipPos.style);
-    }
-}
-class Overlay_Overlay {
-    constructor() {
-        // Find the root window, because overlays are positioned relative to it.
-        const currentWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
-        this.window = currentWindow;
-        // When opened in shells/dev,
-        // the tooltip should be bound by the app iframe, not by the topmost window.
-        const tipBoundsWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
-        this.tipBoundsWindow = tipBoundsWindow;
-        const doc = currentWindow.document;
-        this.container = doc.createElement('div');
-        this.container.style.zIndex = '10000000';
-        this.tip = new OverlayTip(doc, this.container);
-        this.rects = [];
-        this.removeCallback = () => { };
-        doc.body.appendChild(this.container);
-    }
-    remove() {
-        this.tip.remove();
-        this.rects.forEach(rect => {
-            rect.remove();
-        });
-        this.rects.length = 0;
-        if (this.container.parentNode) {
-            this.container.parentNode.removeChild(this.container);
-        }
-        this.removeCallback();
-    }
-    setRemoveCallback(callback) {
-        this.removeCallback = callback.bind(this);
-    }
-    inspect(nodes, name, info) {
-        var _a;
-        // We can't get the size of text nodes or comment nodes. React as of v15
-        // heavily uses comment nodes to delimit text.
-        const elements = nodes.filter(node => node.nodeType === Node.ELEMENT_NODE);
-        while (this.rects.length > elements.length) {
-            const rect = this.rects.pop();
-            rect === null || rect === void 0 ? void 0 : rect.remove();
-        }
-        if (elements.length === 0) {
-            return;
-        }
-        while (this.rects.length < elements.length) {
-            this.rects.push(new OverlayRect(this.window.document, this.container));
-        }
-        const outerBox = {
-            top: Number.POSITIVE_INFINITY,
-            right: Number.NEGATIVE_INFINITY,
-            bottom: Number.NEGATIVE_INFINITY,
-            left: Number.POSITIVE_INFINITY,
-        };
-        elements.forEach((element, index) => {
-            const box = getNestedBoundingClientRect(element, this.window);
-            const dims = getElementDimensions(element);
-            outerBox.top = Math.min(outerBox.top, box.top - dims.marginTop);
-            outerBox.right = Math.max(outerBox.right, box.left + box.width + dims.marginRight);
-            outerBox.bottom = Math.max(outerBox.bottom, box.top + box.height + dims.marginBottom);
-            outerBox.left = Math.min(outerBox.left, box.left - dims.marginLeft);
-            const rect = this.rects[index];
-            rect.update(box, dims);
-        });
-        if (!name) {
-            // eslint-disable-next-line no-param-reassign
-            name = elements[0].nodeName.toLowerCase();
-            const node = elements[0];
-            const hook = (_a = node.ownerDocument.defaultView) === null || _a === void 0 ? void 0 : _a.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-            if (hook === null || hook === void 0 ? void 0 : hook.rendererInterfaces) {
-                let ownerName = null;
-                for (const rendererInterface of hook.rendererInterfaces.values()) {
-                    const id = rendererInterface.getFiberIDForNative(node, true);
-                    if (id !== null) {
-                        ownerName = rendererInterface.getDisplayNameForFiberID(id, true);
-                        break;
-                    }
-                }
-                if (ownerName) {
-                    // eslint-disable-next-line no-param-reassign
-                    name += ` (in ${ownerName})`;
-                }
-            }
-        }
-        this.tip.updateText(name, info, outerBox.right - outerBox.left, outerBox.bottom - outerBox.top);
-        const tipBounds = getNestedBoundingClientRect(this.tipBoundsWindow.document.documentElement, this.window);
-        this.tip.updatePosition({
-            top: outerBox.top,
-            left: outerBox.left,
-            height: outerBox.bottom - outerBox.top,
-            width: outerBox.right - outerBox.left,
-        }, {
-            top: tipBounds.top + this.tipBoundsWindow.scrollY,
-            left: tipBounds.left + this.tipBoundsWindow.scrollX,
-            height: this.tipBoundsWindow.innerHeight,
-            width: this.tipBoundsWindow.innerWidth,
-        });
-    }
-}
-function findTipPos(dims, bounds, tipSize) {
-    const tipHeight = Math.max(tipSize.height, 20);
-    const tipWidth = Math.max(tipSize.width, 60);
-    const margin = 5;
-    let top;
-    if (dims.top + dims.height + tipHeight <= bounds.top + bounds.height) {
-        if (dims.top + dims.height < bounds.top + 0) {
-            top = bounds.top + margin;
-        }
-        else {
-            top = dims.top + dims.height + margin;
-        }
-    }
-    else if (dims.top - tipHeight <= bounds.top + bounds.height) {
-        if (dims.top - tipHeight - margin < bounds.top + margin) {
-            top = bounds.top + margin;
-        }
-        else {
-            top = dims.top - tipHeight - margin;
-        }
-    }
-    else {
-        top = bounds.top + bounds.height - tipHeight - margin;
-    }
-    let left = dims.left + margin;
-    if (dims.left < bounds.left) {
-        left = bounds.left + margin;
-    }
-    if (dims.left + tipWidth > bounds.left + bounds.width) {
-        left = bounds.left + bounds.width - tipWidth - margin;
-    }
-    top += 'px';
-    left += 'px';
-    return {
-        style: { top, left },
-    };
-}
-function boxWrap(dims, what, node) {
-    Object.assign(node.style, {
-        borderTopWidth: `${dims[`${what}Top`]}px`,
-        borderLeftWidth: `${dims[`${what}Left`]}px`,
-        borderRightWidth: `${dims[`${what}Right`]}px`,
-        borderBottomWidth: `${dims[`${what}Bottom`]}px`,
-        borderStyle: 'solid',
+
+var Overlay_OverlayRect = /*#__PURE__*/function () {
+  function OverlayRect(doc, container) {
+    _classCallCheck(this, OverlayRect);
+
+    this.node = doc.createElement('div');
+    this.border = doc.createElement('div');
+    this.padding = doc.createElement('div');
+    this.content = doc.createElement('div');
+    this.border.style.borderColor = overlayStyles.border;
+    this.padding.style.borderColor = overlayStyles.padding;
+    this.content.style.backgroundColor = overlayStyles.background;
+    Object.assign(this.node.style, {
+      borderColor: overlayStyles.margin,
+      pointerEvents: 'none',
+      position: 'fixed'
     });
+    this.node.style.zIndex = '10000000';
+    this.node.appendChild(this.border);
+    this.border.appendChild(this.padding);
+    this.padding.appendChild(this.content);
+    container.appendChild(this.node);
+  }
+
+  _createClass(OverlayRect, [{
+    key: "remove",
+    value: function remove() {
+      if (this.node.parentNode) {
+        this.node.parentNode.removeChild(this.node);
+      }
+    }
+  }, {
+    key: "update",
+    value: function update(box, dims) {
+      boxWrap(dims, 'margin', this.node);
+      boxWrap(dims, 'border', this.border);
+      boxWrap(dims, 'padding', this.padding);
+      Object.assign(this.content.style, {
+        height: "".concat(box.height - dims.borderTop - dims.borderBottom - dims.paddingTop - dims.paddingBottom, "px"),
+        width: "".concat(box.width - dims.borderLeft - dims.borderRight - dims.paddingLeft - dims.paddingRight, "px")
+      });
+      Object.assign(this.node.style, {
+        top: "".concat(box.top - dims.marginTop, "px"),
+        left: "".concat(box.left - dims.marginLeft, "px")
+      });
+    }
+  }]);
+
+  return OverlayRect;
+}();
+
+var Overlay_OverlayTip = /*#__PURE__*/function () {
+  function OverlayTip(doc, container) {
+    _classCallCheck(this, OverlayTip);
+
+    this.tip = doc.createElement('div');
+    Object.assign(this.tip.style, {
+      display: 'flex',
+      flexFlow: 'row nowrap',
+      alignItems: 'center',
+      backgroundColor: '#333740',
+      borderRadius: '2px',
+      fontFamily: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
+      fontWeight: 'bold',
+      padding: '6px 8px',
+      pointerEvents: 'none',
+      position: 'fixed',
+      fontSize: '12px',
+      whiteSpace: 'nowrap'
+    });
+    this.nameSpan = doc.createElement('span');
+    this.tip.appendChild(this.nameSpan);
+    Object.assign(this.nameSpan.style, {
+      display: 'flex',
+      flexDirection: 'column',
+      borderRight: '1px solid #aaaaaa',
+      paddingRight: '0.8rem',
+      marginRight: '0.8rem'
+    });
+    this.titleDiv = doc.createElement('div');
+    this.nameSpan.appendChild(this.titleDiv);
+    Object.assign(this.titleDiv.style, {
+      color: '#ee78e6',
+      fontSize: '16px'
+    });
+    this.infoDiv = doc.createElement('div');
+    this.nameSpan.appendChild(this.infoDiv);
+    Object.assign(this.infoDiv.style, {
+      color: '#ee78e6',
+      fontSize: '14px'
+    });
+    this.dimSpan = doc.createElement('span');
+    this.tip.appendChild(this.dimSpan);
+    Object.assign(this.dimSpan.style, {
+      color: '#d7d7d7'
+    });
+    this.tip.style.zIndex = '10000000';
+    container.appendChild(this.tip);
+  }
+
+  _createClass(OverlayTip, [{
+    key: "remove",
+    value: function remove() {
+      if (this.tip.parentNode) {
+        this.tip.parentNode.removeChild(this.tip);
+      }
+    }
+  }, {
+    key: "updateText",
+    value: function updateText(name, info, width, height) {
+      this.titleDiv.textContent = name;
+      this.infoDiv.textContent = info !== null && info !== void 0 ? info : '';
+      this.dimSpan.textContent = "".concat(Math.round(width), "px \xD7 ").concat(Math.round(height), "px");
+    }
+  }, {
+    key: "updatePosition",
+    value: function updatePosition(dims, bounds) {
+      var tipRect = this.tip.getBoundingClientRect();
+      var tipPos = findTipPos(dims, bounds, {
+        width: tipRect.width,
+        height: tipRect.height
+      });
+      Object.assign(this.tip.style, tipPos.style);
+    }
+  }]);
+
+  return OverlayTip;
+}();
+
+var Overlay_Overlay = /*#__PURE__*/function () {
+  function Overlay() {
+    _classCallCheck(this, Overlay);
+
+    // Find the root window, because overlays are positioned relative to it.
+    var currentWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
+    this.window = currentWindow; // When opened in shells/dev,
+    // the tooltip should be bound by the app iframe, not by the topmost window.
+
+    var tipBoundsWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window;
+    this.tipBoundsWindow = tipBoundsWindow;
+    var doc = currentWindow.document;
+    this.container = doc.createElement('div');
+    this.container.style.zIndex = '10000000';
+    this.tip = new Overlay_OverlayTip(doc, this.container);
+    this.rects = [];
+
+    this.removeCallback = function () {};
+
+    doc.body.appendChild(this.container);
+  }
+
+  _createClass(Overlay, [{
+    key: "remove",
+    value: function remove() {
+      this.tip.remove();
+      this.rects.forEach(function (rect) {
+        rect.remove();
+      });
+      this.rects.length = 0;
+
+      if (this.container.parentNode) {
+        this.container.parentNode.removeChild(this.container);
+      }
+
+      this.removeCallback();
+    }
+  }, {
+    key: "setRemoveCallback",
+    value: function setRemoveCallback(callback) {
+      this.removeCallback = callback.bind(this);
+    }
+  }, {
+    key: "inspect",
+    value: function inspect(nodes, name, info) {
+      var _this = this;
+
+      var _a; // We can't get the size of text nodes or comment nodes. React as of v15
+      // heavily uses comment nodes to delimit text.
+
+
+      var elements = nodes.filter(function (node) {
+        return node.nodeType === Node.ELEMENT_NODE;
+      });
+
+      while (this.rects.length > elements.length) {
+        var rect = this.rects.pop();
+        rect === null || rect === void 0 ? void 0 : rect.remove();
+      }
+
+      if (elements.length === 0) {
+        return;
+      }
+
+      while (this.rects.length < elements.length) {
+        this.rects.push(new Overlay_OverlayRect(this.window.document, this.container));
+      }
+
+      var outerBox = {
+        top: Number.POSITIVE_INFINITY,
+        right: Number.NEGATIVE_INFINITY,
+        bottom: Number.NEGATIVE_INFINITY,
+        left: Number.POSITIVE_INFINITY
+      };
+      elements.forEach(function (element, index) {
+        var box = getNestedBoundingClientRect(element, _this.window);
+        var dims = getElementDimensions(element);
+        outerBox.top = Math.min(outerBox.top, box.top - dims.marginTop);
+        outerBox.right = Math.max(outerBox.right, box.left + box.width + dims.marginRight);
+        outerBox.bottom = Math.max(outerBox.bottom, box.top + box.height + dims.marginBottom);
+        outerBox.left = Math.min(outerBox.left, box.left - dims.marginLeft);
+        var rect = _this.rects[index];
+        rect.update(box, dims);
+      });
+
+      if (!name) {
+        // eslint-disable-next-line no-param-reassign
+        name = elements[0].nodeName.toLowerCase();
+        var node = elements[0];
+        var hook = (_a = node.ownerDocument.defaultView) === null || _a === void 0 ? void 0 : _a.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+
+        if (hook === null || hook === void 0 ? void 0 : hook.rendererInterfaces) {
+          var ownerName = null;
+
+          var _iterator = _createForOfIteratorHelper(hook.rendererInterfaces.values()),
+              _step;
+
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var rendererInterface = _step.value;
+              var id = rendererInterface.getFiberIDForNative(node, true);
+
+              if (id !== null) {
+                ownerName = rendererInterface.getDisplayNameForFiberID(id, true);
+                break;
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+
+          if (ownerName) {
+            // eslint-disable-next-line no-param-reassign
+            name += " (in ".concat(ownerName, ")");
+          }
+        }
+      }
+
+      this.tip.updateText(name, info, outerBox.right - outerBox.left, outerBox.bottom - outerBox.top);
+      var tipBounds = getNestedBoundingClientRect(this.tipBoundsWindow.document.documentElement, this.window);
+      this.tip.updatePosition({
+        top: outerBox.top,
+        left: outerBox.left,
+        height: outerBox.bottom - outerBox.top,
+        width: outerBox.right - outerBox.left
+      }, {
+        top: tipBounds.top + this.tipBoundsWindow.scrollY,
+        left: tipBounds.left + this.tipBoundsWindow.scrollX,
+        height: this.tipBoundsWindow.innerHeight,
+        width: this.tipBoundsWindow.innerWidth
+      });
+    }
+  }]);
+
+  return Overlay;
+}();
+
+
+
+function findTipPos(dims, bounds, tipSize) {
+  var tipHeight = Math.max(tipSize.height, 20);
+  var tipWidth = Math.max(tipSize.width, 60);
+  var margin = 5;
+  var top;
+
+  if (dims.top + dims.height + tipHeight <= bounds.top + bounds.height) {
+    if (dims.top + dims.height < bounds.top + 0) {
+      top = bounds.top + margin;
+    } else {
+      top = dims.top + dims.height + margin;
+    }
+  } else if (dims.top - tipHeight <= bounds.top + bounds.height) {
+    if (dims.top - tipHeight - margin < bounds.top + margin) {
+      top = bounds.top + margin;
+    } else {
+      top = dims.top - tipHeight - margin;
+    }
+  } else {
+    top = bounds.top + bounds.height - tipHeight - margin;
+  }
+
+  var left = dims.left + margin;
+
+  if (dims.left < bounds.left) {
+    left = bounds.left + margin;
+  }
+
+  if (dims.left + tipWidth > bounds.left + bounds.width) {
+    left = bounds.left + bounds.width - tipWidth - margin;
+  }
+
+  top += 'px';
+  left += 'px';
+  return {
+    style: {
+      top: top,
+      left: left
+    }
+  };
 }
-const overlayStyles = {
-    background: 'rgba(120, 170, 210, 0.7)',
-    padding: 'rgba(77, 200, 0, 0.3)',
-    margin: 'rgba(255, 155, 0, 0.3)',
-    border: 'rgba(255, 200, 50, 0.3)',
+
+function boxWrap(dims, what, node) {
+  Object.assign(node.style, {
+    borderTopWidth: "".concat(dims["".concat(what, "Top")], "px"),
+    borderLeftWidth: "".concat(dims["".concat(what, "Left")], "px"),
+    borderRightWidth: "".concat(dims["".concat(what, "Right")], "px"),
+    borderBottomWidth: "".concat(dims["".concat(what, "Bottom")], "px"),
+    borderStyle: 'solid'
+  });
+}
+
+var overlayStyles = {
+  background: 'rgba(120, 170, 210, 0.7)',
+  padding: 'rgba(77, 200, 0, 0.3)',
+  margin: 'rgba(255, 155, 0, 0.3)',
+  border: 'rgba(255, 200, 50, 0.3)'
 };
-
-// CONCATENATED MODULE: /home/runner/work/react-dev-inspector/react-dev-inspector/es/Inspector.js
-
+// CONCATENATED MODULE: ./node_modules/react-dev-inspector/es/Inspector.js
 
 
 
 
-const defaultHotKeys = ['control', 'shift', 'command', 'c'];
-const Inspector = (props) => {
-    const { keys, onHoverElement, onClickElement, disableLaunchEditor, children, } = props;
-    const hotkey = (keys !== null && keys !== void 0 ? keys : defaultHotKeys).join('+');
-    const [isInspect, setIsInspect] = Object(react["useState"])(false);
-    const overlayRef = Object(react["useRef"])();
-    const handleHoverElement = (element) => {
-        var _a;
-        const overlay = overlayRef.current;
-        const codeInfo = getElementCodeInfo(element);
-        const relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
-        const { fiber, name, title } = getElementInspect(element);
-        (_a = overlay === null || overlay === void 0 ? void 0 : overlay.inspect) === null || _a === void 0 ? void 0 : _a.call(overlay, [element], title, relativePath);
-        onHoverElement === null || onHoverElement === void 0 ? void 0 : onHoverElement({
-            element,
-            fiber,
-            codeInfo,
-            name,
-        });
+
+
+var defaultHotKeys = ['control', 'shift', 'command', 'c'];
+var Inspector_Inspector = function Inspector(props) {
+  var keys = props.keys,
+      onHoverElement = props.onHoverElement,
+      onClickElement = props.onClickElement,
+      disableLaunchEditor = props.disableLaunchEditor,
+      children = props.children;
+  var hotkey = (keys !== null && keys !== void 0 ? keys : defaultHotKeys).join('+');
+
+  var _useState = Object(react["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isInspect = _useState2[0],
+      setIsInspect = _useState2[1];
+
+  var overlayRef = Object(react["useRef"])();
+
+  var handleHoverElement = function handleHoverElement(element) {
+    var _a;
+
+    var overlay = overlayRef.current;
+    var codeInfo = inspect_getElementCodeInfo(element);
+    var relativePath = codeInfo === null || codeInfo === void 0 ? void 0 : codeInfo.relativePath;
+
+    var _getElementInspect = inspect_getElementInspect(element),
+        fiber = _getElementInspect.fiber,
+        name = _getElementInspect.name,
+        title = _getElementInspect.title;
+
+    (_a = overlay === null || overlay === void 0 ? void 0 : overlay.inspect) === null || _a === void 0 ? void 0 : _a.call(overlay, [element], title, relativePath);
+    onHoverElement === null || onHoverElement === void 0 ? void 0 : onHoverElement({
+      element: element,
+      fiber: fiber,
+      codeInfo: codeInfo,
+      name: name
+    });
+  };
+
+  var handleClickElement = function handleClickElement(element) {
+    var _a;
+
+    var overlay = overlayRef.current;
+    (_a = overlay === null || overlay === void 0 ? void 0 : overlay.remove) === null || _a === void 0 ? void 0 : _a.call(overlay);
+    overlayRef.current = undefined;
+    setIsInspect(false);
+    var codeInfo = inspect_getElementCodeInfo(element);
+
+    var _getElementInspect2 = inspect_getElementInspect(element),
+        fiber = _getElementInspect2.fiber,
+        name = _getElementInspect2.name;
+
+    if (!disableLaunchEditor) inspect_gotoEditor(codeInfo);
+    onClickElement === null || onClickElement === void 0 ? void 0 : onClickElement({
+      element: element,
+      fiber: fiber,
+      codeInfo: codeInfo,
+      name: name
+    });
+  };
+
+  var startInspect = function startInspect() {
+    var overlay = new Overlay_Overlay();
+    var stopCallback = setupHighlighter({
+      onPointerOver: handleHoverElement,
+      onClick: handleClickElement
+    });
+    overlay.setRemoveCallback(stopCallback);
+    overlayRef.current = overlay;
+    setIsInspect(true);
+  };
+
+  var stopInspect = function stopInspect() {
+    var _a;
+
+    (_a = overlayRef.current) === null || _a === void 0 ? void 0 : _a.remove();
+    setIsInspect(false);
+  };
+
+  var handleInspectKey = function handleInspectKey() {
+    return isInspect ? stopInspect() : startInspect();
+  };
+
+  Object(react["useEffect"])(function () {
+    var handleHotKeys = function handleHotKeys(event, handler) {
+      if (handler.key === hotkey) {
+        handleInspectKey();
+      } else if (isInspect && handler.key === 'esc') {
+        stopInspect();
+      }
     };
-    const handleClickElement = (element) => {
-        var _a;
-        const overlay = overlayRef.current;
-        (_a = overlay === null || overlay === void 0 ? void 0 : overlay.remove) === null || _a === void 0 ? void 0 : _a.call(overlay);
-        overlayRef.current = undefined;
-        setIsInspect(false);
-        const codeInfo = getElementCodeInfo(element);
-        const { fiber, name } = getElementInspect(element);
-        if (!disableLaunchEditor)
-            gotoEditor(codeInfo);
-        onClickElement === null || onClickElement === void 0 ? void 0 : onClickElement({
-            element,
-            fiber,
-            codeInfo,
-            name,
-        });
+
+    hotkeys_esm("".concat(hotkey, ", esc"), handleHotKeys);
+    window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey;
+    return function () {
+      hotkeys_esm.unbind("".concat(hotkey, ", esc"), handleHotKeys);
+      delete window.__REACT_DEV_INSPECTOR_TOGGLE__;
     };
-    const startInspect = () => {
-        const overlay = new Overlay_Overlay();
-        const stopCallback = setupHighlighter({
-            onPointerOver: handleHoverElement,
-            onClick: handleClickElement,
-        });
-        overlay.setRemoveCallback(stopCallback);
-        overlayRef.current = overlay;
-        setIsInspect(true);
-    };
-    const stopInspect = () => {
-        var _a;
-        (_a = overlayRef.current) === null || _a === void 0 ? void 0 : _a.remove();
-        setIsInspect(false);
-    };
-    const handleInspectKey = () => (isInspect
-        ? stopInspect()
-        : startInspect());
-    Object(react["useEffect"])(() => {
-        const handleHotKeys = (event, handler) => {
-            if (handler.key === hotkey) {
-                handleInspectKey();
-            }
-            else if (isInspect && handler.key === 'esc') {
-                stopInspect();
-            }
-        };
-        hotkeys_esm(`${hotkey}, esc`, handleHotKeys);
-        window.__REACT_DEV_INSPECTOR_TOGGLE__ = handleInspectKey;
-        return () => {
-            hotkeys_esm.unbind(`${hotkey}, esc`, handleHotKeys);
-            delete window.__REACT_DEV_INSPECTOR_TOGGLE__;
-        };
-    }, [hotkey, isInspect, handleInspectKey]);
-    return children;
+  }, [hotkey, isInspect, handleInspectKey]);
+  return children;
 };
-
 // CONCATENATED MODULE: ./node_modules/@emotion/styled/node_modules/@babel/runtime/helpers/esm/extends.js
 function extends_extends() {
   extends_extends = Object.assign || function (target) {
@@ -4576,7 +4871,7 @@ var styles_GithubCorner = /*#__PURE__*/emotion_styled_base_browser_esm(GithubCor
 var projectRepo = 'https://github.com/zthxxx/react-dev-inspector';
 var isDev = "production" === 'development';
 var HomePage = () => {
-  return emotion_react_browser_esm_jsx(Inspector, {
+  return emotion_react_browser_esm_jsx(Inspector_Inspector, {
     "data-inspector-line": "16",
     "data-inspector-column": "4",
     "data-inspector-relative-path": "src/layouts/index.tsx",
@@ -7188,28 +7483,6 @@ module.exports = {
   TypedArrayPrototype: TypedArrayPrototype
 };
 
-
-/***/ }),
-
-/***/ "6C+4":
-/*!**********************************************************************************************************************!*\
-  !*** /home/runner/work/react-dev-inspector/react-dev-inspector/node_modules/react-dev-utils/launchEditorEndpoint.js ***!
-  \**********************************************************************************************************************/
-/*! no static exports found */
-/*! exports used: default */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
- // TODO: we might want to make this injectable to support DEV-time non-root URLs.
-
-module.exports = '/__open-stack-frame-in-editor';
 
 /***/ }),
 
@@ -11047,6 +11320,28 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
   URL: URLConstructor
 });
 
+
+/***/ }),
+
+/***/ "L9jI":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-dev-utils/launchEditorEndpoint.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/*! exports used: default */
+/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ // TODO: we might want to make this injectable to support DEV-time non-root URLs.
+
+module.exports = '/__open-stack-frame-in-editor';
 
 /***/ }),
 
