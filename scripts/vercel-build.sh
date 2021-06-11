@@ -9,6 +9,7 @@ export FORCE_COLOR=true
 
 env
 
+npm i -g npm@7
 npm run build
 
 # due to vercel bug of symlink file
