@@ -3,12 +3,13 @@
   "version": "1.6.0",
   "sideEffects": false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
+  "workspaces": [
+    "./sites/*"
+  ],
   "main": "es/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "scripts": {
-    "postinstall": "node scripts/postinstall.js",
-    "bootstrap": "lerna bootstrap --scope @demo-sites/* --ci && lerna link",
     "test": "jest tests",
     "clean": "rimraf build dist site es lib plugins",
     "dev": "nodemon -w src -e ts,tsx -x 'npm run build && npm run site'",
