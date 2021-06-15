@@ -24,10 +24,10 @@
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
     "react": "16.14.0",
-    "react-dev-inspector": "1.5.3",
+    "react-dev-inspector": "1.6.0",
     "react-dom": "16.14.0",
     "react-github-corner": "2.5.0",
-    "umi": "3.4.23"
+    "umi": "3.4.25"
   },
   "devDependencies": {
     "@emotion/babel-preset-css-prop": "11.2.0",
