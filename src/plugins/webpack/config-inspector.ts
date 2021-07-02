@@ -35,7 +35,7 @@ export const inspectorChainWebpack = (
     .module
     .rule('inspector')
     .enforce('pre')
-    .test(/\.[jt]sx$/)
+    .test(/\.(tsx|jsx?)$/)
     .exclude
     .add(/node_modules/)
     .add(/\.umi(-production)?\//)
