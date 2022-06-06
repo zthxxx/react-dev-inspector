@@ -1,6 +1,6 @@
 {
   "name": "customized-react-dev-inspector",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "sideEffects": false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
   "workspaces": [
