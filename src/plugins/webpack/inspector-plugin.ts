@@ -27,14 +27,5 @@ export class ReactInspectorPlugin {
       result.unshift(launchEditorMiddleware)
       return result
     }
-
-    /**
-     * for webpack@^4 + webpack-dev-server@^3
-     */
-    const originBefore = devServer.before
-    devServer.before = (app, server, compiler) => {
-      app.use(launchEditorMiddleware)
-      originBefore?.(app, server, compiler)
-    }
   }
 }
