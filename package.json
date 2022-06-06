@@ -1,5 +1,5 @@
 {
-  "name": "react-dev-inspector",
+  "name": "customized-react-dev-inspector",
   "version": "1.8.0",
   "sideEffects": false,
   "description": "dev-tool for inspect react components and jump to local IDE for component code.",
@@ -19,7 +19,7 @@
     "tag": "git tag v$(node -e 'console.log(require(\"./package.json\").version)')",
     "lint": "TIMING=1 eslint --quiet --ext js,jsx,ts,tsx src examples"
   },
-  "repository": "zthxxx/react-dev-inspector",
+  "repository": "heiseshandian/react-dev-inspector",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
@@ -28,12 +28,12 @@
     "component",
     "inspector"
   ],
-  "author": "zthxxx",
+  "author": "baymax",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zthxxx/react-dev-inspector/issues"
+    "url": "https://github.com/heiseshandian/react-dev-inspector/issues"
   },
-  "homepage": "https://github.com/zthxxx/react-dev-inspector#readme",
+  "homepage": "https://github.com/heiseshandian/react-dev-inspector#readme",
   "files": [
     "README.md",
     ".npmrc",
