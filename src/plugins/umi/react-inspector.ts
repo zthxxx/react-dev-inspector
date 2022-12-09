@@ -52,5 +52,5 @@ export default function inspectorPlugin(api: IApi) {
    * due to umi3 not use webpack devServer,
    * so need add launch editor middleware manually
    */
-  (api.addBeforeMiddlewares ?? api.addBeforeMiddewares).bind(this, createLaunchEditorMiddleware)
+  (api.addBeforeMiddlewares ?? api.addBeforeMiddewares).bind(api, createLaunchEditorMiddleware)
 }
