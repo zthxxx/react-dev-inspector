@@ -9,9 +9,9 @@
   "packageManager": "pnpm@8.15.8",
   "files": [],
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "test": "pnpm --recursive test",
-    "lint": "TIMING=1 eslint --format codeframe --ext js,cjs,mjs,ts,mts,tsx docs packages examples",
+    "lint": "TIMING=1 eslint --format codeframe docs packages examples",
     "purge": "pnpm -r clean && echo 'removing node_modules ...' && rm -rf .site {.,docs}/node_modules {examples,packages}/*/node_modules",
     "build:packages": "pnpm --filter './packages/*' build",
     "build:examples": "pnpm --filter './examples/*' build",
@@ -23,13 +23,16 @@
     ]
   },
   "devDependencies": {
+    "@antfu/eslint-config": "4.1.1",
     "@antfu/eslint-config-react": "0.39.7",
     "@commitlint/cli": "18.4.3",
     "@commitlint/config-conventional": "18.4.3",
-    "eslint": "8.44.0",
+    "@stylistic/eslint-plugin": "3.0.1",
+    "eslint": "9.19.0",
     "eslint-formatter-codeframe": "7.32.1",
-    "husky": "^8.0.3",
-    "lint-staged": "13.2.3",
+    "eslint-plugin-format": "1.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "15.4.3",
     "tsx": "4.16.0",
     "typescript": "5.2.2"
   },

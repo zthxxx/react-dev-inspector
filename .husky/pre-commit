@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# run by git
-. "$(dirname -- "$0")/_/husky.sh"
 
 # https://github.com/lint-staged/lint-staged
 # `TIMING` for eslint
-TIMING=1 exec npx lint-staged
+TIMING=1 npx lint-staged
