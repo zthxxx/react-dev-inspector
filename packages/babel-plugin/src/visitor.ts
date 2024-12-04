@@ -34,8 +34,10 @@ export const createVisitor = ({ cwd = process.cwd(), excludes }: {
     JSXOpeningElement: {
       enter(path, state: PluginPass) {
         const filePath = state?.file?.opts?.filename
-        if (!filePath) return
-        if (isExclude(filePath)) return
+        if (!filePath)
+          return
+        if (isExclude(filePath))
+          return
 
         const relativePath = pathRelative(filePath)
 
@@ -57,7 +59,8 @@ export const createVisitor = ({ cwd = process.cwd(), excludes }: {
  * simple path match method, only use string and regex
  */
 export const pathMatch = (filePath: string, matches?: (string | RegExp)[]): boolean => {
-  if (!matches?.length) return false
+  if (!matches?.length)
+    return false
 
   return matches.some((match) => {
     if (typeof match === 'string') {
@@ -85,11 +88,12 @@ const doJSXPathName: NodeHandler<JSXOpeningElement['name']> = (name) => {
 }
 
 export const doJSXOpeningElement: NodeHandler<
-JSXOpeningElement,
-{ relativePath: string }
+  JSXOpeningElement,
+  { relativePath: string }
 > = (node, option) => {
   const { stop } = doJSXPathName(node.name)
-  if (stop) return { stop }
+  if (stop)
+    return { stop }
 
   const { relativePath } = option
   const line = node.loc?.start.line

@@ -1,6 +1,5 @@
 import path from 'node:path'
-import { transformSync } from '@babel/core'
-import type { TransformOptions } from '@babel/core'
+import { transformSync, type TransformOptions } from '@babel/core'
 import globby from 'globby'
 import pluginTester from 'babel-plugin-tester'
 import InspectorBabelPlugin, { type InspectorPluginOptions } from '..'

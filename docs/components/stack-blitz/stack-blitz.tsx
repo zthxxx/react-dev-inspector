@@ -16,7 +16,8 @@ export const StackBlitz = ({
   hideExplorer?: boolean;
   showDevtools?: boolean;
 }) => {
-  if (isDev) return null
+  if (isDev)
+    return null
 
   // https://developer.stackblitz.com/guides/integration/embedding#embed-url-options
   const params: Record<string, string | number | undefined> = {

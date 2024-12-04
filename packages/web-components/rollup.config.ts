@@ -148,10 +148,7 @@ export default defineConfig(() => {
 })
 
 
-/**
- * @returns {ts.CompilerOptions}
- */
-const readCompilerOptions = (tsconfigPath = 'tsconfig.json') => {
+const readCompilerOptions = (tsconfigPath = 'tsconfig.json'): ts.CompilerOptions => {
   const configFile = ts.readConfigFile(
     tsconfigPath,
     ts.sys.readFile,

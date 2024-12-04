@@ -5,8 +5,8 @@ declare module 'launch-editor' {
    */
   interface LaunchEditorFunction {
     (file: ComposableFilePath): void;
-    (file: ComposableFilePath, specifiedEditor: string): void
-    (file: ComposableFilePath, onErrorCallback: (fileName: string, message: string | null) => void): void
+    (file: ComposableFilePath, specifiedEditor: string): void;
+    (file: ComposableFilePath, onErrorCallback: (fileName: string, message: string | null) => void): void;
   }
 
   type ComposableFilePath =

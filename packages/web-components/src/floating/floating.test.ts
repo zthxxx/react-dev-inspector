@@ -20,7 +20,10 @@ class ItemBox implements ClientRectObject {
   static itemSize = 50
 
   constructor({
-    x, y, width, height,
+    x,
+    y,
+    width,
+    height,
   }: Partial<Rect>) {
     this.x = x ?? 0
     this.y = y ?? 0

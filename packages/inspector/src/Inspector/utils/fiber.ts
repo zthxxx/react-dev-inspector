@@ -1,6 +1,4 @@
 import type { Fiber } from 'react-reconciler'
-
-// eslint-disable-next-line unused-imports/no-unused-imports
 import type { InspectAgent } from '../types'
 
 
@@ -31,7 +29,8 @@ const cachedFiberKeys: Set<string> = new Set()
  * like: https://github.com/facebook/react/blob/v17.0.0/packages/react-dom/src/client/ReactDOM.js#L220
  */
 const getFiberWithDevtoolHook = (element: any): Fiber | undefined => {
-  if (!window.__REACT_DEVTOOLS_GLOBAL_HOOK__?.renderers) return
+  if (!window.__REACT_DEVTOOLS_GLOBAL_HOOK__?.renderers)
+    return
 
   const { renderers } = window.__REACT_DEVTOOLS_GLOBAL_HOOK__
 
@@ -90,9 +89,11 @@ export const getElementFiber = (_element?: Element): Fiber | undefined => {
 }
 
 export const getElementFiberUpward = (element: Element | null | undefined): Fiber | undefined => {
-  if (!element) return undefined
+  if (!element)
+    return undefined
   const fiber = getElementFiber(element)
-  if (fiber) return fiber
+  if (fiber)
+    return fiber
   return getElementFiberUpward(element.parentElement)
 }
 
@@ -150,8 +151,10 @@ export function * genFiberSourceChain(fiber?: Fiber | null): Generator<Fiber, vo
  */
 export const getFiberName = (fiber?: Fiber | null): string | undefined => {
   const fiberType = fiber?.type
-  if (!fiberType) return undefined
-  if (typeof fiberType === 'string') return fiberType
+  if (!fiberType)
+    return undefined
+  if (typeof fiberType === 'string')
+    return fiberType
 
   const { displayName, name } = fiberType
 
@@ -277,8 +280,10 @@ export const getDisplayNameForFiber = (fiber: Fiber): string | null => {
  * https://github.com/facebook/react/blob/v18.3.0/packages/react-devtools-shared/src/backend/renderer.js#L418
  */
 const resolveFiberType = (type: any): (() => void) | null => {
-  if (!type) return null
-  if (typeof type === 'function') return type
+  if (!type)
+    return null
+  if (typeof type === 'function')
+    return type
   if (typeof type === 'object' && '$$typeof' in type) {
     switch (type.$$typeof) {
       case Symbol.for('react.memo'): {

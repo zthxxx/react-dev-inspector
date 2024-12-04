@@ -1,7 +1,6 @@
 import React from 'react'
 import { Global } from '@emotion/react'
-import { Inspector } from 'react-dev-inspector'
-import type { InspectParams } from 'react-dev-inspector'
+import { Inspector, type InspectParams } from 'react-dev-inspector'
 import { Title } from './components/Title'
 import { Slogan } from './components/Slogan'
 import { KeyPad, Keypress } from './components/Keypress'
@@ -17,7 +16,8 @@ export const HomePage = () => {
       disableLaunchEditor={!isDev}
       onClickElement={(inspect: InspectParams) => {
         console.debug(inspect)
-        if (isDev || !inspect.codeInfo?.relativePath) return
+        if (isDev || !inspect.codeInfo?.relativePath)
+          return
 
         const {
           relativePath,

@@ -76,13 +76,14 @@ export function Feature({
       {...props}
     >
       {children}
-      {href
-        ? (
-          <Link className={styles.link} href={href} target='_blank'>
-            <ArrowRightIcon width='1.5em' />
-          </Link>
-        )
-        : null
+      {
+        href
+          ? (
+            <Link className={styles.link} href={href} target='_blank'>
+              <ArrowRightIcon width='1.5em' />
+            </Link>
+          )
+          : null
       }
     </motion.div>
   )

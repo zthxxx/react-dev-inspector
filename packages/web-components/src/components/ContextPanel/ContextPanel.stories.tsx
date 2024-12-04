@@ -167,13 +167,14 @@ export const ContextPanelDemo: StoryFn = () => {
                               'aria-selected': isSelected(),
                             }}
                             onClick={() => {
-                              if (isSelected()) return
+                              if (isSelected())
+                                return
                               setSelectedLayer(index)
                               onLayerChange(index)
                             }}
                           >
                             <Layer.LayerItemText>
-                                #{index}
+                              #{index}
                             </Layer.LayerItemText>
                           </S.LayerButton>
                         </Layer.LayerItem>

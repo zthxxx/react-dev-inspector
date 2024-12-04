@@ -96,9 +96,10 @@ export const InspectorOverlayTip = (props: {
         {styles}
       </style>
       <style>
-        {props.showCornerHint
-          ? showCornerHintStyles
-          : null
+        {
+          props.showCornerHint
+            ? showCornerHintStyles
+            : null
         }
       </style>
       <div
@@ -168,15 +169,16 @@ const styles = css`
   user-select: none;
   overflow: hidden;
 
-  ${(isSafari
-    // for Safari bug of multiple drop-shadow with overflow:hidden will clip shadow
-    ? css`
-      filter: drop-shadow(0 0 1px #eee9);
-    `
-    : css`
-      filter: drop-shadow(0 0 1px #eee9) drop-shadow(2px 10px 12px var(--color-shadow-1)) drop-shadow(-3px 3px 6px var(--color-shadow-2)) drop-shadow(0 -6px 8px var(--color-shadow-1));
-    `
-  )}
+  ${
+    isSafari
+      // for Safari bug of multiple drop-shadow with overflow:hidden will clip shadow
+      ? css`
+        filter: drop-shadow(0 0 1px #eee9);
+      `
+      : css`
+        filter: drop-shadow(0 0 1px #eee9) drop-shadow(2px 10px 12px var(--color-shadow-1)) drop-shadow(-3px 3px 6px var(--color-shadow-2)) drop-shadow(0 -6px 8px var(--color-shadow-1));
+      `
+  }
 
   .inspector-tip-info-row {
     display: flex;

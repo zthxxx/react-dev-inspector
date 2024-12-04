@@ -192,7 +192,8 @@ export const MoveableDragItem: StoryFn<{ itemSize: 'normal' | 'full' | 'large' }
   }>({})
 
   const inspectOnElement = (element?: HTMLElement | null) => {
-    if (!element) return
+    if (!element)
+      return
 
     const boxSizing = getElementDimensions(element)
     const boundingRect = getBoundingRect(element)

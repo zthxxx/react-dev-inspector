@@ -28,7 +28,8 @@ export const Marquee: FC<PropsWithChildren<MarqueeOptions>> = ({
   delay = '0s',
   iteration = 'infinite',
 }) => {
-  if (!Children.count(children)) return null
+  if (!Children.count(children))
+    return null
 
   return (
     <div

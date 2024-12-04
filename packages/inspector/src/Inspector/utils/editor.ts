@@ -21,7 +21,8 @@ const getCodeInfo = (_codeInfo: CodeInfoLike): CodeInfo => (
 export const gotoServerEditor = (_codeInfo?: CodeInfoLike, options?: {
   editor?: TrustedEditor;
 }) => {
-  if (!_codeInfo) return
+  if (!_codeInfo)
+    return
   const codeInfo = getCodeInfo(_codeInfo)
 
   const {

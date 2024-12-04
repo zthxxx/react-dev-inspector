@@ -70,7 +70,8 @@ export const List = <ItemData extends PureObject>(props: ListProps<ItemData>): J
   }
 
   const onScroll = () => {
-    if (!container || store.isLoading || store.loadDone) return
+    if (!container || store.isLoading || store.loadDone)
+      return
     const { scrollTop, clientHeight, scrollHeight } = container
     const scrollBottom = scrollTop + clientHeight
     const bottomTriggerToScroll = 30
@@ -99,7 +100,7 @@ export const List = <ItemData extends PureObject>(props: ListProps<ItemData>): J
         do {
           loadItems()
         } while (
-          // eslint-disable-next-line no-unmodified-loop-condition
+
           itemsHeight < (2 * initialHeight) && !store.loadDone
         )
       })

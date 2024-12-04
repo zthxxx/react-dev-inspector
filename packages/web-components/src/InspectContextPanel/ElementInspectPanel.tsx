@@ -224,7 +224,8 @@ export const ElementInspectPanel = <Item extends ItemInfo = ItemInfo>(props: Ele
                           'aria-selected': isSelected(),
                         }}
                         onClick={() => {
-                          if (isSelected()) return
+                          if (isSelected())
+                            return
                           setSelectedLayers(selects => ({
                             ...selects,
                             [props.elementChainMode]: index(),

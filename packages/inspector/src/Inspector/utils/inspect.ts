@@ -33,7 +33,8 @@ import {
  *     https://github.com/facebook/react/blob/v18.0.0/packages/react-reconciler/src/ReactFiber.new.js#L648-L649
  */
 export const getCodeInfoFromDebugSource = (fiber?: Fiber): CodeInfo | undefined => {
-  if (!fiber) return undefined
+  if (!fiber)
+    return undefined
 
   /**
    * only find forward with 2 level _debugOwner, otherwise to normal `fiber.return`
@@ -44,7 +45,8 @@ export const getCodeInfoFromDebugSource = (fiber?: Fiber): CodeInfo | undefined 
     ?? fiber._debugOwner?._debugOwner?._debugSource
   ) as Source & { columnNumber?: number }
 
-  if (!debugSource) return undefined
+  if (!debugSource)
+    return undefined
 
   const {
     fileName,
@@ -76,7 +78,8 @@ export const getCodeInfoFromDebugSource = (fiber?: Fiber): CodeInfo | undefined 
  * code location data-attribute props inject by `@react-dev-inspector/babel-plugin`
  */
 export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
-  if (!fiber?.pendingProps) return undefined
+  if (!fiber?.pendingProps)
+    return undefined
 
   const {
     'data-inspector-line': lineNumber,
@@ -101,7 +104,8 @@ export const getCodeInfoFromFiber = (fiber?: Fiber): CodeInfo | undefined => {
     getCodeInfoFromProps(fiber),
   ].filter(Boolean) as CodeInfo[]
 
-  if (!codeInfos.length) return undefined
+  if (!codeInfos.length)
+    return undefined
   return Object.assign({}, ...codeInfos)
 }
 
@@ -151,10 +155,12 @@ export const getCodeInfoFromFiber = (fiber?: Fiber): CodeInfo | undefined => {
  *    └─ div
  */
 export const getReferenceFiber = (baseFiber?: Fiber): Fiber | undefined => {
-  if (!baseFiber) return undefined
+  if (!baseFiber)
+    return undefined
 
   const directParent = getDirectParentFiber(baseFiber)
-  if (!directParent) return undefined
+  if (!directParent)
+    return undefined
 
   const isParentNative = isNativeTagFiber(directParent)
   const isOnlyOneChild = !directParent.child!.sibling
@@ -167,7 +173,8 @@ export const getReferenceFiber = (baseFiber?: Fiber): Fiber | undefined => {
   const originReferenceFiber = referenceFiber
 
   while (referenceFiber) {
-    if (getCodeInfoFromFiber(referenceFiber)) return referenceFiber
+    if (getCodeInfoFromFiber(referenceFiber))
+      return referenceFiber
 
     referenceFiber = referenceFiber.return!
   }
@@ -211,9 +218,11 @@ export const getNamedFiber = (baseFiber?: Fiber): Fiber | undefined => {
     }
 
     if (getFiberName(fiber)) {
-      if (!originNamedFiber) originNamedFiber = fiber
+      if (!originNamedFiber)
+        originNamedFiber = fiber
 
-      if (getCodeInfoFromFiber(fiber)) return fiber
+      if (getCodeInfoFromFiber(fiber))
+        return fiber
     }
 
     fiber = parent!

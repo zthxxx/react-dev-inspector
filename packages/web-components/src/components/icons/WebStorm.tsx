@@ -4,7 +4,8 @@ export const WebStorm = (props: {
 }) => {
   return (
     <img
-      width={props.size} height={props.size}
+      width={props.size}
+      height={props.size}
       class={props.class}
       src={`data:image/svg+xml;base64,${logo}`}
     />
