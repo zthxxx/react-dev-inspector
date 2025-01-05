@@ -1,7 +1,6 @@
 import React from 'react';
 import { Global } from '@emotion/react';
-import { Inspector } from 'react-dev-inspector';
-import type { InspectParams } from 'react-dev-inspector';
+import { Inspector, type InspectParams } from 'react-dev-inspector';
 import { Title } from './components/Title';
 import { Slogan } from './components/Slogan';
 import { KeyPad, Keypress } from './components/Keypress';
@@ -9,7 +8,7 @@ import * as S from './styles';
 const projectRepo = 'https://github.com/zthxxx/react-dev-inspector';
 const isDev = process.env.NODE_ENV === 'development';
 export const HomePage = () => {
-  return <Inspector data-inspector-line="16" data-inspector-column="4" data-inspector-relative-path="src/tests/fixtures/layouts/index.tsx" disableLaunchEditor={!isDev} onClickElement={(inspect: InspectParams) => {
+  return <Inspector data-inspector-line="15" data-inspector-column="4" data-inspector-relative-path="src/tests/fixtures/layouts/index.tsx" disableLaunchEditor={!isDev} onClickElement={(inspect: InspectParams) => {
     console.debug(inspect);
     if (isDev || !inspect.codeInfo?.relativePath) return;
     const {

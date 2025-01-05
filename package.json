@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "husky",
     "test": "pnpm --recursive test",
-    "lint": "TIMING=1 eslint --format codeframe docs packages examples",
+    "lint": "TIMING=1 eslint --format codeframe .",
     "purge": "pnpm -r clean && echo 'removing node_modules ...' && rm -rf .site {.,docs}/node_modules {examples,packages}/*/node_modules",
     "build:packages": "pnpm --filter './packages/*' build",
     "build:examples": "pnpm --filter './examples/*' build",

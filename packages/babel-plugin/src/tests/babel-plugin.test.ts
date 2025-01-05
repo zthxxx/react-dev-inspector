@@ -40,6 +40,7 @@ pluginTester({
     .sync(`${fixturesDir}/layouts/**/*.(ts|tsx)`)
     .map((filePath) => path.relative(fixturesDir, filePath))
     .map((asset) => ({
+      title: asset,
       fixture: path.join(cwd, fixturesDir, asset),
       outputFixture: path.join(cwd, outputsDir, asset),
     })),
