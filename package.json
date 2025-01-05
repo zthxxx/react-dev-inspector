@@ -1,12 +1,12 @@
 {
   "name": "@react-dev-inspector/monorepo",
   "version": "0.0.0",
-  "description": "vectorial shape and whiteboard",
+  "description": "monorepo for react-dev-inspector",
   "private": true,
   "license": "MIT",
   "author": "zthxxx <zthxxx.me@gmail.com>",
   "repository": "zthxxx/react-dev-inspector",
-  "packageManager": "pnpm@8.15.8",
+  "packageManager": "pnpm@9",
   "files": [],
   "scripts": {
     "prepare": "husky",

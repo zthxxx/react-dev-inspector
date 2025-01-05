@@ -21,7 +21,7 @@ runs:
     - name: Install
       shell: bash
       run: |
-        npm i -g pnpm@8
+        npm i -g pnpm@9
         npm --version
         pnpm --version
         pnpm i --frozen-lockfile
