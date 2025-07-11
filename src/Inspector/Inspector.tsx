@@ -39,6 +39,13 @@ export interface InspectorProps {
    * whether disable click react component to open IDE for view component code
    */
   disableLaunchEditor?: boolean,
+  /**
+   * custom handler for component name and info display
+   * @param name component name
+   * @param info component info (file path)
+   * @returns [displayName, displayInfo] tuple for display
+   */
+  handleCodeInfo?: (name: string, info?: string) => [string, string],
 }
 
 export const Inspector: React.FC<InspectorProps> = (props) => {
@@ -47,6 +54,7 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
     onHoverElement,
     onClickElement,
     disableLaunchEditor,
+    handleCodeInfo,
     children,
   } = props
 
@@ -63,7 +71,7 @@ export const Inspector: React.FC<InspectorProps> = (props) => {
   }
 
   const startInspect = () => {
-    const overlay = new Overlay()
+    const overlay = new Overlay(handleCodeInfo)
     overlayRef.current = overlay
 
     const stopCallback = setupHighlighter({

@@ -179,8 +179,10 @@ export default class Overlay {
   tip: OverlayTip
   rects: Array<OverlayRect>
   removeCallback: (this: Overlay) => void
+  handleCodeInfo?: (name: string, info?: string) => [string, string]
 
-  constructor() {
+  constructor(handleCodeInfo?: (name: string, info?: string) => [string, string]) {
+    this.handleCodeInfo = handleCodeInfo
     // Find the root window, because overlays are positioned relative to it.
     const currentWindow = window.__REACT_DEVTOOLS_TARGET_WINDOW__ || window
     this.window = currentWindow
@@ -283,12 +285,25 @@ export default class Overlay {
       }
     }
 
-    this.tip.updateText(
-      name,
-      info,
-      outerBox.right - outerBox.left,
-      outerBox.bottom - outerBox.top,
-    )
+    const width = outerBox.right - outerBox.left
+    const height = outerBox.bottom - outerBox.top
+
+    if (this.handleCodeInfo) {
+      const [displayName, displayInfo] = this.handleCodeInfo(name || '', info)
+      this.tip.updateText(
+        displayName,
+        displayInfo,
+        width,
+        height,
+      )
+    } else {
+      this.tip.updateText(
+        name || '',
+        info,
+        width,
+        height,
+      )
+    }
     const tipBounds = getNestedBoundingClientRect(
       this.tipBoundsWindow.document.documentElement,
       this.window,
